@@ -26,9 +26,13 @@ echo $markdown;
 ## See also
 
 * [Copilot-flavored Markdown]
-* [Copilot-flavored Markdown specification]
+* [Copilot-flavored Markdown spec]
+* [CommonMark]
+* [CommonMark spec]
 * [Flyway Integration API]
 
 [Copilot-flavored Markdown]: https://github.com/conde-nast-international/copilot-markdown
-[Copilot-flavored Markdown specification]: https://github.com/conde-nast-international/copilot-markdown/tree/master/specification
+[Copilot-flavored Markdown spec]: https://github.com/conde-nast-international/copilot-markdown/tree/master/specification
+[CommonMark]: http://commonmark.org/
+[CommonMark spec]: http://spec.commonmark.org/
 [Flyway Integration API]: https://conde-nast-international.github.io/flyway-api-docs
