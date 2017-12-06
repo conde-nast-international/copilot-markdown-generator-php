@@ -2,7 +2,7 @@
 
 namespace CopilotTags;
 
-interface Tag
+interface CopilotTag
 {
   public function write();
 }
