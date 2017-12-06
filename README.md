@@ -30,9 +30,11 @@ echo $markdown;
 * [CommonMark]
 * [CommonMark spec]
 * [Flyway Integration API]
+* [Get Composer][Composer]
 
 [Copilot-flavored Markdown]: https://github.com/conde-nast-international/copilot-markdown
 [Copilot-flavored Markdown spec]: https://github.com/conde-nast-international/copilot-markdown/tree/master/specification
 [CommonMark]: http://commonmark.org/
 [CommonMark spec]: http://spec.commonmark.org/
 [Flyway Integration API]: https://conde-nast-international.github.io/flyway-api-docs
+[Composer]: https://getcomposer.org/
