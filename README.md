@@ -15,8 +15,6 @@ composer require conde-nast-international/copilot-markdown-generator
 ## Basic usage
 
 ```php
-require 'vendor/autoload.php';
-
 use CopilotTags\Text;
 
 $tag = new Text("Hello world!");
