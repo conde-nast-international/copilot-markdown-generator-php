@@ -12,6 +12,34 @@ class TextTest extends CopilotTagTest
             [
                 new Text("Hello world!"),
                 "Hello world!"
+            ],
+            [
+                new Text("  "),
+                "  "
+            ],
+            [
+                new Text(""),
+                ""
+            ],
+            [
+                new Text(),
+                ""
+            ],
+            [
+                new Text("Hello\nworld!"),
+                "Hello\nworld!"
+            ],
+            [
+                new Text("Hello\n\n\n\nworld!"),
+                "Hello\n\nworld!"
+            ],
+            [
+                new Text("Hello\n       \nworld!"),
+                "Hello\n\nworld!"
+            ],
+            [
+                new Text("Hello\n\n\n       \nworld!"),
+                "Hello\n\nworld!"
             ]
         ];
     }

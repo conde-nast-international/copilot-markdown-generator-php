@@ -8,4 +8,8 @@ namespace CopilotTags;
  */
 class Section extends Text
 {
+    public function write()
+    {
+        return self::beautify("$this->text\n-=-=-=-\n");
+    }
 }

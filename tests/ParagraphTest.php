@@ -14,6 +14,14 @@ class ParagraphTest extends CopilotTagTest
                 "Hello world!\n\n"
             ],
             [
+                new Paragraph("  "),
+                "  \n\n"
+            ],
+            [
+                new Paragraph(""),
+                ""
+            ],
+            [
                 new Paragraph(),
                 ""
             ]

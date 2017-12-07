@@ -11,7 +11,19 @@ class SectionTest extends CopilotTagTest
         return [
             [
                 new Section("Hello world!"),
-                "Hello world!"
+                "Hello world!\n-=-=-=-\n"
+            ],
+            [
+                new Section("  "),
+                "  \n-=-=-=-\n"
+            ],
+            [
+                new Section(""),
+                "\n-=-=-=-\n"
+            ],
+            [
+                new Section(),
+                "\n-=-=-=-\n"
             ]
         ];
     }
