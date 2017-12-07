@@ -9,7 +9,7 @@ abstract class CopilotTagTest extends TestCase
      */
     public function testWrite($tag, $expected)
     {
-        $this->assertEquals($tag->write(), $expected);
+        $this->assertEquals($expected, $tag->write());
     }
 
     abstract public function expectedWrites();
