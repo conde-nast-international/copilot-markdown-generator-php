@@ -3,7 +3,7 @@
 namespace CopilotTags;
 
 /**
- * Embed Subtypes
+ * Embed subtypes
  * CFM spec: https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#3116-subtypes
  */
 abstract class EmbedSubtype

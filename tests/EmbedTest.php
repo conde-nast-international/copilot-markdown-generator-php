@@ -2,10 +2,11 @@
 
 use CopilotTags\Embed;
 use CopilotTags\EmbedSubtype;
+require_once 'CopilotTagTest.php';
 
 class EmbedTest extends CopilotTagTest
 {
-    public function expectedWrite()
+    public function expectedWrites()
     {
         return [
             [

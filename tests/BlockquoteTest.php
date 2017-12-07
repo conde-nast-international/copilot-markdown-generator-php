@@ -1,17 +1,17 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use CopilotTags\HR;
+use CopilotTags\Blockquote;
 require_once 'CopilotTagTest.php';
 
-class HRTest extends CopilotTagTest
+class BlockquoteTest extends CopilotTagTest
 {
     public function expectedWrites()
     {
         return [
             [
-                new HR(),
-                "\n----------\n"
+                new Blockquote("Hello world!"),
+                "Hello world!"
             ]
         ];
     }

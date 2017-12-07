@@ -1,17 +1,16 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use CopilotTags\CopilotTag;
 
 abstract class CopilotTagTest extends TestCase
 {
     /**
-     * @dataProvider expectedWrite
+     * @dataProvider expectedWrites
      */
     public function testWrite($tag, $expected)
     {
         $this->assertEquals($tag->write(), $expected);
     }
 
-    abstract public function expectedWrite();
+    abstract public function expectedWrites();
 }

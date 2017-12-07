@@ -3,8 +3,8 @@
 namespace CopilotTags;
 
 /**
- * Thematic Break
- * CommonMark spec: http://spec.commonmark.org/0.28/#thematic-breaks
+ * Thematic break
+ * CommonMark spec: http://spec.commonmark.org/0.27/#thematic-breaks
  */
 class HR implements CopilotTag
 {

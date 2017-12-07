@@ -1,17 +1,17 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use CopilotTags\HR;
+use CopilotTags\Paragraph;
 require_once 'CopilotTagTest.php';
 
-class HRTest extends CopilotTagTest
+class ParagraphTest extends CopilotTagTest
 {
     public function expectedWrites()
     {
         return [
             [
-                new HR(),
-                "\n----------\n"
+                new Paragraph("Hello world!"),
+                "Hello world!"
             ]
         ];
     }
