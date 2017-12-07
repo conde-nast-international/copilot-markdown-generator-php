@@ -26,7 +26,42 @@
     "require-dev": {
         "phpunit/phpunit": "^5.7"
     },
+    "scripts": {
+        "test": "phpunit --colors=always"
+    },
     "autoload": {
         "psr-4": { "CopilotTags\\": "src" }
-    }
+    },
+    "keywords": [
+        "copilot markdown",
+        "copilot markdown generator",
+        "copilot flavored markdown",
+        "copilot flavoured markdown",
+        "generator",
+        "generater",
+        "markdown",
+        "markdown tags",
+        "copilot",
+        "copilot tags",
+        "tags",
+        "commonmark",
+        "flyway",
+        "integration",
+        "flyway integration",
+        "flyway integration api",
+        "parser",
+        "content parser",
+        "converter",
+        "converters",
+        "content converter",
+        "content converters",
+        "tugboat",
+        "conde nast",
+        "conde nast international",
+        "cni",
+        "composer",
+        "library",
+        "api",
+        "php"
+    ]
 }
