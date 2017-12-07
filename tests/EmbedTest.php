@@ -1,14 +1,21 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use CopilotTags\Embed;
 use CopilotTags\EmbedSubtype;
 
-class EmbedTest extends TestCase
+class EmbedTest extends CopilotTagTest
 {
-    public function testWrite()
+    public function expectedWrite()
     {
-        $tag = new Embed("https://www.google.com", EmbedSubtype::IFRAME);
-        $this->assertEquals($tag->write(), "\n\n[#iframe:https://www.google.com]\n");
+        return [
+            [
+                new Embed("https://www.google.com", EmbedSubtype::VIDEO),
+                "\n\n[#video:https://www.google.com]\n"
+            ],
+            [
+                new Embed("https://www.google.com"),
+                "\n\n[#iframe:https://www.google.com]\n"
+            ]
+        ];
     }
 }

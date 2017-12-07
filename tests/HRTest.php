@@ -3,11 +3,15 @@
 use PHPUnit\Framework\TestCase;
 use CopilotTags\HR;
 
-class HRTest extends TestCase
+class HRTest extends CopilotTagTest
 {
-    public function testWrite()
+    public function expectedWrite()
     {
-        $tag = new HR();
-        $this->assertEquals($tag->write(), "\n----------\n");
+        return [
+            [
+                new HR(),
+                "\n----------\n"
+            ]
+        ];
     }
 }
