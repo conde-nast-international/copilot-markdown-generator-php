@@ -4,7 +4,7 @@ namespace CopilotTags;
 
 class Text implements CopilotTag
 {
-    private $text;
+    protected $text;
 
     public function __construct($text = "")
     {
