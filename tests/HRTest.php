@@ -1,8 +1,6 @@
 <?php
-
-use PHPUnit\Framework\TestCase;
+use CopilotTags\Tests\CopilotTagTest;
 use CopilotTags\HR;
-require_once 'CopilotTagTest.php';
 
 class HRTest extends CopilotTagTest
 {

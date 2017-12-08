@@ -1,8 +1,6 @@
 <?php
-
-use PHPUnit\Framework\TestCase;
+use CopilotTags\Tests\CopilotTagTest;
 use CopilotTags\ListItem;
-require_once 'CopilotTagTest.php';
 
 class ListItemTest extends CopilotTagTest
 {

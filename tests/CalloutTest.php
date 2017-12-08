@@ -1,8 +1,6 @@
 <?php
-
-use PHPUnit\Framework\TestCase;
+use CopilotTags\Tests\CopilotTagTest;
 use CopilotTags\Callout;
-require_once 'CopilotTagTest.php';
 
 class CalloutTest extends CopilotTagTest
 {

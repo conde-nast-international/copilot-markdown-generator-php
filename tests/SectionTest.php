@@ -1,8 +1,6 @@
 <?php
-
-use PHPUnit\Framework\TestCase;
+use CopilotTags\Tests\CopilotTagTest;
 use CopilotTags\Section;
-require_once 'CopilotTagTest.php';
 
 class SectionTest extends CopilotTagTest
 {

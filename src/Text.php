@@ -1,5 +1,4 @@
 <?php
-
 namespace CopilotTags;
 
 class Text implements CopilotTag

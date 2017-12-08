@@ -1,8 +1,7 @@
 <?php
-
+use CopilotTags\Tests\CopilotTagTest;
 use CopilotTags\Embed;
 use CopilotTags\EmbedSubtype;
-require_once 'CopilotTagTest.php';
 
 class EmbedTest extends CopilotTagTest
 {

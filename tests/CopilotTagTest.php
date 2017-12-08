@@ -1,5 +1,5 @@
 <?php
-
+namespace CopilotTags\Tests;
 use PHPUnit\Framework\TestCase;
 
 abstract class CopilotTagTest extends TestCase

@@ -30,7 +30,10 @@
         "test": "phpunit --colors=always"
     },
     "autoload": {
-        "psr-4": { "CopilotTags\\": "src" }
+        "psr-4": { "CopilotTags\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "CopilotTags\\Tests\\": "tests/" }
     },
     "keywords": [
         "copilot markdown",
