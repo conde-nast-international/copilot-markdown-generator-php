@@ -2,7 +2,7 @@
 namespace CopilotTags\Example;
 require __DIR__ . '/../vendor/autoload.php';
 
-class ContentParser {
+class ExampleParser {
 
     public function __construct()
     {
