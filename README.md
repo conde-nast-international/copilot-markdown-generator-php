@@ -23,6 +23,11 @@ echo $markdown;
 // Hello world!
 ```
 
+## Contributing
+
+See the [Contributing] document for guidance on making contributions to the
+project.
+
 ## See also
 
 * [Copilot-flavored Markdown]
@@ -32,6 +37,7 @@ echo $markdown;
 * [Flyway Integration API]
 * [Get Composer][Composer]
 
+[Contributing]: https://github.com/conde-nast-international/copilot-markdown-generator-php/blob/master/CONTRIBUTING.md
 [Copilot-flavored Markdown]: https://github.com/conde-nast-international/copilot-markdown
 [Copilot-flavored Markdown spec]: https://github.com/conde-nast-international/copilot-markdown/tree/master/specification
 [CommonMark]: http://commonmark.org/
