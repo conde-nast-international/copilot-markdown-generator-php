@@ -7,6 +7,11 @@ namespace CopilotTags;
  */
 class Section extends Text
 {
+    public function __construct($text = "")
+    {
+        parent::__construct($text);
+    }
+
     public function write()
     {
         return self::beautify("$this->text\n-=-=-=-\n");

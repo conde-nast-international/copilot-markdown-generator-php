@@ -15,6 +15,7 @@ class Embed implements CopilotTag
 
     public function __construct($uri, $subtype = EmbedSubtype::IFRAME, $caption = "")
     {
+        if (!is_string($uri)) throw new \InvalidArgumentException('Embed::__construct first argument $uri must be a string. Given:'.($uri?" $uri":'').' ('.gettype($uri).')');
         $this->uri = self::convertHttpToHttps(trim($uri));
         $this->subtype = $subtype;
         $this->caption = $caption;

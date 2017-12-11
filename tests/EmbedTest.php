@@ -18,4 +18,35 @@ class EmbedTest extends CopilotTagTest
             ]
         ];
     }
+
+    public function expectedConstructExceptions()
+    {
+        return [
+            [
+                Embed::class,
+                [NULL],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                [FALSE],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                [TRUE],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                [5],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                [[]],
+                InvalidArgumentException::class
+            ]
+        ];
+    }
 }

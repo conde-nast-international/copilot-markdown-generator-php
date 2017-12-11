@@ -13,4 +13,35 @@ class ListItemTest extends CopilotTagTest
             ]
         ];
     }
+
+    public function expectedConstructExceptions()
+    {
+        return [
+            [
+                ListItem::class,
+                [NULL],
+                InvalidArgumentException::class
+            ],
+            [
+                ListItem::class,
+                [FALSE],
+                InvalidArgumentException::class
+            ],
+            [
+                ListItem::class,
+                [TRUE],
+                InvalidArgumentException::class
+            ],
+            [
+                ListItem::class,
+                [5],
+                InvalidArgumentException::class
+            ],
+            [
+                ListItem::class,
+                [[]],
+                InvalidArgumentException::class
+            ]
+        ];
+    }
 }

@@ -24,16 +24,43 @@ class HeadingTest extends CopilotTagTest
                 ""
             ],
             [
-                new Heading(),
-                ""
-            ],
-            [
                 new Heading("Hello world!"),
                 "## Hello world!\n"
             ],
             [
                 new Heading("Hello world!", 1),
                 "## Hello world!\n"
+            ]
+        ];
+    }
+
+    public function expectedConstructExceptions()
+    {
+        return [
+            [
+                Heading::class,
+                [NULL],
+                InvalidArgumentException::class
+            ],
+            [
+                Heading::class,
+                [FALSE],
+                InvalidArgumentException::class
+            ],
+            [
+                Heading::class,
+                [TRUE],
+                InvalidArgumentException::class
+            ],
+            [
+                Heading::class,
+                [5],
+                InvalidArgumentException::class
+            ],
+            [
+                Heading::class,
+                [[]],
+                InvalidArgumentException::class
             ]
         ];
     }

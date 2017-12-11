@@ -20,10 +20,6 @@ class TextTest extends CopilotTagTest
                 ""
             ],
             [
-                new Text(),
-                ""
-            ],
-            [
                 new Text("Hello\nworld!"),
                 "Hello\nworld!"
             ],
@@ -38,6 +34,37 @@ class TextTest extends CopilotTagTest
             [
                 new Text("Hello\n\n\n       \nworld!"),
                 "Hello\n\nworld!"
+            ]
+        ];
+    }
+
+    public function expectedConstructExceptions()
+    {
+        return [
+            [
+                Text::class,
+                [NULL],
+                InvalidArgumentException::class
+            ],
+            [
+                Text::class,
+                [FALSE],
+                InvalidArgumentException::class
+            ],
+            [
+                Text::class,
+                [TRUE],
+                InvalidArgumentException::class
+            ],
+            [
+                Text::class,
+                [5],
+                InvalidArgumentException::class
+            ],
+            [
+                Text::class,
+                [[]],
+                InvalidArgumentException::class
             ]
         ];
     }
