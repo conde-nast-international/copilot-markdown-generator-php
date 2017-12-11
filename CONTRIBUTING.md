@@ -100,7 +100,7 @@ See existing [releases][GitHub releases] for examples.
 
 ### Autoloading
 
-This project uses the [PSR-4 autoloading standard](http://www.php-fig.org/psr/psr-4/)
+This project uses the [PSR-4 autoloading standard][PSR-4]
 in production and development.
 
 [Composer] will generate a development autoloader (`vendor/autoload.php`) when
