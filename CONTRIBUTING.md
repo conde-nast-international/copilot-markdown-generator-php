@@ -55,21 +55,21 @@ examples.
 
 To run all tests, run:
 
-```sh
-composer install
-composer run-script test
+```shell
+$ composer install
+$ composer run-script test
 ```
 
 This will also run the example script. To run only unit tests, run the [PHPUnit]
 binary:
 
-```sh
-vendor/bin/phpunit
+```shell
+$ vendor/bin/phpunit
 ```
 
 ### Step 6: Push
 
-```sh
+```shell
 $ git push origin [branch-name]
 ```
 
@@ -123,12 +123,12 @@ See [PHPUnit documentation][PHPUnit documentation].
 
 ## See also
 
-* [Composer]
-* [PHPUnit]
-* [Packagist]
 * [PHP manual]
 * [Composer documentation]
 * [PHPUnit documentation]
+* [Composer]
+* [PHPUnit]
+* [Packagist]
 
 [README see also]: https://github.com/conde-nast-international/copilot-markdown-generator-php/blob/master/README.md#see-also
 [CONTRIBUTING see also]: https://github.com/conde-nast-international/copilot-markdown-generator-php/blob/master/CONTRIBUTING.md#see-also

@@ -8,8 +8,8 @@ use in PHP implementations of the [Flyway Integration API].
 ## Install
 
 Using Composer:
-```
-composer require conde-nast-international/copilot-markdown-generator
+```shell
+$ composer require conde-nast-international/copilot-markdown-generator
 ```
 
 ## Basic usage
