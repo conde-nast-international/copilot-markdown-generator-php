@@ -7,7 +7,8 @@ use in PHP implementations of the [Flyway Integration API].
 
 ## Install
 
-Using Composer:
+Using [Composer]:
+
 ```shell
 $ composer require conde-nast-international/copilot-markdown-generator
 ```

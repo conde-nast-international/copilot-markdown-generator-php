@@ -7,14 +7,18 @@
 You will need to have installed on your machine:
 
 * PHP (v5.6.0 or above). If you're using macOS, you already have this installed.
-* Composer. [Get Composer][Composer]
+* Composer. [Download Composer][Composer] or install it with [Homebrew]:
+  ```shell
+  $ brew tap homebrew/homebrew-php
+  $ brew install homebrew/php/composer
+  ```
 
 There are useful links in the [see also][CONTRIBUTING see also]
 section below, as well as in the [readme][README see also].
 
 ### Step 1: Fork
 
-Fork (or branch) the project [on GitHub][GitHub repo] and clone it.
+Fork (or branch) the project [on GitHub][GitHub repo] and then clone it locally:
 
 ```bash
 $ git clone git@github.com:username/copilot-markdown-generator-php.git
@@ -23,7 +27,7 @@ $ git remote add upstream https://github.com/conde-nast-international/copilot-ma
 
 ### Step 2: Install
 
-Install project dependencies to `vendor/`.
+Install project dependencies to `vendor/` by running:
 
 ```bash
 $ composer install
@@ -31,7 +35,7 @@ $ composer install
 
 ### Step 3: Commit
 
-Commit your changes.
+Commit your changes:
 
 ```bash
 $ git add [paths...]
@@ -40,7 +44,7 @@ $ git commit
 
 ### Step 4: Rebase
 
-Synchronise with the main repository.
+Synchronise with the main repository:
 
 ```bash
 $ git fetch upstream
@@ -119,13 +123,13 @@ $text = new Text("Hello world!");
 We use [PHPUnit] for unit testing. PHPUnit has it's own autoloader, so the
 development autoloader is not required in test cases.
 
-See [PHPUnit documentation][PHPUnit documentation].
+See [PHPUnit documentation][PHPUnit manual].
 
 ## See also
 
 * [PHP manual]
 * [Composer documentation]
-* [PHPUnit documentation]
+* [PHPUnit manual]
 * [Composer]
 * [PHPUnit]
 * [Packagist]
@@ -142,5 +146,6 @@ See [PHPUnit documentation][PHPUnit documentation].
 [Composer]: https://getcomposer.org/
 [Composer documentation]: https://getcomposer.org/doc/
 [PHPUnit]: https://phpunit.de/
-[PHPUnit documentation]: https://phpunit.de/manual/current/en/index.html
+[PHPUnit manual]: https://phpunit.de/manual/current/en/index.html
 [PSR-4]: http://www.php-fig.org/psr/psr-4/
+[Homebrew]: https://brew.sh/
