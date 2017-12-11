@@ -7,9 +7,10 @@ use in PHP implementations of the [Flyway Integration API].
 
 ## Install
 
-Using Composer:
-```
-composer require conde-nast-international/copilot-markdown-generator
+Using [Composer]:
+
+```shell
+$ composer require conde-nast-international/copilot-markdown-generator
 ```
 
 ## Basic usage
@@ -23,6 +24,11 @@ echo $markdown;
 // Hello world!
 ```
 
+## Contributing
+
+See the [Contributing] document for guidance on making contributions to the
+project.
+
 ## See also
 
 * [Copilot-flavored Markdown]
@@ -32,6 +38,7 @@ echo $markdown;
 * [Flyway Integration API]
 * [Get Composer][Composer]
 
+[Contributing]: https://github.com/conde-nast-international/copilot-markdown-generator-php/blob/master/CONTRIBUTING.md
 [Copilot-flavored Markdown]: https://github.com/conde-nast-international/copilot-markdown
 [Copilot-flavored Markdown spec]: https://github.com/conde-nast-international/copilot-markdown/tree/master/specification
 [CommonMark]: http://commonmark.org/
