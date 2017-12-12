@@ -12,7 +12,7 @@ class Heading extends Text
 
     private $level;
 
-    public function __construct($text = "", $level = self::MIN_LEVEL)
+    public function __construct($text, $level = self::MIN_LEVEL)
     {
         parent::__construct($text);
 

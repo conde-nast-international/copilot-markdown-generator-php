@@ -9,7 +9,7 @@ class Callout extends Text
 {
     private $subtype;
 
-    public function __construct($text = "", $subtype = "")
+    public function __construct($text, $subtype = "")
     {
         parent::__construct($text);
         $this->subtype = $subtype;

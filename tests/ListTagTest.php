@@ -13,4 +13,35 @@ class ListTagTest extends CopilotTagTest
             ]
         ];
     }
+
+    public function expectedConstructExceptions()
+    {
+        return [
+            [
+                ListTag::class,
+                [NULL],
+                InvalidArgumentException::class
+            ],
+            [
+                ListTag::class,
+                [FALSE],
+                InvalidArgumentException::class
+            ],
+            [
+                ListTag::class,
+                [TRUE],
+                InvalidArgumentException::class
+            ],
+            [
+                ListTag::class,
+                [5],
+                InvalidArgumentException::class
+            ],
+            [
+                ListTag::class,
+                ["my string"],
+                InvalidArgumentException::class
+            ]
+        ];
+    }
 }

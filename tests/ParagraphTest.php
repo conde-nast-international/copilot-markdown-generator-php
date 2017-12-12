@@ -18,10 +18,37 @@ class ParagraphTest extends CopilotTagTest
             [
                 new Paragraph(""),
                 ""
+            ]
+        ];
+    }
+
+    public function expectedConstructExceptions()
+    {
+        return [
+            [
+                Paragraph::class,
+                [NULL],
+                InvalidArgumentException::class
             ],
             [
-                new Paragraph(),
-                ""
+                Paragraph::class,
+                [FALSE],
+                InvalidArgumentException::class
+            ],
+            [
+                Paragraph::class,
+                [TRUE],
+                InvalidArgumentException::class
+            ],
+            [
+                Paragraph::class,
+                [5],
+                InvalidArgumentException::class
+            ],
+            [
+                Paragraph::class,
+                [[]],
+                InvalidArgumentException::class
             ]
         ];
     }

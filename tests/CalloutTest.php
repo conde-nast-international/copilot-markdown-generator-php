@@ -20,12 +20,39 @@ class CalloutTest extends CopilotTagTest
                 ""
             ],
             [
-                new Callout(),
-                ""
-            ],
-            [
                 new Callout("Hello world!"),
                 "+++\nHello world!\n+++\n"
+            ]
+        ];
+    }
+
+    public function expectedConstructExceptions()
+    {
+        return [
+            [
+                Callout::class,
+                [NULL],
+                InvalidArgumentException::class
+            ],
+            [
+                Callout::class,
+                [FALSE],
+                InvalidArgumentException::class
+            ],
+            [
+                Callout::class,
+                [TRUE],
+                InvalidArgumentException::class
+            ],
+            [
+                Callout::class,
+                [5],
+                InvalidArgumentException::class
+            ],
+            [
+                Callout::class,
+                [[]],
+                InvalidArgumentException::class
             ]
         ];
     }

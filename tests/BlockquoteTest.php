@@ -25,4 +25,35 @@ class BlockquoteTest extends CopilotTagTest
             ]
         ];
     }
+
+    public function expectedConstructExceptions()
+    {
+        return [
+            [
+                Blockquote::class,
+                [NULL],
+                InvalidArgumentException::class
+            ],
+            [
+                Blockquote::class,
+                [FALSE],
+                InvalidArgumentException::class
+            ],
+            [
+                Blockquote::class,
+                [TRUE],
+                InvalidArgumentException::class
+            ],
+            [
+                Blockquote::class,
+                [5],
+                InvalidArgumentException::class
+            ],
+            [
+                Blockquote::class,
+                [[]],
+                InvalidArgumentException::class
+            ]
+        ];
+    }
 }

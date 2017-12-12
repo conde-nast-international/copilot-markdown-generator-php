@@ -12,5 +12,16 @@ abstract class CopilotTagTest extends TestCase
         $this->assertEquals($expected, $tag->write());
     }
 
+    /**
+     * @dataProvider expectedConstructExceptions
+     */
+    public function testConstructException($class = NULL, $args = [], $exceptionType = Exception::class)
+    {
+        if (!isset($class)) return;
+        $this->expectException($exceptionType);
+        new $class(...$args);
+    }
+
+    public function expectedConstructExceptions() { return [[]]; }
     abstract public function expectedWrites();
 }
