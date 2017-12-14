@@ -59,7 +59,7 @@ class LinkTest extends CopilotTagTest
             ],
             [
                 new Link("{$assetMarkdown}{$assetMarkdown}", "http://li.nk"),
-                "{$assetMarkdown}{$assetMarkdown}"
+                "\n\n[#image: /photos/123ID]|||some caption|||\n\n[#image: /photos/123ID]|||some caption|||\n"
             ],
             [
                 new Link("{$assetMarkdown}some text yo{$assetMarkdown}", "http://li.nk"),

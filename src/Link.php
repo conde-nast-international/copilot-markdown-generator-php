@@ -26,7 +26,8 @@ class Link extends Text
               if (!trim($tag)) return $tag;
               return (new Link($tag, $this->href, $this->attributes))->write();
             }, $tags);
-            return implode("\n", $tags);
+            $tags = implode("\n", $tags);
+            return self::beautify($tags);
         }
 
         $text = $this->text;
