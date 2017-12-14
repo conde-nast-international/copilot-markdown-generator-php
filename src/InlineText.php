@@ -8,7 +8,9 @@ namespace CopilotTags;
 class InlineText extends Text
 {
 
-    public function __construct($text = "", $markdownTag = "")
+    private $mdTag;
+
+    public function __construct($text, $markdownTag = "")
     {
         parent::__construct($text);
         $this->mdTag = $markdownTag;
@@ -18,23 +20,22 @@ class InlineText extends Text
     {
         $tag = parent::write($this->text);
         if (!trim($tag)) return $tag;
-        $tag = trim($tag);
-        $tag = preg_replace(blockRegex, "\n$0\n", $tag);
+        $tag = preg_replace(Embed::EMBED_PATTERN, "\n$0\n", $tag);
 
         if (preg_match("/\n/", $tag)) {
           $tag = explode("\n", $tag);
           $tag = array_map(function ($splitTag) {
-            if (preg_match(blockRegex, $splitTag)) return $splitTag;
+            if (preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;
             return (new InlineText($splitTag, $this->mdTag))->write();
           }, $tag);
           $tag = implode("\n", $tag);
         } else {
-          $whitespace = getOuterSpace($this->text);
-          $leftWhitespace = $whitespace["lwspace"];
-          $rightWhitespace = $whitespace["rwspace"];
+          $leftWhitespace = StringUtils::leadingSpace($tag);
+          $rightWhitespace = StringUtils::trailingSpace($tag);
+          $tag = trim($tag);
           $tag = "{$leftWhitespace}{$this->mdTag}{$tag}{$this->mdTag}{$rightWhitespace}";
         }
 
-        return parent::beautify($tag);
+        return self::beautify($tag);
     }
 }

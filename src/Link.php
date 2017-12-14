@@ -22,7 +22,7 @@ class Link extends Text
         if (preg_match("/\n/", $this->text)) {
             $tags = explode("\n", $this->text);
             $tags = array_map(function($tag) {
-              if (preg_match(blockRegex, $tag)) return $tag;
+              if (preg_match(Embed::EMBED_PATTERN, $tag)) return $tag;
               if (!trim($tag)) return $tag;
               return (new Link($tag, $this->href, $this->attributes))->write();
             }, $tags);
@@ -31,12 +31,12 @@ class Link extends Text
 
         $text = $this->text;
 
-        $space = getOuterSpace($text);
-        $rwspace = $space["rwspace"];
-        $lwspace = $space["lwspace"];
+        $lwspace = StringUtils::leadingSpace($text);
+        $rwspace = StringUtils::trailingSpace($text);
 
         $text = trim($text);
         $href = trim($this->href);
+        $href = preg_replace("/\n/", "", $href);
 
         $attrs = "";
         if ($this->attributes) {
@@ -45,6 +45,10 @@ class Link extends Text
             }
             $attrs = "{:$attrs }";
         }
-        return "{$lwspace}[$text]($href){$attrs}{$rwspace}";
+        return self::beautify("{$lwspace}[$text]($href){$attrs}{$rwspace}");
+    }
+
+    static function beautify($md = "") {
+        return parent::beautify($md);// todo
     }
 }

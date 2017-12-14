@@ -42,7 +42,7 @@ class LinkTest extends CopilotTagTest
                 "  [Hello world!](http://li.nk)\n\n"
             ],
             [
-                new Link("  Hello world!\n\n", "http://li.nk"),
+                new Link("  Hello world!\n\n", "http://li\n.nk"),
                 "  [Hello world!](http://li.nk)\n\n"
             ],
             [

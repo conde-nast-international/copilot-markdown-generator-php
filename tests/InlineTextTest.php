@@ -8,10 +8,6 @@ class InlineTextTest extends CopilotTagTest
     {
         return [
             [
-                new InlineText(),
-                ""
-            ],
-            [
                 new InlineText(""),
                 ""
             ],
@@ -34,6 +30,10 @@ class InlineTextTest extends CopilotTagTest
             [
                 new InlineText("   ", "¯\_(ツ)_/¯"),
                 "   "
+            ],
+            [
+                new InlineText("First\nSecond ", ":"),
+                ":First:\n:Second: "
             ],
             [
                 new InlineText("[#image: /photos/123ID]|||caption|||", ":"),
