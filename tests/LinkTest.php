@@ -55,7 +55,7 @@ class LinkTest extends CopilotTagTest
             ],
             [
                 new Link("Hello\nworld!", "http://li.nk"),
-                "[Hello](http://li.nk)\n[world!](http://li.nk)"
+                "[Hello world!](http://li.nk)"
             ],
             [
                 new Link("{$assetMarkdown}{$assetMarkdown}", "http://li.nk"),

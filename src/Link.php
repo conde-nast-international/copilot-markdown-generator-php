@@ -50,6 +50,7 @@ class Link extends Text
     }
 
     static function beautify($md = "") {
-        return parent::beautify($md);// todo
+        $md = preg_replace("/\]\(.*\)\s*\[([^#])/", " $1", $md);
+        return parent::beautify($md);
     }
 }
