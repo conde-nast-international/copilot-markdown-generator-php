@@ -40,7 +40,6 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "CopilotTags\\Example\\": "example/",
             "CopilotTags\\Tests\\": "tests/"
         }
     },
