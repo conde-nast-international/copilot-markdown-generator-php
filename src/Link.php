@@ -19,10 +19,11 @@ class Link extends Text
     {
         if ($this->text == "") return self::beautify($this->text);
 
+        // Generate each line individually
         if (preg_match("/\n/", $this->text)) {
             $tags = explode("\n", $this->text);
             $tags = array_map(function($tag) {
-              if (preg_match(Embed::EMBED_PATTERN, $tag)) return $tag;
+              if (preg_match(Embed::EMBED_PATTERN, $tag)) return $tag;// Don't wrap embeds
               if (!trim($tag)) return $tag;
               return (new Link($tag, $this->href, $this->attributes))->write();
             }, $tags);
