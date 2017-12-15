@@ -32,6 +32,7 @@ try {
     $message = $e->getMessage();
     log_message("Exception: $message", 1);
     log_var($markdown_stack, "\$markdown_stack", "", 1, FALSE);
+    exit(1);
 }
 xml_parser_free($parser);
 
