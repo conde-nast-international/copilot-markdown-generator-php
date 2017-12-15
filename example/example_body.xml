@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<section>
-  <h1>My First Heading</h1>
-  <p>My first paragraph. It makes use of a number of tags including <i>Italics</i>, <b>Bold</b> and <u>Underlines</u></p>
-</section>
+<body>
+<section><h1>My First Heading</h1><p>My first paragraph. It makes use of a number of tags including <i>italics</i>, <b>bold</b> and <strike>strikethrough</strike>.</p></section>
+<section><h1>My Video Embed</h1><embed-video>https://www.youtube.com/embed/fx2Qk-QqhXw</embed-video></section>
+</body>
