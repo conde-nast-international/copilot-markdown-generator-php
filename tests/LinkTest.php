@@ -1,12 +1,14 @@
 <?php
 use CopilotTags\Tests\CopilotTagTest;
 use CopilotTags\Link;
+use CopilotTags\Embed;
+use CopilotTags\EmbedSubtype;
 
 class LinkTest extends CopilotTagTest
 {
     public function expectedWrites()
     {
-        $assetMarkdown = "\n\n[#image: /photos/123ID]|||some caption|||\n";
+        $assetMarkdown = (new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption"))->write();
 
         return [
             [
@@ -51,7 +53,7 @@ class LinkTest extends CopilotTagTest
             ],
             [
                 new Link($assetMarkdown, "http://li.nk"),
-                "$assetMarkdown"
+                "\n\n[#image:/photos/123ID]|||some caption|||\n"
             ],
             [
                 new Link("Hello\nworld!", "http://li.nk"),
@@ -59,23 +61,23 @@ class LinkTest extends CopilotTagTest
             ],
             [
                 new Link("{$assetMarkdown}{$assetMarkdown}", "http://li.nk"),
-                "\n\n[#image: /photos/123ID]|||some caption|||\n\n[#image: /photos/123ID]|||some caption|||\n"
+                "\n\n[#image:/photos/123ID]|||some caption|||\n\n[#image:/photos/123ID]|||some caption|||\n"
             ],
             [
                 new Link("{$assetMarkdown}some text yo{$assetMarkdown}", "http://li.nk"),
-                "{$assetMarkdown}[some text yo](http://li.nk){$assetMarkdown}"
+                "\n\n[#image:/photos/123ID]|||some caption|||\n[some text yo](http://li.nk)\n\n[#image:/photos/123ID]|||some caption|||\n"
             ],
             [
                 new Link("some text yo $assetMarkdown", "http://li.nk"),
-                "[some text yo](http://li.nk) $assetMarkdown"
+                "[some text yo](http://li.nk) \n\n[#image:/photos/123ID]|||some caption|||\n"
             ],
             [
                 new Link("$assetMarkdown some text yo", "http://li.nk"),
-                "{$assetMarkdown} [some text yo](http://li.nk)"
+                "\n\n[#image:/photos/123ID]|||some caption|||\n [some text yo](http://li.nk)"
             ],
             [
                 new Link("this is $assetMarkdown some text yo", "http://li.nk"),
-                "[this is](http://li.nk) {$assetMarkdown} [some text yo](http://li.nk)"
+                "[this is](http://li.nk) \n\n[#image:/photos/123ID]|||some caption|||\n [some text yo](http://li.nk)"
             ]
         ];
     }
