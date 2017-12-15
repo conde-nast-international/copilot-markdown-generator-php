@@ -8,8 +8,48 @@ class InlineTextTest extends CopilotTagTest
     {
         return [
             [
+                new InlineText(""),
+                ""
+            ],
+            [
+                new InlineText("", "~"),
+                ""
+            ],
+            [
                 new InlineText("Hello world!"),
                 "Hello world!"
+            ],
+            [
+                new InlineText("Hello world!", "¯\_(ツ)_/¯"),
+                "¯\_(ツ)_/¯Hello world!¯\_(ツ)_/¯"
+            ],
+            [
+                new InlineText("  Hello world!  ", "¯\_(ツ)_/¯"),
+                "  ¯\_(ツ)_/¯Hello world!¯\_(ツ)_/¯  "
+            ],
+            [
+                new InlineText("   ", "¯\_(ツ)_/¯"),
+                "   "
+            ],
+            [
+                new InlineText("First\nSecond ", ":"),
+                ":First:\n:Second: "
+            ],
+            [
+                new InlineText("[#image: /photos/123ID]|||caption|||", ":"),
+                "\n[#image: /photos/123ID]|||caption|||\n"
+            ],
+            [
+                new InlineText("[#image: /photos/123ID]|||caption|||Hello world!", ":"),
+                "\n[#image: /photos/123ID]|||caption|||\n:Hello world!:"
+            ],
+            [
+                new InlineText("Hello world! [#image: /photos/123ID]|||caption|||", ":"),
+                ":Hello world!: \n[#image: /photos/123ID]|||caption|||\n"
+            ],
+            [
+                new InlineText("Hello world! [#image: /photos/123ID]|||caption||| It's me again", ":"),
+                ":Hello world!: \n[#image: /photos/123ID]|||caption|||\n :It's me again:"
             ]
         ];
     }
