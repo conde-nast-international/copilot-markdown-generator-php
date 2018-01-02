@@ -8,7 +8,7 @@ use CopilotTags\Embed;
 use CopilotTags\EmbedSubtype;
 
 
-const LOG_LEVEL = 2; // 0 = print none, 1 = print normal, 2 = print debug
+const LOG_LEVEL = 1; // 0 = print none, 1 = print normal, 2 = print debug
 const FILENAME = 'example_body.xml';
 
 
