@@ -17,6 +17,10 @@ class EmbedTest extends CopilotTagTest
                 "\n\n[#iframe:https://www.google.com]\n"
             ],
             [
+                new Embed("http://www.google.com"),
+                "\n\n[#iframe:https://www.google.com]\n"
+            ],
+            [
                 new Embed(""),
                 ""
             ]
