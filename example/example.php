@@ -8,7 +8,7 @@ use CopilotTags\Embed;
 use CopilotTags\EmbedSubtype;
 
 
-const LOG_LEVEL = 1; // 0 = print none, 1 = print normal, 2 = print debug
+const LOG_LEVEL = 2; // 0 = print none, 1 = print normal, 2 = print debug
 const FILENAME = 'example_body.xml';
 
 
@@ -38,31 +38,43 @@ xml_parser_free($parser);
 
 function add_text($parser, $text) {
     global $xml_tag_stack, $markdown_stack;
+
     log_message("Adding text to current buffer...", 2);
     log_var($text, "\$text", "", 2);
-    $stack_index = count($markdown_stack) - 1;
     log_var($markdown_stack, "\$markdown_stack", "BEFORE", 2);
+
+    $stack_index = count($markdown_stack) - 1;
     $markdown_stack[$stack_index] = $markdown_stack[$stack_index].$text;
+
     log_var($markdown_stack, "\$markdown_stack", "AFTER", 2);
 }
 
 function on_open_tag($parser, $name, $attrs) {
     global $xml_tag_stack, $markdown_stack;
+
     $tagname = strtoupper($name);
+
     log_message("Open tag \"$tagname\". Putting tag on stack...", 2);
     log_var($xml_tag_stack, "\$xml_tag_stack", "BEFORE", 2);
+
     array_push($xml_tag_stack, $tagname);
     array_push($markdown_stack, "");
+
     log_var($xml_tag_stack, "\$xml_tag_stack", "AFTER", 2);
 }
 
 function on_close_tag($parser, $name) {
     global $xml_tag_stack, $markdown_stack;
-    $text = array_pop($markdown_stack);
-    $tagname = strtoupper($xml_tag_stack[count($xml_tag_stack) - 1]);
+
     log_message("Close tag \"$tagname\". Popping stack...", 2);
     log_var($xml_tag_stack, "\$xml_tag_stack", "BEFORE", 2);
     log_var($markdown_stack, "\$markdown_stack", "BEFORE", 2);
+
+    $text = array_pop($markdown_stack);
+    $tagname = array_pop($xml_tag_stack);
+    $line = xml_get_current_line_number($parser);
+    if($tagname !== strtoupper($name)) throw new Exception("Error parsing XML on line $line of ".FILENAME.". Open tag '$tag' did not have matching close tag. Found closing tag '$name' instead.");
+
     $tag = NULL;
     switch($tagname) {
         case 'H1':
@@ -87,11 +99,10 @@ function on_close_tag($parser, $name) {
             $tag = new Text($text);
     }
     $tag_markdown = $tag->write();
+
     $stack_index = count($markdown_stack) - 1;
     $markdown_stack[$stack_index] = $markdown_stack[$stack_index].$tag_markdown;
-    $tag = array_pop($xml_tag_stack);
-    $line = xml_get_current_line_number($parser);
-    if($tag !== $name) throw new Exception("Error parsing XML on line $line of ".FILENAME.". Open tag '$tag' did not have matching close tag. Found closing tag '$name' instead.");
+
     log_var($xml_tag_stack, "\$xml_tag_stack", "AFTER", 2);
     log_var($markdown_stack, "\$markdown_stack", "AFTER", 2);
 }
