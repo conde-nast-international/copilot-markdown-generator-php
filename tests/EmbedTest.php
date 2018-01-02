@@ -15,6 +15,10 @@ class EmbedTest extends CopilotTagTest
             [
                 new Embed("https://www.google.com"),
                 "\n\n[#iframe:https://www.google.com]\n"
+            ],
+            [
+                new Embed(""),
+                ""
             ]
         ];
     }
@@ -45,6 +49,71 @@ class EmbedTest extends CopilotTagTest
             [
                 Embed::class,
                 [[]],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["http:// google.com"],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                [" http://google.com"],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["http://google.com "],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                [" http://google.com "],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["http://\ngoogle.com"],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["http://google.com\n"],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["\nhttp://google.com"],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["\nhttp://google.com\n"],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["  "],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["  \n"],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["\n  "],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["\n"],
+                InvalidArgumentException::class
+            ],
+            [
+                Embed::class,
+                ["\n\n\n\n"],
                 InvalidArgumentException::class
             ]
         ];

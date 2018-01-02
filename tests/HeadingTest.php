@@ -13,7 +13,7 @@ class HeadingTest extends CopilotTagTest
             ],
             [
                 new Heading("  "),
-                "  \n"
+                "\n"
             ],
             [
                 new Heading(""),

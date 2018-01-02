@@ -12,16 +12,36 @@ class CalloutTest extends CopilotTagTest
                 "+++type\nHello world!\n+++\n"
             ],
             [
+                new Callout("Hello world!"),
+                "+++\nHello world!\n+++\n"
+            ],
+            [
+                new Callout("\n\nHello\nworld!\n"),
+                "+++\n\nHello\nworld!\n\n+++\n"
+            ],
+            [
                 new Callout("  "),
-                "  \n"
+                "\n"
             ],
             [
                 new Callout(""),
                 ""
             ],
             [
-                new Callout("Hello world!"),
-                "+++\nHello world!\n+++\n"
+                new Callout("  \n"),
+                "\n\n"
+            ],
+            [
+                new Callout("\n  "),
+                "\n\n"
+            ],
+            [
+                new Callout("\n"),
+                "\n\n"
+            ],
+            [
+                new Callout("\n\n\n\n"),
+                "\n\n"
             ]
         ];
     }

@@ -13,7 +13,7 @@ class ParagraphTest extends CopilotTagTest
             ],
             [
                 new Paragraph("  "),
-                "  \n\n"
+                "\n\n"
             ],
             [
                 new Paragraph(""),

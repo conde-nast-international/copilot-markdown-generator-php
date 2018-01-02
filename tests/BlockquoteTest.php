@@ -16,12 +16,32 @@ class BlockquoteTest extends CopilotTagTest
                 "> The city’s central computer told you?\n> R2D2,\n> you know better than to trust a strange computer!\n"
             ],
             [
+                new Blockquote("\n\nThe city’s central computer told you?\nR2D2,\nyou know better than to trust a strange computer!\n"),
+                "> \n> \n> The city’s central computer told you?\n> R2D2,\n> you know better than to trust a strange computer!\n> \n"
+            ],
+            [
                 new Blockquote("  "),
                 ">   \n"
             ],
             [
                 new Blockquote(""),
                 ""
+            ],
+            [
+                new Blockquote("  \n"),
+                ">   \n> \n"
+            ],
+            [
+                new Blockquote("\n  "),
+                "> \n>   \n"
+            ],
+            [
+                new Blockquote("\n"),
+                "> \n> \n"
+            ],
+            [
+                new Blockquote("\n\n\n\n"),
+                "> \n> \n> \n> \n> \n"
             ]
         ];
     }

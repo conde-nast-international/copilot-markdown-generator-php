@@ -13,7 +13,7 @@ class SectionTest extends CopilotTagTest
             ],
             [
                 new Section("  "),
-                "  \n-=-=-=-\n"
+                "\n-=-=-=-\n"
             ],
             [
                 new Section(""),
