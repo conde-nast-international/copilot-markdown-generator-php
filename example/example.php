@@ -8,7 +8,7 @@ use CopilotTags\Embed;
 use CopilotTags\EmbedSubtype;
 
 
-const LOG_LEVEL = 1; // 0 = print none, 1 = print normal, 2 = print debug
+const LOG_LEVEL = 2; // 0 = print none, 1 = print normal, 2 = print debug
 const FILENAME = 'example_body.xml';
 
 
@@ -23,14 +23,22 @@ $parser = xml_parser_create();
 xml_set_default_handler($parser, 'add_text');
 xml_set_element_handler($parser, 'on_open_tag', 'on_close_tag');
 try {
-    xml_parse($parser, $xml_body, TRUE);
-    if(count($markdown_stack) !== 1) throw new Exception("Error parsing XML. Unexpected end of file.");
+    $xml_parse_success = xml_parse($parser, $xml_body, TRUE);
+    if(count($markdown_stack) !== 1) $xml_parse_success = 0;
+    if (!$xml_parse_success) {
+        $error_code = xml_get_error_code($parser);
+        $error_string = xml_error_string($error_code);
+        $line = xml_get_current_line_number($parser);
+        $column = xml_get_current_column_number($parser);
+        if (is_string($error_string) && strlen($error_string)) $error_string = ": $error_string";
+        throw new Exception("Error ($error_code) parsing XML at $line:$column of \"".FILENAME."\"$error_string.");
+    }
     $markdown_body = array_pop($markdown_stack);
     log_message("Success.\n", 1);
     log_var($markdown_body, "\$markdown_body", "", 1, FALSE);
 } catch(Exception $e) {
     $message = $e->getMessage();
-    log_message("Exception: $message", 1);
+    log_message($message, 1);
     log_var($markdown_stack, "\$markdown_stack", "", 1, FALSE);
     exit(1);
 }
@@ -66,14 +74,18 @@ function on_open_tag($parser, $name, $attrs) {
 function on_close_tag($parser, $name) {
     global $xml_tag_stack, $markdown_stack;
 
+    $tagname = strtoupper($name);
+
     log_message("Close tag \"$tagname\". Popping stack...", 2);
     log_var($xml_tag_stack, "\$xml_tag_stack", "BEFORE", 2);
     log_var($markdown_stack, "\$markdown_stack", "BEFORE", 2);
 
     $text = array_pop($markdown_stack);
-    $tagname = array_pop($xml_tag_stack);
+    $tagname_open = array_pop($xml_tag_stack);
+
     $line = xml_get_current_line_number($parser);
-    if($tagname !== strtoupper($name)) throw new Exception("Error parsing XML on line $line of ".FILENAME.". Open tag '$tag' did not have matching close tag. Found closing tag '$name' instead.");
+    $column = xml_get_current_column_number($parser);
+    if($tagname !== $tagname_open) throw new Exception("Error parsing XML at $line:$column of \"".FILENAME."\". Open tag \"$tagname_open\" did not have matching close tag. Found close tag \"$tagname\" instead.");
 
     $tag = NULL;
     switch($tagname) {
