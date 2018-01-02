@@ -12,12 +12,12 @@ namespace CopilotTags;
 class InlineText extends Text
 {
 
-    private $mdTag;
+    private $delimiter;
 
-    public function __construct($text, $markdownTag = "")
+    public function __construct($text, $delimiter = "")
     {
         parent::__construct($text);
-        $this->mdTag = $markdownTag;
+        $this->delimiter = $delimiter;
     }
 
     public function write()
@@ -33,7 +33,7 @@ class InlineText extends Text
           $tag = explode("\n", $tag);
           $tag = array_map(function ($splitTag) {
             if (preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;// Don't wrap embeds
-            return (new InlineText($splitTag, $this->mdTag))->write();
+            return (new InlineText($splitTag, $this->delimiter))->write();
           }, $tag);
           $tag = implode("\n", $tag);
         } else {
@@ -41,7 +41,7 @@ class InlineText extends Text
           $leftWhitespace = StringUtils::leadingSpace($tag);
           $rightWhitespace = StringUtils::trailingSpace($tag);
           $tag = trim($tag);
-          $tag = "{$leftWhitespace}{$this->mdTag}{$tag}{$this->mdTag}{$rightWhitespace}";
+          $tag = "{$leftWhitespace}{$this->delimiter}{$tag}{$this->delimiter}{$rightWhitespace}";
         }
 
         return self::beautify($tag);
