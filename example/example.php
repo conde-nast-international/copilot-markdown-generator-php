@@ -4,6 +4,7 @@ use CopilotTags\Text;
 use CopilotTags\Paragraph;
 use CopilotTags\Heading;
 use CopilotTags\InlineText;
+use CopilotTags\InlineTextDelimiter;
 use CopilotTags\Embed;
 use CopilotTags\EmbedSubtype;
 
@@ -96,13 +97,13 @@ function on_close_tag($parser, $name) {
             $tag = new Paragraph($text);
             break;
         case 'I':
-            $tag = new InlineText($text, "*");
+            $tag = new InlineText($text, InlineTextDelimiter::EMPHASIS);
             break;
         case 'B':
-            $tag = new InlineText($text, "**");
+            $tag = new InlineText($text, InlineTextDelimiter::STRONG);
             break;
         case 'STRIKE':
-            $tag = new InlineText($text, "~~");
+            $tag = new InlineText($text, InlineTextDelimiter::DELETE);
             break;
         case 'EMBED-VIDEO':
             $tag = new Embed($text, EmbedSubtype::VIDEO);
