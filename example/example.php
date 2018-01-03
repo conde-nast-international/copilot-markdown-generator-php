@@ -65,8 +65,8 @@ function on_open_tag($parser, $name, $attrs) {
     log_message("Open tag \"$tagname\". Putting tag on stack...", 2);
     log_var($xml_tag_stack, "\$xml_tag_stack", "BEFORE", 2);
 
-    array_push($xml_tag_stack, $tagname);
-    array_push($markdown_stack, "");
+    $xml_tag_stack[] = $tagname;
+    $markdown_stack[] = "";
 
     log_var($xml_tag_stack, "\$xml_tag_stack", "AFTER", 2);
 }
