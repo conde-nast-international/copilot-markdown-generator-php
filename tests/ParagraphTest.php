@@ -25,27 +25,27 @@ class ParagraphTest extends CopilotTagTest
     public function expectedConstructExceptions()
     {
         return [
-            [
+            "expect null \$text argument to throw InvalidArgumentException" => [
                 Paragraph::class,
                 [NULL],
                 InvalidArgumentException::class
             ],
-            [
+            "expect boolean false \$text argument to throw InvalidArgumentException" => [
                 Paragraph::class,
                 [FALSE],
                 InvalidArgumentException::class
             ],
-            [
+            "expect boolean true \$text argument to throw InvalidArgumentException" => [
                 Paragraph::class,
                 [TRUE],
                 InvalidArgumentException::class
             ],
-            [
+            "expect number \$text argument to throw InvalidArgumentException" => [
                 Paragraph::class,
                 [5],
                 InvalidArgumentException::class
             ],
-            [
+            "expect array \$text argument to throw InvalidArgumentException" => [
                 Paragraph::class,
                 [[]],
                 InvalidArgumentException::class

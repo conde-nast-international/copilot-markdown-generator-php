@@ -16,11 +16,12 @@ class ListTag implements CopilotTag
 
     public function __construct($items, $ordered = FALSE)
     {
-        if (!is_array($items)) throw new \InvalidArgumentException("ListTag::__construct first argument \$items must be an array. Given: ".($items ? "$items " : "")."(".gettype($items).").");
+        if(!is_array($items)) throw new \InvalidArgumentException("ListTag::__construct first argument \$items must be an array. Given: ".($items ? "$items " : "")."(".gettype($items).").");
         foreach($items as $i=>$item) {
-            if (!is_string($item)) throw new \InvalidArgumentException("ListTag::__construct first argument \$items must be an array of strings. Given \$items[$i] = ".($item ? "$item " : "")."(".(gettype($item)).").");
+            if(!is_string($item)) throw new \InvalidArgumentException("ListTag::__construct first argument \$items must be an array of strings. Given \$items[$i] = ".($item ? "$item " : "")."(".(gettype($item)).").");
         }
         $this->items = $items;
+        if(!is_bool($ordered)) throw new \InvalidArgumentException("ListTag::__construct second argument \$ordered must be a bool. Given: ".($ordered ? "$ordered " : "")."(".gettype($ordered).").");
         $this->ordered = $ordered;
     }
 

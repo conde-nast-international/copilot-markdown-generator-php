@@ -37,29 +37,54 @@ class HeadingTest extends CopilotTagTest
     public function expectedConstructExceptions()
     {
         return [
-            "expect null argument to throw InvalidArgumentException" => [
+            "expect null \$text argument to throw InvalidArgumentException" => [
                 Heading::class,
                 [NULL],
                 InvalidArgumentException::class
             ],
-            "expect boolean false argument to throw InvalidArgumentException" => [
+            "expect boolean false \$text argument to throw InvalidArgumentException" => [
                 Heading::class,
                 [FALSE],
                 InvalidArgumentException::class
             ],
-            "expect boolean true argument to throw InvalidArgumentException" => [
+            "expect boolean true \$text argument to throw InvalidArgumentException" => [
                 Heading::class,
                 [TRUE],
                 InvalidArgumentException::class
             ],
-            "expect number argument to throw InvalidArgumentException" => [
+            "expect number \$text argument to throw InvalidArgumentException" => [
                 Heading::class,
                 [5],
                 InvalidArgumentException::class
             ],
-            "expect array argument to throw InvalidArgumentException" => [
+            "expect array \$text argument to throw InvalidArgumentException" => [
                 Heading::class,
                 [[]],
+                InvalidArgumentException::class
+            ],
+            "expect null \$level argument to throw InvalidArgumentException" => [
+                Heading::class,
+                ["", NULL],
+                InvalidArgumentException::class
+            ],
+            "expect boolean false \$level argument to throw InvalidArgumentException" => [
+                Heading::class,
+                ["", FALSE],
+                InvalidArgumentException::class
+            ],
+            "expect boolean true \$level argument to throw InvalidArgumentException" => [
+                Heading::class,
+                ["", TRUE],
+                InvalidArgumentException::class
+            ],
+            "expect array \$level argument to throw InvalidArgumentException" => [
+                Heading::class,
+                ["", []],
+                InvalidArgumentException::class
+            ],
+            "expect string \$level argument to throw InvalidArgumentException" => [
+                Heading::class,
+                ["", "Hello world!"],
                 InvalidArgumentException::class
             ]
         ];

@@ -17,6 +17,7 @@ class InlineText extends Text
     public function __construct($text, $delimiter = "")
     {
         parent::__construct($text);
+        if (!is_string($delimiter)) throw new \InvalidArgumentException("InlineText::__construct second argument \$delimiter must be a string. Given: ".($delimiter ? "$delimiter " : "")."(".gettype($delimiter).").");
         $this->delimiter = $delimiter;
     }
 

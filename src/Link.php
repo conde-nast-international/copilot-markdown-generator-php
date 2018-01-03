@@ -11,13 +11,12 @@ class Link extends Text
     {
         parent::__construct($text);
 
-        if (isset($href)) {
-            if (!is_string($href)) throw new \InvalidArgumentException("Link::__construct second argument \$href must be a string. Given: ".($href ? "$href " : "")."(".gettype($href).").");
-            $href = trim($href);
-            if (preg_match('/\s/', $href)) throw new \InvalidArgumentException("Link::__construct second argument \$href cannot contain whitespace. Given: \"".str_replace("\n", "\\n", $href)."\".");
-        }
+        if (!is_string($href)) throw new \InvalidArgumentException("Link::__construct second argument \$href must be a string. Given: ".($href ? "$href " : "")."(".gettype($href).").");
+        $href = trim($href);
+        if (preg_match('/\s/', $href)) throw new \InvalidArgumentException("Link::__construct second argument \$href cannot contain whitespace. Given: \"".str_replace("\n", "\\n", $href)."\".");
         $this->href = $href;
 
+        if (!is_array($attributes)) throw new \InvalidArgumentException("Link::__construct third argument \$attributes must be an array. Given: ".($attributes ? "$attributes " : "")."(".gettype($attributes).").");
         $this->attributes = $attributes;
     }
 

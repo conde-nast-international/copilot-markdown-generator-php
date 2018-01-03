@@ -49,29 +49,54 @@ class CalloutTest extends CopilotTagTest
     public function expectedConstructExceptions()
     {
         return [
-            "expect null argument to throw InvalidArgumentException" => [
+            "expect null \$text argument to throw InvalidArgumentException" => [
                 Callout::class,
                 [NULL],
                 InvalidArgumentException::class
             ],
-            "expect boolean false argument to throw InvalidArgumentException" => [
+            "expect boolean false \$text argument to throw InvalidArgumentException" => [
                 Callout::class,
                 [FALSE],
                 InvalidArgumentException::class
             ],
-            "expect boolean true argument to throw InvalidArgumentException" => [
+            "expect boolean true \$text argument to throw InvalidArgumentException" => [
                 Callout::class,
                 [TRUE],
                 InvalidArgumentException::class
             ],
-            "expect number argument to throw InvalidArgumentException" => [
+            "expect number \$text argument to throw InvalidArgumentException" => [
                 Callout::class,
                 [5],
                 InvalidArgumentException::class
             ],
-            "expect array argument to throw InvalidArgumentException" => [
+            "expect array \$text argument to throw InvalidArgumentException" => [
                 Callout::class,
                 [[]],
+                InvalidArgumentException::class
+            ],
+            "expect null \$subtype argument to throw InvalidArgumentException" => [
+                Callout::class,
+                ["", NULL],
+                InvalidArgumentException::class
+            ],
+            "expect boolean false \$subtype argument to throw InvalidArgumentException" => [
+                Callout::class,
+                ["", FALSE],
+                InvalidArgumentException::class
+            ],
+            "expect boolean true \$subtype argument to throw InvalidArgumentException" => [
+                Callout::class,
+                ["", TRUE],
+                InvalidArgumentException::class
+            ],
+            "expect number \$subtype argument to throw InvalidArgumentException" => [
+                Callout::class,
+                ["", 5],
+                InvalidArgumentException::class
+            ],
+            "expect array \$subtype argument to throw InvalidArgumentException" => [
+                Callout::class,
+                ["", []],
                 InvalidArgumentException::class
             ]
         ];
