@@ -16,8 +16,10 @@ class Embed implements CopilotTag
     public function __construct($uri, $subtype = EmbedSubtype::IFRAME, $caption = "")
     {
         if (!is_string($uri)) throw new \InvalidArgumentException("Embed::__construct first argument \$uri must be a string. Given: ".($uri ? "$uri " : "")."(".gettype($uri).").");
+        $uri = trim($uri);
         if (preg_match('/\s/', $uri)) throw new \InvalidArgumentException("Embed::__construct first argument \$uri cannot contain whitespace. Given: \"".str_replace("\n", "\\n", $uri)."\".");
-        $this->uri = self::convertHttpToHttps(trim($uri));
+        $this->uri = self::convertHttpToHttps($uri);
+
         $this->subtype = $subtype;
         $this->caption = $caption;
     }

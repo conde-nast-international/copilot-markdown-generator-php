@@ -23,6 +23,58 @@ class EmbedTest extends CopilotTagTest
             [
                 new Embed(""),
                 ""
+            ],
+            [
+                new Embed("https://www.google.com", EmbedSubtype::IFRAME, "some caption"),
+                "\n\n[#iframe:https://www.google.com]|||some caption|||\n"
+            ],
+            [
+                new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption"),
+                "\n\n[#image:/photos/123ID]|||some caption|||\n"
+            ],
+            [
+                new Embed(" https://www.google.com"),
+                "\n\n[#iframe:https://www.google.com]\n"
+            ],
+            [
+                new Embed("https://www.google.com "),
+                "\n\n[#iframe:https://www.google.com]\n"
+            ],
+            [
+                new Embed(" https://www.google.com "),
+                "\n\n[#iframe:https://www.google.com]\n"
+            ],
+            [
+                new Embed("https://www.google.com\n"),
+                "\n\n[#iframe:https://www.google.com]\n"
+            ],
+            [
+                new Embed("\nhttps://www.google.com"),
+                "\n\n[#iframe:https://www.google.com]\n"
+            ],
+            [
+                new Embed("\nhttps://www.google.com\n"),
+                "\n\n[#iframe:https://www.google.com]\n"
+            ],
+            [
+                new Embed("  "),
+                ""
+            ],
+            [
+                new Embed("  \n"),
+                ""
+            ],
+            [
+                new Embed("\n  "),
+                ""
+            ],
+            [
+                new Embed("\n"),
+                ""
+            ],
+            [
+                new Embed("\n\n\n\n"),
+                ""
             ]
         ];
     }
@@ -57,67 +109,12 @@ class EmbedTest extends CopilotTagTest
             ],
             [
                 Embed::class,
-                ["http:// google.com"],
+                ["http:// www.google.com"],
                 InvalidArgumentException::class
             ],
             [
                 Embed::class,
-                [" http://google.com"],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                ["http://google.com "],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                [" http://google.com "],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                ["http://\ngoogle.com"],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                ["http://google.com\n"],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                ["\nhttp://google.com"],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                ["\nhttp://google.com\n"],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                ["  "],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                ["  \n"],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                ["\n  "],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                ["\n"],
-                InvalidArgumentException::class
-            ],
-            [
-                Embed::class,
-                ["\n\n\n\n"],
+                ["http://\nwww.google.com"],
                 InvalidArgumentException::class
             ]
         ];
