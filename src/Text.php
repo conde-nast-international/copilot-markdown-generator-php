@@ -9,6 +9,8 @@ class Text implements CopilotTag
     {
         if (!is_string($text)) throw new \InvalidArgumentException("Text::__construct first argument \$text must be a string. Given: ".($text ? "$text " : "")."(".gettype($text).").");
         $this->text = $text;
+        // convert newline types to LF newlines
+        $this->text = preg_replace('/\R/', "\n", $this->text);
     }
 
     public function write()
