@@ -27,13 +27,21 @@
         "phpunit/phpunit": "^5.7"
     },
     "scripts": {
-        "test": "phpunit --colors=always"
+        "test": [
+            "phpunit --colors=always",
+            "@example"
+        ],
+        "example": "php example/example.php"
     },
     "autoload": {
-        "psr-4": { "CopilotTags\\": "src/" }
+        "psr-4": {
+            "CopilotTags\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "CopilotTags\\Tests\\": "tests/" }
+        "psr-4": {
+            "CopilotTags\\Tests\\": "tests/"
+        }
     },
     "keywords": [
         "copilot markdown",
