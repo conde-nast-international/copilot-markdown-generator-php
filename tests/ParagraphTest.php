@@ -7,15 +7,15 @@ class ParagraphTest extends CopilotTagTest
     public function expectedWrites()
     {
         return [
-            [
+            "expect plain text" => [
                 new Paragraph("Hello world!"),
                 "Hello world!\n\n"
             ],
-            [
+            "expect only whitespace" => [
                 new Paragraph("  "),
                 "\n\n"
             ],
-            [
+            "expect empty string" => [
                 new Paragraph(""),
                 ""
             ]

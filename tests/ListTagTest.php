@@ -7,7 +7,7 @@ class ListTagTest extends CopilotTagTest
     public function expectedWrites()
     {
         return [
-            [
+            "expect plain text" => [
                 new ListTag(["Hello world!"]),
                 "Hello world!"
             ]
@@ -17,29 +17,29 @@ class ListTagTest extends CopilotTagTest
     public function expectedConstructExceptions()
     {
         return [
-            [
+            "expect null argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [NULL],
                 InvalidArgumentException::class
             ],
-            [
+            "expect boolean false argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [FALSE],
                 InvalidArgumentException::class
             ],
-            [
+            "expect boolean true argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [TRUE],
                 InvalidArgumentException::class
             ],
-            [
+            "expect number argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [5],
                 InvalidArgumentException::class
             ],
-            [
+            "expect string argument to throw InvalidArgumentException" => [
                 ListTag::class,
-                ["my string"],
+                ["Hello world!"],
                 InvalidArgumentException::class
             ]
         ];
