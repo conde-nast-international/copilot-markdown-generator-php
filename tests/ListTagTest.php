@@ -47,6 +47,14 @@ class ListTagTest extends CopilotTagTest
             "expect ordered list with multiple multiline items" => [
                 new ListTag(["Hello\nworld!", "Hello\nworld!"], TRUE),
                 "1. Hello\n   world!\n2. Hello\n   world!\n\n"
+            ],
+            "expect more than 2 newlines in unordered list item to be reduced to 2" => [
+                new ListTag(["Hello\n\n\n\nworld!"], FALSE),
+                "* Hello\n  \n  world!\n\n"
+            ],
+            "expect more than 2 newlines in ordered list item to be reduced to 2" => [
+                new ListTag(["Hello\n\n\n\nworld!"], TRUE),
+                "1. Hello\n   \n   world!\n\n"
             ]
         ];
     }
