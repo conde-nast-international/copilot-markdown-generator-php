@@ -29,6 +29,86 @@ echo $markdown;
 See the [Contributing] document for guidance on making contributions to the
 project.
 
+## API
+
+Classes in this library are namespaced in the `CopilotTags` namespace (e.g. `CopilotTags\Paragraph`).
+
+### CopilotTag
+Interface for all tag generator classes.
+* `CopilotTag::write`
+
+  Write tag contents to Copilot-flavored Markdown.<br>
+  **Return:** string (Markdown)
+
+### Text
+
+Generator for unformatted text and parent class of other text-based tag
+generators. Text input can contain any valid Copilot-flavored Markdown.
+
+> ```php
+> echo new Text("Hello world!")->write()
+> // "Hello world!"
+> ```
+
+**Implements:** `CopilotTag`
+
+* `new Text($text)`<br>
+  ***text:*** string (Markdown)<br>
+
+### Heading
+
+> ```php
+> echo new Heading("Hello world!", 3)->write()
+> // "### Hello world!"
+> ```
+
+**Extends:** `Text`
+
+* `new Heading($text[, $level])`<br>
+***text:*** string (Markdown)<br>
+***level:*** int (default: `2`)
+
+### Paragraph
+
+> ```php
+> echo new Paragraph("Hello world!")->write()
+> // "Hello world!\n\n"
+> ```
+
+**Extends:** `Text`
+
+* `new Paragraph($text)`<br>
+  ***text:*** string (Markdown)<br>
+
+### InlineText
+Generator for inline text tags.
+
+> ```php
+> echo new InlineText("Hello world!", InlineTextDelimiter::EMPHASIS)->write()
+> // "*Hello world!*"
+> ```
+
+**Extends:** `Text`
+
+* `new InlineText($text[, $delimiter])`<br>
+  ***text:*** string (Markdown)<br>
+  ***delimiter:*** string (`InlineTextDelimiter`) (default: `""`)
+
+### **InlineTextDelimiter**
+
+> ```php
+> echo InlineTextDelimiter::STRONG
+> // "**"
+> ```
+
+|Name          |Value|
+|--------------|-----|
+|`EMPHASIS`    |`*`  |
+|`STRONG`      |`**` |
+|`SUBSCRIPT`   |`~`  |
+|`SUPERSCRIPT` |`^`  |
+|`DELETE`      |`~~` |
+
 ## See also
 
 * [Copilot-flavored Markdown]
