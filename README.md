@@ -24,14 +24,14 @@ echo $markdown;
 // Hello world!
 ```
 
-## Contributing
+## Contributing
 
 See the [Contributing] document for guidance on making contributions to the
 project.
 
 ## API
 
-Classes in this library are namespaced in the `CopilotTags` namespace (e.g. `CopilotTags\Paragraph`).
+Classes in this library are namespaced in `CopilotTags` (e.g. `CopilotTags\Paragraph`).
 
 ### CopilotTag
 Interface for all tag generator classes.
