@@ -45,10 +45,10 @@ Interface for all tag generator classes.
 Generator for unformatted text and parent class of other text-based tag
 generators. Text input can contain any valid Copilot-flavored Markdown.
 
-> ```php
-> echo new Text("Hello world!")->write()
-> // "Hello world!"
-> ```
+```php
+echo new Text("Hello world!")->write()
+// "Hello world!"
+```
 
 **Implements:** `CopilotTag`
 
@@ -57,10 +57,10 @@ generators. Text input can contain any valid Copilot-flavored Markdown.
 
 ### Heading
 
-> ```php
-> echo new Heading("Hello world!", 3)->write()
-> // "### Hello world!"
-> ```
+```php
+echo new Heading("Hello world!", 3)->write()
+// "### Hello world!"
+```
 
 **Extends:** `Text`
 
@@ -70,10 +70,10 @@ generators. Text input can contain any valid Copilot-flavored Markdown.
 
 ### Paragraph
 
-> ```php
-> echo new Paragraph("Hello world!")->write()
-> // "Hello world!\n\n"
-> ```
+```php
+echo new Paragraph("Hello world!")->write()
+// "Hello world!\n\n"
+```
 
 **Extends:** `Text`
 
@@ -83,10 +83,10 @@ generators. Text input can contain any valid Copilot-flavored Markdown.
 ### InlineText
 Generator for inline text tags.
 
-> ```php
-> echo new InlineText("Hello world!", InlineTextDelimiter::EMPHASIS)->write()
-> // "*Hello world!*"
-> ```
+```php
+echo new InlineText("Hello world!", InlineTextDelimiter::EMPHASIS)->write()
+// "*Hello world!*"
+```
 
 **Extends:** `Text`
 
@@ -96,10 +96,10 @@ Generator for inline text tags.
 
 ### **InlineTextDelimiter**
 
-> ```php
-> echo InlineTextDelimiter::STRONG
-> // "**"
-> ```
+```php
+echo InlineTextDelimiter::STRONG
+// "**"
+```
 
 |Name          |Value|
 |--------------|-----|
