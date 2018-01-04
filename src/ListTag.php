@@ -1,5 +1,6 @@
 <?php
 namespace CopilotTags;
+use CopilotTags\Text;
 
 /**
  * List
@@ -29,6 +30,7 @@ class ListTag implements CopilotTag
 
         $tag = "";
         foreach($this->items as $i=>$item) {
+            $item = Text::beautify($item);
             $item = trim($item);
             // indent multiline content
             $item = preg_replace('/\n/', "\n$item_indentation", $item);
