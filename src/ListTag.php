@@ -33,6 +33,9 @@ class ListTag implements CopilotTag
             $text = new Text($item);
             $item = $text->write();
             $item = trim($item);
+
+            if($item === "") continue;
+
             // indent multiline content
             $item = preg_replace('/\n/', "\n$item_indentation", $item);
             // prefix with list marker
@@ -43,7 +46,7 @@ class ListTag implements CopilotTag
             }
             $tag = "$tag$item\n";
         }
-        $tag = "$tag\n";
+        if($tag !== "") $tag = "$tag\n";
         return $tag;
     }
 }

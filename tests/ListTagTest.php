@@ -32,6 +32,14 @@ class ListTagTest extends CopilotTagTest
                 new ListTag(["Hello", "world!"]),
                 "* Hello\n* world!\n\n"
             ],
+            "expect only whitespace" => [
+                new ListTag(["   "]),
+                ""
+            ],
+            "expect empty string" => [
+                new ListTag([""]),
+                ""
+            ],
             "expect unordered list with single multiline item" => [
                 new ListTag(["Hello\nworld!"], FALSE),
                 "* Hello\n  world!\n\n"
