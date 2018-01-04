@@ -46,7 +46,7 @@ Generator for unformatted text and parent class of other text-based tag
 generators. Text input can contain any valid Copilot-flavored Markdown.
 
 ```php
-echo (new Text("Hello world!"))->write()
+echo (new Text("Hello world!"))->write();
 // "Hello world!"
 ```
 
@@ -58,7 +58,7 @@ echo (new Text("Hello world!"))->write()
 ### Heading
 
 ```php
-echo (new Heading("Hello world!", 3))->write()
+echo (new Heading("Hello world!", 3))->write();
 // "### Hello world!"
 ```
 
@@ -71,7 +71,7 @@ echo (new Heading("Hello world!", 3))->write()
 ### Paragraph
 
 ```php
-echo (new Paragraph("Hello world!"))->write()
+echo (new Paragraph("Hello world!"))->write();
 // "Hello world!\n\n"
 ```
 
@@ -84,7 +84,7 @@ echo (new Paragraph("Hello world!"))->write()
 Generator for inline text tags.
 
 ```php
-echo (new InlineText("Hello world!", InlineTextDelimiter::EMPHASIS))->write()
+echo (new InlineText("Hello world!", InlineTextDelimiter::EMPHASIS))->write();
 // "*Hello world!*"
 ```
 
@@ -97,7 +97,7 @@ echo (new InlineText("Hello world!", InlineTextDelimiter::EMPHASIS))->write()
 ### **InlineTextDelimiter**
 
 ```php
-echo InlineTextDelimiter::STRONG
+echo InlineTextDelimiter::STRONG;
 // "**"
 ```
 
