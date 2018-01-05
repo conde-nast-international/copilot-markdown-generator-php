@@ -23,16 +23,16 @@ class InlineText extends Text
     public function write()
     {
         $tag = $this->text;
-        if (!trim($tag)) return $tag;
+        if(!trim($tag)) return $tag;
 
         // Put embeds on their own lines
         $tag = preg_replace(Embed::EMBED_PATTERN, "\n$0\n", $tag);
 
         // Generate each line individually
-        if (preg_match("/\n/", $tag)) {
+        if(preg_match("/\n/", $tag)) {
           $tag = explode("\n", $tag);
           $tag = array_map(function ($splitTag) {
-            if (preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;// Don't wrap embeds
+            if(preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;// Don't wrap embeds
             return (new InlineText($splitTag, $this->delimiter))->write();
           }, $tag);
           $tag = implode("\n", $tag);

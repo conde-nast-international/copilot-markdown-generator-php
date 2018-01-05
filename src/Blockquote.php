@@ -9,9 +9,9 @@ class Blockquote extends Text
 {
     public function write()
     {
-        if ($this->text == "") return self::beautify($this->text);
+        if($this->text == "") return self::beautify($this->text);
 
-        $write_line = function ($str) { return "> $str\n"; };
+        $write_line = function($str) { return "> $str\n"; };
         $lines = explode("\n", $this->text);
         $lines = array_map($write_line, $lines);
         return self::beautify(implode("", $lines));
