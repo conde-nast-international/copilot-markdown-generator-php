@@ -11,7 +11,6 @@ namespace CopilotTags;
  */
 class InlineText extends Text
 {
-
     private $delimiter;
 
     public function __construct($text, $delimiter = "")
@@ -23,7 +22,7 @@ class InlineText extends Text
 
     public function write()
     {
-        $tag = parent::write();
+        $tag = $this->text;
         if (!trim($tag)) return $tag;
 
         // Put embeds on their own lines

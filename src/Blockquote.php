@@ -11,10 +11,9 @@ class Blockquote extends Text
     {
         if ($this->text == "") return self::beautify($this->text);
 
-        $quote = function ($str) { return "> $str\n"; };
-        $tag = explode("\n", $this->text);
-        $tag = array_map($quote, $tag);
-        $tag = implode("", $tag);
-        return self::beautify($tag);
+        $write_line = function ($str) { return "> $str\n"; };
+        $lines = explode("\n", $this->text);
+        $lines = array_map($write_line, $lines);
+        return self::beautify(implode("", $lines));
     }
 }
