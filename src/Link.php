@@ -11,9 +11,9 @@ class Link extends Text
     {
         parent::__construct($text);
 
-        if (!is_string($href)) throw new \InvalidArgumentException("Link::__construct second argument \$href must be a string. Given: ".($href ? "$href " : "")."(".gettype($href).").");
+        if(!is_string($href)) throw new \InvalidArgumentException("Link::__construct second argument \$href must be a string. Given: ".($href ? "$href " : "")."(".gettype($href).").");
         $href = trim($href);
-        if (preg_match('/\s/', $href)) throw new \InvalidArgumentException("Link::__construct second argument \$href must not contain whitespace. Given: \"".str_replace("\n", "\\n", $href)."\".");
+        if(preg_match('/\s/', $href)) throw new \InvalidArgumentException("Link::__construct second argument \$href must not contain whitespace. Given: \"".str_replace("\n", "\\n", $href)."\".");
         $this->href = $href;
 
         if (!is_array($attributes)) throw new \InvalidArgumentException("Link::__construct third argument \$attributes must be an array. Given: ".($attributes ? "$attributes " : "")."(".gettype($attributes).").");
@@ -22,14 +22,14 @@ class Link extends Text
 
     public function write()
     {
-        if ($this->text == "") return self::beautify($this->text);
+        if($this->text == "") return self::beautify($this->text);
 
         // Generate each line individually
-        if (preg_match("/\n/", $this->text)) {
+        if(preg_match("/\n/", $this->text)) {
             $tags = explode("\n", $this->text);
             $tags = array_map(function($tag) {
-              if (preg_match(Embed::EMBED_PATTERN, $tag)) return $tag;// Don't wrap embeds
-              if (!trim($tag)) return $tag;
+              if(preg_match(Embed::EMBED_PATTERN, $tag)) return $tag;// Don't wrap embeds
+              if(!trim($tag)) return $tag;
               return (new Link($tag, $this->href, $this->attributes))->write();
             }, $tags);
             $tags = implode("\n", $tags);
@@ -45,7 +45,7 @@ class Link extends Text
         $href = preg_replace("/\n/", "", $this->href);
 
         $attrs = "";
-        if ($this->attributes) {
+        if($this->attributes) {
             foreach($this->attributes as $key => $value) {
                 $attrs = "$attrs $key=\"$value\"";
             }

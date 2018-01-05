@@ -19,8 +19,8 @@ class Callout extends Text
     public function write()
     {
         $tag = $this->text;
-        if (trim($tag) !== "") $tag = "+++$this->subtype\n$tag\n+++";
-        if ($tag !== "") $tag = "$tag\n";
+        if(trim($tag) !== "") $tag = "+++$this->subtype\n$tag\n+++";
+        if($tag !== "") $tag = "$tag\n";
         return self::beautify($tag);
     }
 }
