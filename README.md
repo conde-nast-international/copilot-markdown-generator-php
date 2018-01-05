@@ -47,7 +47,7 @@ Generator for unformatted text. Given text value can contain any valid
 Copilot-flavored Markdown.
 
 ```php
-echo (new Text("Hello world!"))->write();
+(new Text("Hello world!"))->write();
 // "Hello world!"
 ```
 
@@ -59,7 +59,7 @@ echo (new Text("Hello world!"))->write();
 Generator for [ATX headings](http://spec.commonmark.org/0.27/#atx-headings).
 
 ```php
-echo (new Heading("Hello world!", 3))->write();
+(new Heading("Hello world!", 3))->write();
 // "### Hello world!\n"
 ```
 
@@ -72,7 +72,7 @@ echo (new Heading("Hello world!", 3))->write();
 Generator for [paragraphs](http://spec.commonmark.org/0.27/#paragraphs).
 
 ```php
-echo (new Paragraph("Hello world!"))->write();
+(new Paragraph("Hello world!"))->write();
 // "Hello world!\n\n"
 ```
 
@@ -85,7 +85,7 @@ Generator for inline text tags: [emphasis](https://github.com/conde-nast-interna
 [delete](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#314-delete).
 
 ```php
-echo (new InlineText("Hello world!", InlineTextDelimiter::EMPHASIS))->write();
+(new InlineText("Hello world!", InlineTextDelimiter::EMPHASIS))->write();
 // "*Hello world!*"
 ```
 
@@ -108,9 +108,9 @@ echo (new InlineText("Hello world!", InlineTextDelimiter::EMPHASIS))->write();
 Generator for [links](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#317-link).
 
 ```php
-echo (new Link("Hello world!", "https://github.com/"))->write();
+(new Link("Hello world!", "https://github.com/"))->write();
 // "[Hello world!](https://github.com/)"
-echo (new Link("Hello world!", "https://github.com/", array("foo"=>"bar")))->write();
+(new Link("Hello world!", "https://github.com/", array("foo"=>"bar")))->write();
 // "[Hello world!](https://github.com/){: foo=\"bar\" }"
 ```
 
@@ -124,7 +124,7 @@ echo (new Link("Hello world!", "https://github.com/", array("foo"=>"bar")))->wri
 Generator for [block quotes](http://spec.commonmark.org/0.27/#block-quotes).
 
 ```php
-echo (new Blockquote("Hello world!"))->write();
+(new Blockquote("Hello world!"))->write();
 // "> Hello world!\n"
 ```
 
@@ -136,9 +136,9 @@ echo (new Blockquote("Hello world!"))->write();
 Generator for [lists](http://spec.commonmark.org/0.27/#lists).
 
 ```php
-echo (new ListTag(["First", "Second"]))->write();
+(new ListTag(["First", "Second"]))->write();
 // "* First\n* Second\n\n"
-echo (new ListTag(["First", "Second"], TRUE))->write();
+(new ListTag(["First", "Second"], TRUE))->write();
 // "1. First\n2. Second\n\n"
 ```
 
@@ -152,9 +152,9 @@ Generator for [embeds](https://github.com/conde-nast-international/copilot-markd
 
 ```php
 <?php
-echo (new Embed("https://github.com", EmbedSubtype::IFRAME))->write();
+(new Embed("https://github.com", EmbedSubtype::IFRAME))->write();
 // "\n\n[#iframe: https://github.com]\n"
-echo (new Embed("https://github.com", EmbedSubtype::IFRAME, "My caption."))->write();
+(new Embed("https://github.com", EmbedSubtype::IFRAME, "My caption."))->write();
 // "\n\n[#iframe: https://github.com]|||My caption.|||\n"
 ```
 
@@ -172,7 +172,7 @@ Class constants for valid embed [subtypes](https://github.com/conde-nast-interna
 Generator for [callouts](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#312-callout).
 
 ```php
-echo (new Callout("Hello world!", "type"))->write();
+(new Callout("Hello world!", "type"))->write();
 // "+++type\nHello world!\n+++\n"
 ```
 
@@ -185,7 +185,7 @@ echo (new Callout("Hello world!", "type"))->write();
 Generator for [sections](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#313-section).
 
 ```php
-echo (new Section())->write();
+(new Section())->write();
 // "\n-=-=-=-\n"
 ```
 
@@ -196,7 +196,7 @@ echo (new Section())->write();
 Generator for [thematic breaks](http://spec.commonmark.org/0.27/#thematic-breaks).
 
 ```php
-echo (new HR())->write();
+(new HR())->write();
 // "\n----------\n"
 ```
 
