@@ -70,54 +70,74 @@ class ListTagTest extends CopilotTagTest
     public function expectedConstructExceptions()
     {
         return [
-            "expect null argument to throw InvalidArgumentException" => [
+            "expect null \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [NULL],
                 InvalidArgumentException::class
             ],
-            "expect boolean false argument to throw InvalidArgumentException" => [
+            "expect boolean false \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [FALSE],
                 InvalidArgumentException::class
             ],
-            "expect boolean true argument to throw InvalidArgumentException" => [
+            "expect boolean true \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [TRUE],
                 InvalidArgumentException::class
             ],
-            "expect number argument to throw InvalidArgumentException" => [
+            "expect number \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [5],
                 InvalidArgumentException::class
             ],
-            "expect string argument to throw InvalidArgumentException" => [
+            "expect string \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 ["Hello world!"],
                 InvalidArgumentException::class
             ],
-            "expect array of null argument to throw InvalidArgumentException" => [
+            "expect array of null \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [[NULL, NULL]],
                 InvalidArgumentException::class
             ],
-            "expect array of boolean false argument to throw InvalidArgumentException" => [
+            "expect array of boolean false \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [[FALSE, FALSE]],
                 InvalidArgumentException::class
             ],
-            "expect array of boolean true argument to throw InvalidArgumentException" => [
+            "expect array of boolean true \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [[TRUE, TRUE]],
                 InvalidArgumentException::class
             ],
-            "expect array of number argument to throw InvalidArgumentException" => [
+            "expect array of number \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [[5, 5]],
                 InvalidArgumentException::class
             ],
-            "expect array of array argument to throw InvalidArgumentException" => [
+            "expect array of array \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [[[], []]],
+                InvalidArgumentException::class
+            ],
+            "expect null \$ordered argument to throw InvalidArgumentException" => [
+                ListTag::class,
+                [[], NULL],
+                InvalidArgumentException::class
+            ],
+            "expect number \$ordered argument to throw InvalidArgumentException" => [
+                ListTag::class,
+                [[], 5],
+                InvalidArgumentException::class
+            ],
+            "expect array \$ordered argument to throw InvalidArgumentException" => [
+                ListTag::class,
+                [[], []],
+                InvalidArgumentException::class
+            ],
+            "expect string \$ordered argument to throw InvalidArgumentException" => [
+                ListTag::class,
+                [[], "Hello world!"],
                 InvalidArgumentException::class
             ]
         ];

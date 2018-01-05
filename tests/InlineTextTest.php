@@ -57,29 +57,54 @@ class InlineTextTest extends CopilotTagTest
     public function expectedConstructExceptions()
     {
         return [
-            "expect null argument to throw InvalidArgumentException" => [
+            "expect null \$text argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 [NULL],
                 InvalidArgumentException::class
             ],
-            "expect boolean false argument to throw InvalidArgumentException" => [
+            "expect boolean false \$text argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 [FALSE],
                 InvalidArgumentException::class
             ],
-            "expect boolean true argument to throw InvalidArgumentException" => [
+            "expect boolean true \$text argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 [TRUE],
                 InvalidArgumentException::class
             ],
-            "expect number argument to throw InvalidArgumentException" => [
+            "expect number \$text argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 [5],
                 InvalidArgumentException::class
             ],
-            "expect array argument to throw InvalidArgumentException" => [
+            "expect array \$text argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 [[]],
+                InvalidArgumentException::class
+            ],
+            "expect null \$delimiter argument to throw InvalidArgumentException" => [
+                InlineText::class,
+                ["", NULL],
+                InvalidArgumentException::class
+            ],
+            "expect boolean false \$delimiter argument to throw InvalidArgumentException" => [
+                InlineText::class,
+                ["", FALSE],
+                InvalidArgumentException::class
+            ],
+            "expect boolean true \$delimiter argument to throw InvalidArgumentException" => [
+                InlineText::class,
+                ["", TRUE],
+                InvalidArgumentException::class
+            ],
+            "expect number \$delimiter argument to throw InvalidArgumentException" => [
+                InlineText::class,
+                ["", 5],
+                InvalidArgumentException::class
+            ],
+            "expect array \$delimiter argument to throw InvalidArgumentException" => [
+                InlineText::class,
+                ["", []],
                 InvalidArgumentException::class
             ]
         ];

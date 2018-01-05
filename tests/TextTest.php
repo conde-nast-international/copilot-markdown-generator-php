@@ -61,27 +61,27 @@ class TextTest extends CopilotTagTest
     public function expectedConstructExceptions()
     {
         return [
-            "expect null argument to throw InvalidArgumentException" => [
+            "expect null \$text argument to throw InvalidArgumentException" => [
                 Text::class,
                 [NULL],
                 InvalidArgumentException::class
             ],
-            "expect boolean false argument to throw InvalidArgumentException" => [
+            "expect boolean false \$text argument to throw InvalidArgumentException" => [
                 Text::class,
                 [FALSE],
                 InvalidArgumentException::class
             ],
-            "expect boolean true argument to throw InvalidArgumentException" => [
+            "expect boolean true \$text argument to throw InvalidArgumentException" => [
                 Text::class,
                 [TRUE],
                 InvalidArgumentException::class
             ],
-            "expect number argument to throw InvalidArgumentException" => [
+            "expect number \$text argument to throw InvalidArgumentException" => [
                 Text::class,
                 [5],
                 InvalidArgumentException::class
             ],
-            "expect array argument to throw InvalidArgumentException" => [
+            "expect array \$text argument to throw InvalidArgumentException" => [
                 Text::class,
                 [[]],
                 InvalidArgumentException::class
