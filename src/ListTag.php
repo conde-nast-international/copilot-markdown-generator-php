@@ -17,7 +17,7 @@ class ListTag implements CopilotTag
     public function __construct($items, $ordered = FALSE)
     {
         if(!is_array($items)) throw new \InvalidArgumentException("ListTag::__construct first argument \$items must be an array. Given: ".($items ? "$items " : "")."(".gettype($items).").");
-        foreach($items as $i=>$item) {
+        foreach($items as $i => $item) {
             if(!is_string($item)) throw new \InvalidArgumentException("ListTag::__construct first argument \$items must be an array of strings. Given \$items[$i] = ".($item ? "$item " : "")."(".(gettype($item)).").");
         }
         $this->items = $items;
@@ -30,7 +30,7 @@ class ListTag implements CopilotTag
         $item_indentation = $this->ordered ? "   " : "  ";
 
         $tag = "";
-        foreach($this->items as $i=>$item) {
+        foreach($this->items as $i => $item) {
             $text = new Text($item);
             $item = $text->write();
             $item = trim($item);
