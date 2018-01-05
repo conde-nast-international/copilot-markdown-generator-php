@@ -3,6 +3,7 @@ namespace CopilotTags;
 
 /**
  * ATX heading
+ * CFM spec: https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#315-heading
  * CommonMark spec: http://spec.commonmark.org/0.27/#atx-headings
  */
 class Heading extends Text
