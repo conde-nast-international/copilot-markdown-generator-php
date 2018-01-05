@@ -161,7 +161,7 @@ Generator for [embeds](https://github.com/conde-nast-international/copilot-markd
 * `new Embed($uri[, $subtype, $caption])`<br>
   ***uri:*** string<br>
   ***subtype:*** string (default: `EmbedSubtype::IFRAME`)<br>
-  ***caption:*** string
+  ***caption:*** string (default: `""`)
 
 #### EmbedSubtype
 
