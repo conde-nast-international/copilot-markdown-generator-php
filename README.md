@@ -36,7 +36,7 @@ Classes in this library are namespaced in `CopilotTags` (e.g. `CopilotTags\Parag
 ### CopilotTag
 
 Interface for tag generator classes.
-* `CopilotTag::write`
+* `CopilotTag->write()`
 
   Write tag contents to beautified Copilot-flavored Markdown.<br>
   **Return:** string (Markdown)
