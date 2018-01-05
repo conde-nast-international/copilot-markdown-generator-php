@@ -118,6 +118,7 @@ class ListTagTest extends CopilotTagTest
             "expect array of array \$items argument to throw InvalidArgumentException" => [
                 ListTag::class,
                 [[[], []]],
+                InvalidArgumentException::class
             ],
             "expect null \$ordered argument to throw InvalidArgumentException" => [
                 ListTag::class,
