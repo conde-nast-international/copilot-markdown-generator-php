@@ -12,15 +12,15 @@ class Callout extends Text
     public function __construct($text, $subtype = "")
     {
         parent::__construct($text);
-        if (!is_string($subtype)) throw new \InvalidArgumentException("Callout::__construct second argument \$subtype must be a string. Given: ".($subtype ? "$subtype " : "")."(".gettype($subtype).").");
+        if(!is_string($subtype)) throw new \InvalidArgumentException("Callout::__construct second argument \$subtype must be a string. Given: ".($subtype ? "$subtype " : "")."(".gettype($subtype).").");
         $this->subtype = $subtype;
     }
 
     public function write()
     {
         $tag = $this->text;
-        if (trim($tag) !== "") $tag = "+++$this->subtype\n$tag\n+++";
-        if ($tag !== "") $tag = "$tag\n";
+        if(trim($tag) !== "") $tag = "+++$this->subtype\n$tag\n+++";
+        if($tag !== "") $tag = "$tag\n";
         return self::beautify($tag);
     }
 }

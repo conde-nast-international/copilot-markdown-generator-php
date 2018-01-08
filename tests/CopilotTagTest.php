@@ -17,7 +17,7 @@ abstract class CopilotTagTest extends TestCase
      */
     public function testConstructException($class = NULL, $args = [], $exceptionType = Exception::class)
     {
-        if (!isset($class)) return;
+        if(!isset($class)) return;
         $this->expectException($exceptionType);
         new $class(...$args);
     }
