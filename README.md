@@ -38,12 +38,12 @@ Classes in this library are namespaced in `CopilotTags` (e.g. `CopilotTags\Parag
 Interface for tag generator classes.
 * `CopilotTag->write()`
 
-  Write tag contents to beautified Copilot-flavored Markdown.<br>
+  Write tag object as beautified Copilot-flavored Markdown string.<br>
   **Return:** string (Markdown)
 
 ### Text
 
-Generator for unformatted text. Given text value can contain any valid
+Generator for unformatted text. The given text value can contain any valid
 Copilot-flavored Markdown.
 
 ```php
@@ -151,7 +151,6 @@ Generator for [lists](http://spec.commonmark.org/0.27/#lists).
 Generator for [embeds](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#311-embed).
 
 ```php
-<?php
 (new Embed("https://github.com", EmbedSubtype::IFRAME))->write();
 // "\n\n[#iframe: https://github.com]\n"
 (new Embed("https://github.com", EmbedSubtype::IFRAME, "My caption."))->write();
