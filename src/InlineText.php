@@ -16,7 +16,7 @@ class InlineText extends Text
     public function __construct($text, $delimiter = "")
     {
         parent::__construct($text);
-        if (!is_string($delimiter)) throw new \InvalidArgumentException("InlineText::__construct second argument \$delimiter must be a string. Given: ".($delimiter ? "$delimiter " : "")."(".gettype($delimiter).").");
+        if(!is_string($delimiter)) throw new \InvalidArgumentException("InlineText::__construct second argument \$delimiter must be a string. Given: ".($delimiter ? "$delimiter " : "")."(".gettype($delimiter).").");
         $this->delimiter = $delimiter;
     }
 
@@ -31,7 +31,7 @@ class InlineText extends Text
         // Generate each line individually
         if(preg_match("/\n/", $tag)) {
           $tag = explode("\n", $tag);
-          $tag = array_map(function ($splitTag) {
+          $tag = array_map(function($splitTag) {
             if(preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;// Don't wrap embeds
             return (new InlineText($splitTag, $this->delimiter))->write();
           }, $tag);
