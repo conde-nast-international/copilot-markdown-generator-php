@@ -13,7 +13,7 @@ class HeadingTest extends CopilotTagTest
             ],
             "expect only whitespace to be removed" => [
                 new Heading("  "),
-                "\n"
+                ""
             ],
             "expect empty string" => [
                 new Heading(""),

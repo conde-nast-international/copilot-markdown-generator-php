@@ -11,9 +11,9 @@ class ParagraphTest extends CopilotTagTest
                 new Paragraph("Hello world!"),
                 "Hello world!\n\n"
             ],
-            "expect only whitespace" => [
+            "expect only whitespace to be removed" => [
                 new Paragraph("  "),
-                "\n\n"
+                ""
             ],
             "expect empty string" => [
                 new Paragraph(""),

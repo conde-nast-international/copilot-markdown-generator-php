@@ -21,27 +21,27 @@ class CalloutTest extends CopilotTagTest
             ],
             "expect only whitespace to be removed" => [
                 new Callout("  "),
-                "\n"
+                ""
             ],
             "expect empty string" => [
                 new Callout(""),
                 ""
             ],
-            "expect spaces on the first line with no non-whitespace characters to be removed" => [
+            "expect multiple whitespace-only lines to be removed with spaces on the first line" => [
                 new Callout("  \n"),
-                "\n\n"
+                ""
             ],
-            "expect spaces on the last line with no non-whitespace characters to be removed" => [
+            "expect multiple whitespace-only lines to be removed with spaces on the last line" => [
                 new Callout("\n  "),
-                "\n\n"
+                ""
             ],
-            "expect single newline to be preserved" => [
+            "expect single newline to be removed" => [
                 new Callout("\n"),
-                "\n\n"
+                ""
             ],
-            "expect more than 2 newlines to become 2 newlines" => [
+            "expect more than 2 newlines to be removed" => [
                 new Callout("\n\n\n\n"),
-                "\n\n"
+                ""
             ]
         ];
     }
