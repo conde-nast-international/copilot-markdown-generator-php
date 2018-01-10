@@ -55,8 +55,9 @@ class Link extends Text
         return self::beautify("{$lwspace}[$text]($href){$attrs}{$rwspace}");
     }
 
-    static function beautify($md = "") {
-        $md = preg_replace("/\]\(.*\)\s*\[([^#])/", " $1", $md);
-        return parent::beautify($md);
+    public static function beautify($markdown) {
+        // convert multiple links with whitespace between them to a single link
+        $markdown = preg_replace("/\]\(.*\)\s*\[([^#])/", " $1", $markdown);
+        return parent::beautify($markdown);
     }
 }
