@@ -28,8 +28,8 @@ class Embed implements CopilotTag
 
     public function write()
     {
-        if($this->uri === "") return "";
-        $caption = $this->caption !== "" ? "|||$this->caption|||" : "";
+        if($this->uri == "") return "";
+        $caption = $this->caption != "" ? "|||$this->caption|||" : "";
         return "\n\n[#$this->subtype:$this->uri]$caption\n";
     }
 

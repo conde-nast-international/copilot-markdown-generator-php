@@ -1,10 +1,10 @@
 <?php
-use CopilotTags\Tests\CopilotTagTest;
+namespace CopilotTags\Tests;
 use CopilotTags\Blockquote;
 
 class BlockquoteTest extends CopilotTagTest
 {
-    public function expectedWrites()
+    public static function expectedWrites()
     {
         return [
             "expect single text line" => [
@@ -46,33 +46,33 @@ class BlockquoteTest extends CopilotTagTest
         ];
     }
 
-    public function expectedConstructExceptions()
+    public static function expectedConstructExceptions()
     {
         return [
             "expect null \$text argument to throw InvalidArgumentException" => [
                 Blockquote::class,
                 [NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$text argument to throw InvalidArgumentException" => [
                 Blockquote::class,
                 [FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$text argument to throw InvalidArgumentException" => [
                 Blockquote::class,
                 [TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$text argument to throw InvalidArgumentException" => [
                 Blockquote::class,
                 [5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$text argument to throw InvalidArgumentException" => [
                 Blockquote::class,
                 [[]],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ]
         ];
     }

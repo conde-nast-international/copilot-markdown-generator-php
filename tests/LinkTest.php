@@ -1,12 +1,12 @@
 <?php
-use CopilotTags\Tests\CopilotTagTest;
+namespace CopilotTags\Tests;
 use CopilotTags\Link;
 use CopilotTags\Embed;
 use CopilotTags\EmbedSubtype;
 
 class LinkTest extends CopilotTagTest
 {
-    public function expectedWrites()
+    public static function expectedWrites()
     {
         $embedMarkdown = (new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption"))->write();
 
@@ -86,93 +86,93 @@ class LinkTest extends CopilotTagTest
         ];
     }
 
-    public function expectedConstructExceptions()
+    public static function expectedConstructExceptions()
     {
         return [
             "expect null \$text argument to throw InvalidArgumentException" => [
                 Link::class,
                 [NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$text argument to throw InvalidArgumentException" => [
                 Link::class,
                 [FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$text argument to throw InvalidArgumentException" => [
                 Link::class,
                 [TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$text argument to throw InvalidArgumentException" => [
                 Link::class,
                 [5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$text argument to throw InvalidArgumentException" => [
                 Link::class,
                 [[]],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect null \$href argument to throw InvalidArgumentException" => [
                 Link::class,
                 ["", NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$href argument to throw InvalidArgumentException" => [
                 Link::class,
                 ["", FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$href argument to throw InvalidArgumentException" => [
                 Link::class,
                 ["", TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$href argument to throw InvalidArgumentException" => [
                 Link::class,
                 ["", 5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$href argument to throw InvalidArgumentException" => [
                 Link::class,
                 ["", []],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect \$href argument with internal whitespace to throw InvalidArgumentException" => [
                 Link::class,
                 ["", "http://li .nk"],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect \$href argument with internal newline to throw InvalidArgumentException" => [
                 Link::class,
                 ["", "http://li\n.nk"],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect null \$attributes argument to throw InvalidArgumentException" => [
                 Link::class,
                 ["", "", NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$attributes argument to throw InvalidArgumentException" => [
                 Link::class,
                 ["", "", FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$attributes argument to throw InvalidArgumentException" => [
                 Link::class,
                 ["", "", TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$attributes argument to throw InvalidArgumentException" => [
                 Link::class,
                 ["", "", 5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect string \$attributes argument to throw InvalidArgumentException" => [
                 Link::class,
                 ["", "", ""],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ]
         ];
     }

@@ -3,13 +3,13 @@ namespace CopilotTags;
 
 class StringUtils
 {
-    static function leadingSpace($text = "") {
-        preg_match("/^\s+/", $text, $lwspace);
-        return implode("", $lwspace);
+    static function leadingSpace($str) {
+        preg_match("/^\s+/", $str, $lwspace);
+        return $lwspace[0];
     }
 
-    static function trailingSpace($text = "") {
-        preg_match("/\s+$/", $text, $rwspace);
-        return implode("", $rwspace);
+    static function trailingSpace($str) {
+        preg_match("/\s+$/", $str, $rwspace);
+        return $rwspace[0];
     }
 }

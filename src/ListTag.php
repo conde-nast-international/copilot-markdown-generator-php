@@ -29,25 +29,21 @@ class ListTag implements CopilotTag
     {
         $item_indentation = $this->ordered ? "   " : "  ";
 
-        $tag = "";
+        $list = "";
         foreach($this->items as $i => $item) {
             $text = new Text($item);
             $item = $text->write();
             $item = trim($item);
-
-            if($item === "") continue;
+            if($item == "") continue;
 
             // indent multiline content
             $item = preg_replace('/\n/', "\n$item_indentation", $item);
             // prefix with list marker
-            if($this->ordered) {
-                $item = strval($i + 1).self::LIST_MARKER_ORDERED." $item";
-            } else {
-                $item = self::LIST_MARKER_BULLET." $item";
-            }
-            $tag = "$tag$item\n";
+            if($this->ordered) $list_marker = strval($i + 1).self::LIST_MARKER_ORDERED;
+            else $list_marker = self::LIST_MARKER_BULLET;
+            $list = "$list$list_marker $item\n";
         }
-        if($tag !== "") $tag = "$tag\n";
-        return $tag;
+        if($list != "") $list = "$list\n";
+        return $list;
     }
 }
