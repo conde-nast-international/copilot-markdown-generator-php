@@ -51,7 +51,7 @@ $ git fetch upstream
 $ git rebase upstream/master
 ```
 
-### Step 5: Test
+### Step 5: Test
 
 Test cases go in the `tests/` directory and must end with `*Test.php` and
 extend `PHPUnit\Framework\TestCase`. Take a look at the existing tests for

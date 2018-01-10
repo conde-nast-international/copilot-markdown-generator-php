@@ -3,6 +3,7 @@ namespace CopilotTags;
 
 /**
  * Link
+ * CFM spec: https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#317-link
  * CommonMark spec: http://spec.commonmark.org/0.27/#links
  */
 class Link extends Text
