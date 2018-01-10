@@ -23,26 +23,29 @@ class Link extends Text
 
     public function write()
     {
-        if($this->text == "") return self::beautify($this->text);
+        $text = parent::write();
+        if($text == "") return "";
 
         // Generate each line individually
-        if(preg_match("/\n/", $this->text)) {
-            $tags = explode("\n", $this->text);
-            $tags = array_map(function($tag) {
-              if(preg_match(Embed::EMBED_PATTERN, $tag)) return $tag;// Don't wrap embeds
-              if(!trim($tag)) return $tag;
-              return (new Link($tag, $this->href, $this->attributes))->write();
-            }, $tags);
-            $tags = implode("\n", $tags);
-            return self::beautify($tags);
+        if(preg_match("/\n/", $text)) {
+            $lines = explode("\n", $text);
+            $lines = array_map(function($text) {
+                if(preg_match(Embed::EMBED_PATTERN, $text)) return $text;// Don't wrap embeds
+                return (new Link($text, $this->href, $this->attributes))->write();
+            }, $lines);
+            $text = implode("\n", $lines);
+            return self::beautify($text);
         }
 
-        $text = $this->text;
+        if(trim($text) != "") {
+            $lwspace = StringUtils::leadingSpace($text);
+            $rwspace = StringUtils::trailingSpace($text);
+            $text = trim($text);
+        } else {
+            $lwspace = "";
+            $rwspace = "";
+        }
 
-        $lwspace = StringUtils::leadingSpace($text);
-        $rwspace = StringUtils::trailingSpace($text);
-
-        $text = trim($text);
         $href = preg_replace("/\n/", "", $this->href);
 
         $attrs = "";

@@ -15,7 +15,10 @@ class Text implements CopilotTag
 
     public function write()
     {
-        return self::beautify($this->text);
+        $text = $this->text;
+        // put embeds on their own line
+        $text = preg_replace(Embed::EMBED_PATTERN, "\n\n$0\n", $text);
+        return self::beautify($text);
     }
 
     public static function beautify($markdown)

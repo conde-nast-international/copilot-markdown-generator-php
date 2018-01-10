@@ -6,6 +6,7 @@ class InlineTextTest extends CopilotTagTest
 {
     public static function expectedWrites()
     {
+        $embedMarkdown = EmbedTest::getExampleMarkdown();
         return [
             "expect empty string" => [
                 new InlineText(""),
@@ -27,6 +28,10 @@ class InlineTextTest extends CopilotTagTest
                 new InlineText("  Hello world!  ", "¯\_(ツ)_/¯"),
                 "  ¯\_(ツ)_/¯Hello world!¯\_(ツ)_/¯  "
             ],
+            "expect only whitespace" => [
+                new InlineText("   "),
+                "   "
+            ],
             "expect only whitespace and subtype" => [
                 new InlineText("   ", "¯\_(ツ)_/¯"),
                 "   "
@@ -36,20 +41,20 @@ class InlineTextTest extends CopilotTagTest
                 ":First:\n:Second: "
             ],
             "expect only embed" => [
-                new InlineText("[#image: /photos/123ID]|||caption|||", ":"),
-                "\n[#image: /photos/123ID]|||caption|||\n"
+                new InlineText($embedMarkdown, ":"),
+                "\n\n[#image:/photos/123ID]|||some caption|||\n\n"
             ],
             "expect embed with text after" => [
-                new InlineText("[#image: /photos/123ID]|||caption|||Hello world!", ":"),
-                "\n[#image: /photos/123ID]|||caption|||\n:Hello world!:"
+                new InlineText("$embedMarkdown Hello world!", ":"),
+                "\n\n[#image:/photos/123ID]|||some caption|||\n\n :Hello world!:"
             ],
             "expect embed with text before" => [
-                new InlineText("Hello world! [#image: /photos/123ID]|||caption|||", ":"),
-                ":Hello world!: \n[#image: /photos/123ID]|||caption|||\n"
+                new InlineText("Hello world! $embedMarkdown", ":"),
+                ":Hello world!: \n\n[#image:/photos/123ID]|||some caption|||\n\n"
             ],
             "expect embed with text before and after" => [
-                new InlineText("Hello world! [#image: /photos/123ID]|||caption||| It's me again", ":"),
-                ":Hello world!: \n[#image: /photos/123ID]|||caption|||\n :It's me again:"
+                new InlineText("Hello world! $embedMarkdown It's me again", ":"),
+                ":Hello world!: \n\n[#image:/photos/123ID]|||some caption|||\n\n :It's me again:"
             ]
         ];
     }

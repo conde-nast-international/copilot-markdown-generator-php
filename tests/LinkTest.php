@@ -1,15 +1,12 @@
 <?php
 namespace CopilotTags\Tests;
 use CopilotTags\Link;
-use CopilotTags\Embed;
-use CopilotTags\EmbedSubtype;
 
 class LinkTest extends CopilotTagTest
 {
     public static function expectedWrites()
     {
-        $embedMarkdown = (new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption"))->write();
-
+        $embedMarkdown = EmbedTest::getExampleMarkdown();
         return [
             "expect empty string with no arguments" => [
                 new Link(),
@@ -45,7 +42,7 @@ class LinkTest extends CopilotTagTest
             ],
             "expect only embed" => [
                 new Link($embedMarkdown, "http://li.nk"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n"
+                "\n\n[#image:/photos/123ID]|||some caption|||\n\n"
             ],
             "expect internal newline in text to be removed" => [
                 new Link("Hello\nworld!", "http://li.nk"),
@@ -53,23 +50,23 @@ class LinkTest extends CopilotTagTest
             ],
             "expect only multiple embeds" => [
                 new Link("{$embedMarkdown}{$embedMarkdown}", "http://li.nk"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n\n[#image:/photos/123ID]|||some caption|||\n"
+                "\n\n[#image:/photos/123ID]|||some caption|||\n\n[#image:/photos/123ID]|||some caption|||\n\n"
             ],
             "expect text with embed at start and end" => [
                 new Link("{$embedMarkdown}some text yo{$embedMarkdown}", "http://li.nk"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n[some text yo](http://li.nk)\n\n[#image:/photos/123ID]|||some caption|||\n"
+                "\n\n[#image:/photos/123ID]|||some caption|||\n\n[some text yo](http://li.nk)\n\n[#image:/photos/123ID]|||some caption|||\n\n"
             ],
             "expect text with embed at end" => [
                 new Link("some text yo $embedMarkdown", "http://li.nk"),
-                "[some text yo](http://li.nk) \n\n[#image:/photos/123ID]|||some caption|||\n"
+                "[some text yo](http://li.nk) \n\n[#image:/photos/123ID]|||some caption|||\n\n"
             ],
             "expect text with embed at start" => [
                 new Link("$embedMarkdown some text yo", "http://li.nk"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n [some text yo](http://li.nk)"
+                "\n\n[#image:/photos/123ID]|||some caption|||\n\n [some text yo](http://li.nk)"
             ],
             "expect text with embed" => [
                 new Link("this is $embedMarkdown some text yo", "http://li.nk"),
-                "[this is](http://li.nk) \n\n[#image:/photos/123ID]|||some caption|||\n [some text yo](http://li.nk)"
+                "[this is](http://li.nk) \n\n[#image:/photos/123ID]|||some caption|||\n\n [some text yo](http://li.nk)"
             ],
             "expect href with trailing whitespace trimmed" => [
                 new Link("Hello world!", "http://li.nk     "),

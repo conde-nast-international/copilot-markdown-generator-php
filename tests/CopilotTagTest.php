@@ -13,6 +13,15 @@ abstract class CopilotTagTest extends TestCase
     }
 
     /**
+     * @dataProvider expectedBeautifys
+     */
+    public function testBeautify($class = NULL, $markdown = "", $expected = "")
+    {
+        if(!isset($class)) return;
+        $this->assertEquals($expected, $class::beautify($markdown));
+    }
+
+    /**
      * @dataProvider expectedConstructExceptions
      */
     public function testConstructException($class = NULL, $args = [], $exceptionType = Exception::class)
@@ -23,5 +32,6 @@ abstract class CopilotTagTest extends TestCase
     }
 
     abstract public static function expectedWrites();
+    public static function expectedBeautifys() { return [[]]; }
     public static function expectedConstructExceptions() { return [[]]; }
 }
