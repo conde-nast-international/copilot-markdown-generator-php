@@ -11,6 +11,6 @@ class Paragraph extends Text
     {
         $text = parent::write();
         if(trim($text) == "") return "";
-        return self::beautify("$text\n\n");
+        return self::beautify("\n$text\n\n");
     }
 }

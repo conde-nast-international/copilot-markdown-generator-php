@@ -43,7 +43,7 @@ class ListTag implements CopilotTag
             else $list_marker = self::LIST_MARKER_BULLET;
             $list = "$list$list_marker $item\n";
         }
-        if($list != "") $list = "$list\n";
+        if($list != "") $list = "\n\n$list\n";
         return $list;
     }
 }

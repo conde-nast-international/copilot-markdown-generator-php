@@ -9,15 +9,15 @@ class CalloutTest extends CopilotTagTest
         return [
             "expect text with subtype" => [
                 new Callout("Hello world!", "type"),
-                "+++type\nHello world!\n+++\n"
+                "\n\n+++type\nHello world!\n+++\n\n"
             ],
             "expect text without subtype" => [
                 new Callout("Hello world!"),
-                "+++\nHello world!\n+++\n"
+                "\n\n+++\nHello world!\n+++\n\n"
             ],
             "expect newlines to be preserved" => [
                 new Callout("\n\nHello\nworld!\n"),
-                "+++\n\nHello\nworld!\n\n+++\n"
+                "\n\n+++\n\nHello\nworld!\n\n+++\n\n"
             ],
             "expect only whitespace to be removed" => [
                 new Callout("  "),

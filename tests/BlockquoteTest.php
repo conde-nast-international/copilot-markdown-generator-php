@@ -9,19 +9,19 @@ class BlockquoteTest extends CopilotTagTest
         return [
             "expect single text line" => [
                 new Blockquote("Hello world!"),
-                "> Hello world!\n"
+                "\n> Hello world!\n"
             ],
             "expect multiple text lines" => [
                 new Blockquote("The city’s central computer told you?\nR2D2,\nyou know better than to trust a strange computer!"),
-                "> The city’s central computer told you?\n> R2D2,\n> you know better than to trust a strange computer!\n"
+                "\n> The city’s central computer told you?\n> R2D2,\n> you know better than to trust a strange computer!\n"
             ],
             "expect multiple lines with leading and trailing whitespace preserved" => [
                 new Blockquote("\n\nThe city’s central computer told you?\nR2D2,\nyou know better than to trust a strange computer!\n"),
-                "> \n> \n> The city’s central computer told you?\n> R2D2,\n> you know better than to trust a strange computer!\n> \n"
+                "\n> \n> \n> The city’s central computer told you?\n> R2D2,\n> you know better than to trust a strange computer!\n> \n"
             ],
             "expect whitespace to be preserved" => [
                 new Blockquote("  "),
-                ">   \n"
+                "\n>   \n"
             ],
             "expect empty string" => [
                 new Blockquote(""),
@@ -29,19 +29,19 @@ class BlockquoteTest extends CopilotTagTest
             ],
             "expect multiple lines of whitespace only to be preserved with spaces on the first line" => [
                 new Blockquote("  \n"),
-                ">   \n> \n"
+                "\n>   \n> \n"
             ],
             "expect multiple lines of whitespace only to be preserved with spaces on the last line" => [
                 new Blockquote("\n  "),
-                "> \n>   \n"
+                "\n> \n>   \n"
             ],
             "expect a single newline to be preserved" => [
                 new Blockquote("\n"),
-                "> \n> \n"
+                "\n> \n> \n"
             ],
             "expect multiple newlines to be preserved" => [
                 new Blockquote("\n\n\n\n"),
-                "> \n> \n> \n> \n> \n"
+                "\n> \n> \n> \n> \n> \n"
             ]
         ];
     }

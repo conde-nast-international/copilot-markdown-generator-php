@@ -10,15 +10,15 @@ class EmbedTest extends CopilotTagTest
         return [
             "expect embed with subtype" => [
                 new Embed("https://www.google.com", EmbedSubtype::VIDEO),
-                "\n\n[#video:https://www.google.com]\n"
+                "\n\n[#video:https://www.google.com]\n\n"
             ],
             "expect embed with default subtype" => [
                 new Embed("https://www.google.com"),
-                "\n\n[#iframe:https://www.google.com]\n"
+                "\n\n[#iframe:https://www.google.com]\n\n"
             ],
             "expect embed with http uri converted to https" => [
                 new Embed("http://www.google.com"),
-                "\n\n[#iframe:https://www.google.com]\n"
+                "\n\n[#iframe:https://www.google.com]\n\n"
             ],
             "expect empty string" => [
                 new Embed(""),
@@ -26,35 +26,35 @@ class EmbedTest extends CopilotTagTest
             ],
             "expect embed with caption" => [
                 new Embed("https://www.google.com", EmbedSubtype::IFRAME, "some caption"),
-                "\n\n[#iframe:https://www.google.com]|||some caption|||\n"
+                "\n\n[#iframe:https://www.google.com]|||some caption|||\n\n"
             ],
             "expect image embed with caption and uri beginning with forward slash" => [
                 new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n"
+                "\n\n[#image:/photos/123ID]|||some caption|||\n\n"
             ],
             "expect embed with leading whitespace in uri trimmed" => [
                 new Embed(" https://www.google.com"),
-                "\n\n[#iframe:https://www.google.com]\n"
+                "\n\n[#iframe:https://www.google.com]\n\n"
             ],
             "expect embed with trailing whitespace in uri trimmed" => [
                 new Embed("https://www.google.com "),
-                "\n\n[#iframe:https://www.google.com]\n"
+                "\n\n[#iframe:https://www.google.com]\n\n"
             ],
             "expect embed with leading and trailing whitespace in uri trimmed" => [
                 new Embed(" https://www.google.com "),
-                "\n\n[#iframe:https://www.google.com]\n"
+                "\n\n[#iframe:https://www.google.com]\n\n"
             ],
             "expect embed with trailing newline in uri trimmed" => [
                 new Embed("https://www.google.com\n"),
-                "\n\n[#iframe:https://www.google.com]\n"
+                "\n\n[#iframe:https://www.google.com]\n\n"
             ],
             "expect embed with leading newline in uri trimmed" => [
                 new Embed("\nhttps://www.google.com"),
-                "\n\n[#iframe:https://www.google.com]\n"
+                "\n\n[#iframe:https://www.google.com]\n\n"
             ],
             "expect embed with leading and trailing newlines in uri trimmed" => [
                 new Embed("\nhttps://www.google.com\n"),
-                "\n\n[#iframe:https://www.google.com]\n"
+                "\n\n[#iframe:https://www.google.com]\n\n"
             ],
             "expect empty string for only whitespace in uri" => [
                 new Embed("  "),

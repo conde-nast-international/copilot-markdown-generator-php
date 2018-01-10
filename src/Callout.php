@@ -20,7 +20,7 @@ class Callout extends Text
     {
         $text = parent::write();
         if(trim($text) == "") return "";
-        $text = "+++$this->subtype\n$text\n+++\n";
+        $text = "\n\n+++$this->subtype\n$text\n+++\n\n";
         return self::beautify($text);
     }
 }

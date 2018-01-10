@@ -14,6 +14,8 @@ class Blockquote extends Text
         $write_line = function($str) { return "> $str\n"; };
         $lines = explode("\n", $this->text);
         $lines = array_map($write_line, $lines);
-        return self::beautify(implode("", $lines));
+
+        $blockquote = implode("", $lines);
+        return self::beautify("\n$blockquote");
     }
 }
