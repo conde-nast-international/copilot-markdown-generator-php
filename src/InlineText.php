@@ -11,29 +11,28 @@ namespace CopilotTags;
  */
 class InlineText extends Text
 {
-
     private $delimiter;
 
     public function __construct($text, $delimiter = "")
     {
         parent::__construct($text);
-        if (!is_string($delimiter)) throw new \InvalidArgumentException("InlineText::__construct second argument \$delimiter must be a string. Given: ".($delimiter ? "$delimiter " : "")."(".gettype($delimiter).").");
+        if(!is_string($delimiter)) throw new \InvalidArgumentException(__METHOD__." second argument \$delimiter must be a string. Given: ".($delimiter ? "$delimiter " : "")."(".gettype($delimiter).").");
         $this->delimiter = $delimiter;
     }
 
     public function write()
     {
-        $tag = parent::write();
-        if (!trim($tag)) return $tag;
+        $tag = $this->text;
+        if(!trim($tag)) return $tag;
 
         // Put embeds on their own lines
         $tag = preg_replace(Embed::EMBED_PATTERN, "\n$0\n", $tag);
 
         // Generate each line individually
-        if (preg_match("/\n/", $tag)) {
+        if(preg_match("/\n/", $tag)) {
           $tag = explode("\n", $tag);
-          $tag = array_map(function ($splitTag) {
-            if (preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;// Don't wrap embeds
+          $tag = array_map(function($splitTag) {
+            if(preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;// Don't wrap embeds
             return (new InlineText($splitTag, $this->delimiter))->write();
           }, $tag);
           $tag = implode("\n", $tag);

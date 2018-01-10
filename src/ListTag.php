@@ -16,12 +16,12 @@ class ListTag implements CopilotTag
 
     public function __construct($items, $ordered = FALSE)
     {
-        if(!is_array($items)) throw new \InvalidArgumentException("ListTag::__construct first argument \$items must be an array. Given: ".($items ? "$items " : "")."(".gettype($items).").");
-        foreach($items as $i=>$item) {
-            if(!is_string($item)) throw new \InvalidArgumentException("ListTag::__construct first argument \$items must be an array of strings. Given \$items[$i] = ".($item ? "$item " : "")."(".(gettype($item)).").");
+        if(!is_array($items)) throw new \InvalidArgumentException(__METHOD__." first argument \$items must be an array. Given: ".($items ? "$items " : "")."(".gettype($items).").");
+        foreach($items as $i => $item) {
+            if(!is_string($item)) throw new \InvalidArgumentException(__METHOD__." first argument \$items must be an array of strings. Given \$items[$i] = ".($item ? "$item " : "")."(".(gettype($item)).").");
         }
         $this->items = $items;
-        if(!is_bool($ordered)) throw new \InvalidArgumentException("ListTag::__construct second argument \$ordered must be a bool. Given: ".($ordered ? "$ordered " : "")."(".gettype($ordered).").");
+        if(!is_bool($ordered)) throw new \InvalidArgumentException(__METHOD__." second argument \$ordered must be a bool. Given: ".($ordered ? "$ordered " : "")."(".gettype($ordered).").");
         $this->ordered = $ordered;
     }
 
@@ -29,25 +29,21 @@ class ListTag implements CopilotTag
     {
         $item_indentation = $this->ordered ? "   " : "  ";
 
-        $tag = "";
-        foreach($this->items as $i=>$item) {
+        $list = "";
+        foreach($this->items as $i => $item) {
             $text = new Text($item);
             $item = $text->write();
             $item = trim($item);
-
-            if($item === "") continue;
+            if($item == "") continue;
 
             // indent multiline content
             $item = preg_replace('/\n/', "\n$item_indentation", $item);
             // prefix with list marker
-            if($this->ordered) {
-                $item = strval($i + 1).self::LIST_MARKER_ORDERED." $item";
-            } else {
-                $item = self::LIST_MARKER_BULLET." $item";
-            }
-            $tag = "$tag$item\n";
+            if($this->ordered) $list_marker = strval($i + 1).self::LIST_MARKER_ORDERED;
+            else $list_marker = self::LIST_MARKER_BULLET;
+            $list = "$list$list_marker $item\n";
         }
-        if($tag !== "") $tag = "$tag\n";
-        return $tag;
+        if($list != "") $list = "$list\n";
+        return $list;
     }
 }

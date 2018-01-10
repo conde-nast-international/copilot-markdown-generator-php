@@ -1,10 +1,10 @@
 <?php
-use CopilotTags\Tests\CopilotTagTest;
+namespace CopilotTags\Tests;
 use CopilotTags\HR;
 
 class HRTest extends CopilotTagTest
 {
-    public function expectedWrites()
+    public static function expectedWrites()
     {
         return [
             "expect HR" => [

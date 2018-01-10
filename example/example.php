@@ -25,13 +25,13 @@ xml_set_default_handler($parser, 'add_text');
 xml_set_element_handler($parser, 'on_open_tag', 'on_close_tag');
 try {
     $xml_parse_success = xml_parse($parser, $xml_body, TRUE);
-    if(count($markdown_stack) !== 1) $xml_parse_success = 0;
-    if (!$xml_parse_success) {
+    if(count($markdown_stack) != 1) $xml_parse_success = 0;
+    if(!$xml_parse_success) {
         $error_code = xml_get_error_code($parser);
         $error_string = xml_error_string($error_code);
         $line = xml_get_current_line_number($parser);
         $column = xml_get_current_column_number($parser);
-        if (is_string($error_string) && strlen($error_string)) $error_string = ": $error_string";
+        if(is_string($error_string) && strlen($error_string)) $error_string = ": $error_string";
         throw new Exception("Error ($error_code) parsing XML at $line:$column of \"".FILENAME."\"$error_string.");
     }
     $markdown_body = array_pop($markdown_stack);
@@ -86,7 +86,7 @@ function on_close_tag($parser, $name) {
 
     $line = xml_get_current_line_number($parser);
     $column = xml_get_current_column_number($parser);
-    if($tagname !== $tagname_open) throw new Exception("Error parsing XML at $line:$column of \"".FILENAME."\". Open tag \"$tagname_open\" did not have matching close tag. Found close tag \"$tagname\" instead.");
+    if($tagname != $tagname_open) throw new Exception("Error parsing XML at $line:$column of \"".FILENAME."\". Open tag \"$tagname_open\" did not have matching close tag. Found close tag \"$tagname\" instead.");
 
     $tag = NULL;
     switch($tagname) {

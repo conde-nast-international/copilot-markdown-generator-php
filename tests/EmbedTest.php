@@ -1,11 +1,11 @@
 <?php
-use CopilotTags\Tests\CopilotTagTest;
+namespace CopilotTags\Tests;
 use CopilotTags\Embed;
 use CopilotTags\EmbedSubtype;
 
 class EmbedTest extends CopilotTagTest
 {
-    public function expectedWrites()
+    public static function expectedWrites()
     {
         return [
             "expect embed with subtype" => [
@@ -79,93 +79,93 @@ class EmbedTest extends CopilotTagTest
         ];
     }
 
-    public function expectedConstructExceptions()
+    public static function expectedConstructExceptions()
     {
         return [
             "expect null \$uri argument to throw InvalidArgumentException" => [
                 Embed::class,
                 [NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$uri argument to throw InvalidArgumentException" => [
                 Embed::class,
                 [FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$uri argument to throw InvalidArgumentException" => [
                 Embed::class,
                 [TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$uri argument to throw InvalidArgumentException" => [
                 Embed::class,
                 [5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$uri argument to throw InvalidArgumentException" => [
                 Embed::class,
                 [[]],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect \$uri argument with internal whitespace to throw InvalidArgumentException" => [
                 Embed::class,
                 ["http:// www.google.com"],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect \$uri argument with internal newline to throw InvalidArgumentException" => [
                 Embed::class,
                 ["http://\nwww.google.com"],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect null \$subtype argument to throw InvalidArgumentException" => [
                 Embed::class,
                 ["", NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$subtype argument to throw InvalidArgumentException" => [
                 Embed::class,
                 ["", FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$subtype argument to throw InvalidArgumentException" => [
                 Embed::class,
                 ["", TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$subtype argument to throw InvalidArgumentException" => [
                 Embed::class,
                 ["", 5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$subtype argument to throw InvalidArgumentException" => [
                 Embed::class,
                 ["", []],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect null \$caption argument to throw InvalidArgumentException" => [
                 Embed::class,
                 ["", "", NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$caption argument to throw InvalidArgumentException" => [
                 Embed::class,
                 ["", "", FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$caption argument to throw InvalidArgumentException" => [
                 Embed::class,
                 ["", "", TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$caption argument to throw InvalidArgumentException" => [
                 Embed::class,
                 ["", "", 5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$caption argument to throw InvalidArgumentException" => [
                 Embed::class,
                 ["", "", []],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ]
         ];
     }

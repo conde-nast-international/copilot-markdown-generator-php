@@ -1,10 +1,10 @@
 <?php
-use CopilotTags\Tests\CopilotTagTest;
+namespace CopilotTags\Tests;
 use CopilotTags\InlineText;
 
 class InlineTextTest extends CopilotTagTest
 {
-    public function expectedWrites()
+    public static function expectedWrites()
     {
         return [
             "expect empty string" => [
@@ -54,58 +54,58 @@ class InlineTextTest extends CopilotTagTest
         ];
     }
 
-    public function expectedConstructExceptions()
+    public static function expectedConstructExceptions()
     {
         return [
             "expect null \$text argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 [NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$text argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 [FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$text argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 [TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$text argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 [5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$text argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 [[]],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect null \$delimiter argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 ["", NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$delimiter argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 ["", FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$delimiter argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 ["", TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$delimiter argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 ["", 5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$delimiter argument to throw InvalidArgumentException" => [
                 InlineText::class,
                 ["", []],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ]
         ];
     }

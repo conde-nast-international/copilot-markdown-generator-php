@@ -1,10 +1,10 @@
 <?php
-use CopilotTags\Tests\CopilotTagTest;
+namespace CopilotTags\Tests;
 use CopilotTags\Heading;
 
 class HeadingTest extends CopilotTagTest
 {
-    public function expectedWrites()
+    public static function expectedWrites()
     {
         return [
             "expect text with heading level" => [
@@ -34,58 +34,58 @@ class HeadingTest extends CopilotTagTest
         ];
     }
 
-    public function expectedConstructExceptions()
+    public static function expectedConstructExceptions()
     {
         return [
             "expect null \$text argument to throw InvalidArgumentException" => [
                 Heading::class,
                 [NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$text argument to throw InvalidArgumentException" => [
                 Heading::class,
                 [FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$text argument to throw InvalidArgumentException" => [
                 Heading::class,
                 [TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$text argument to throw InvalidArgumentException" => [
                 Heading::class,
                 [5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$text argument to throw InvalidArgumentException" => [
                 Heading::class,
                 [[]],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect null \$level argument to throw InvalidArgumentException" => [
                 Heading::class,
                 ["", NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$level argument to throw InvalidArgumentException" => [
                 Heading::class,
                 ["", FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$level argument to throw InvalidArgumentException" => [
                 Heading::class,
                 ["", TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$level argument to throw InvalidArgumentException" => [
                 Heading::class,
                 ["", []],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect string \$level argument to throw InvalidArgumentException" => [
                 Heading::class,
                 ["", "Hello world!"],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ]
         ];
     }

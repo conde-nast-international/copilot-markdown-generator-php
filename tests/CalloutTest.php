@@ -1,10 +1,10 @@
 <?php
-use CopilotTags\Tests\CopilotTagTest;
+namespace CopilotTags\Tests;
 use CopilotTags\Callout;
 
 class CalloutTest extends CopilotTagTest
 {
-    public function expectedWrites()
+    public static function expectedWrites()
     {
         return [
             "expect text with subtype" => [
@@ -46,58 +46,58 @@ class CalloutTest extends CopilotTagTest
         ];
     }
 
-    public function expectedConstructExceptions()
+    public static function expectedConstructExceptions()
     {
         return [
             "expect null \$text argument to throw InvalidArgumentException" => [
                 Callout::class,
                 [NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$text argument to throw InvalidArgumentException" => [
                 Callout::class,
                 [FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$text argument to throw InvalidArgumentException" => [
                 Callout::class,
                 [TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$text argument to throw InvalidArgumentException" => [
                 Callout::class,
                 [5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$text argument to throw InvalidArgumentException" => [
                 Callout::class,
                 [[]],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect null \$subtype argument to throw InvalidArgumentException" => [
                 Callout::class,
                 ["", NULL],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean false \$subtype argument to throw InvalidArgumentException" => [
                 Callout::class,
                 ["", FALSE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect boolean true \$subtype argument to throw InvalidArgumentException" => [
                 Callout::class,
                 ["", TRUE],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect number \$subtype argument to throw InvalidArgumentException" => [
                 Callout::class,
                 ["", 5],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ],
             "expect array \$subtype argument to throw InvalidArgumentException" => [
                 Callout::class,
                 ["", []],
-                InvalidArgumentException::class
+                \InvalidArgumentException::class
             ]
         ];
     }

@@ -17,20 +17,20 @@ class Heading extends Text
     {
         parent::__construct($text);
 
-        if (!is_int($level)) throw new \InvalidArgumentException("Heading::__construct second argument \$level must be an int. Given: ".($level ? "$level " : "")."(".gettype($level).").");
-        if ($level < self::MIN_LEVEL) $this->level = self::MIN_LEVEL;
-        else if ($level > self::MAX_LEVEL) $this->level = self::MAX_LEVEL;
+        if(!is_int($level)) throw new \InvalidArgumentException(__METHOD__." second argument \$level must be an int. Given: ".($level ? "$level " : "")."(".gettype($level).").");
+        if($level < self::MIN_LEVEL) $this->level = self::MIN_LEVEL;
+        else if($level > self::MAX_LEVEL) $this->level = self::MAX_LEVEL;
         else $this->level = $level;
     }
 
     public function write()
     {
         $tag = $this->text;
-        if (trim($tag) !== "") {
+        if(trim($tag) !== "") {
             $levelString = str_repeat("#", $this->level);
             $tag = "$levelString $tag";
         }
-        if ($tag !== "") $tag = "$tag\n";
+        if($tag !== "") $tag = "$tag\n";
         return self::beautify($tag);
     }
 }
