@@ -110,8 +110,8 @@ Generator for [links](https://github.com/conde-nast-international/copilot-markdo
 ```php
 (new Link("Hello world!", "https://github.com/"))->write();
 // "[Hello world!](https://github.com/)"
-(new Link("Hello world!", "https://github.com/", array("foo"=>"bar")))->write();
-// "[Hello world!](https://github.com/){: foo=\"bar\" }"
+(new Link("Hello world!", "https://github.com/", array("rel"=>"nofollow")))->write();
+// "[Hello world!](https://github.com/){: rel=\"nofollow\" }"
 ```
 
 * `new Link([$text, $href, $attributes])`<br>
