@@ -25,7 +25,7 @@ class BlockquoteTest extends CopilotTagTest
             ],
             "expect empty string" => [
                 new Blockquote(""),
-                ""
+                "\n\n"
             ],
             "expect multiple lines of whitespace only to be preserved with spaces on the first line" => [
                 new Blockquote("  \n"),
