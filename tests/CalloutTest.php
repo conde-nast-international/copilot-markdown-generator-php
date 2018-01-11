@@ -19,29 +19,29 @@ class CalloutTest extends CopilotTagTest
                 new Callout("\n\nHello\nworld!\n"),
                 "\n\n+++\n\nHello\nworld!\n\n+++\n\n"
             ],
-            "expect only whitespace to be removed" => [
+            "expect only whitespace" => [
                 new Callout("  "),
-                ""
+                "\n\n"
             ],
             "expect empty string" => [
                 new Callout(""),
-                ""
+                "\n\n"
             ],
-            "expect multiple whitespace-only lines to be removed with spaces on the first line" => [
+            "expect multiple whitespace-only lines with spaces on the first line" => [
                 new Callout("  \n"),
-                ""
+                "\n\n"
             ],
-            "expect multiple whitespace-only lines to be removed with spaces on the last line" => [
+            "expect multiple whitespace-only lines with spaces on the last line" => [
                 new Callout("\n  "),
-                ""
+                "\n\n"
             ],
-            "expect single newline to be removed" => [
+            "expect single newline" => [
                 new Callout("\n"),
-                ""
+                "\n\n"
             ],
-            "expect more than 2 newlines to be removed" => [
+            "expect more than 2 newlines" => [
                 new Callout("\n\n\n\n"),
-                ""
+                "\n\n"
             ]
         ];
     }

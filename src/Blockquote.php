@@ -9,7 +9,7 @@ class Blockquote extends Text
 {
     public function write()
     {
-        if($this->text == "") return self::beautify($this->text);
+        if($this->text == "") return "";
 
         $write_line = function($str) { return "> $str\n"; };
         $lines = explode("\n", $this->text);
