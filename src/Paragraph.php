@@ -9,8 +9,8 @@ class Paragraph extends Text
 {
     public function write()
     {
-        $tag = $this->text;
-        if($tag !== "") $tag = "$tag\n\n";
-        return self::beautify($tag);
+        $text = parent::write();
+        $text = "\n\n$text\n\n";
+        return self::beautify($text);
     }
 }

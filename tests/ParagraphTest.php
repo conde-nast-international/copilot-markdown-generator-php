@@ -9,7 +9,7 @@ class ParagraphTest extends CopilotTagTest
         return [
             "expect plain text" => [
                 new Paragraph("Hello world!"),
-                "Hello world!\n\n"
+                "\n\nHello world!\n\n"
             ],
             "expect only whitespace" => [
                 new Paragraph("  "),
@@ -17,7 +17,7 @@ class ParagraphTest extends CopilotTagTest
             ],
             "expect empty string" => [
                 new Paragraph(""),
-                ""
+                "\n\n"
             ]
         ];
     }

@@ -9,37 +9,37 @@ class CalloutTest extends CopilotTagTest
         return [
             "expect text with subtype" => [
                 new Callout("Hello world!", "type"),
-                "+++type\nHello world!\n+++\n"
+                "\n\n+++type\nHello world!\n+++\n\n"
             ],
             "expect text without subtype" => [
                 new Callout("Hello world!"),
-                "+++\nHello world!\n+++\n"
+                "\n\n+++\nHello world!\n+++\n\n"
             ],
             "expect newlines to be preserved" => [
                 new Callout("\n\nHello\nworld!\n"),
-                "+++\n\nHello\nworld!\n\n+++\n"
+                "\n\n+++\n\nHello\nworld!\n\n+++\n\n"
             ],
-            "expect only whitespace to be removed" => [
+            "expect only whitespace" => [
                 new Callout("  "),
-                "\n"
+                "\n\n"
             ],
             "expect empty string" => [
                 new Callout(""),
-                ""
+                "\n\n"
             ],
-            "expect spaces on the first line with no non-whitespace characters to be removed" => [
+            "expect multiple whitespace-only lines with spaces on the first line" => [
                 new Callout("  \n"),
                 "\n\n"
             ],
-            "expect spaces on the last line with no non-whitespace characters to be removed" => [
+            "expect multiple whitespace-only lines with spaces on the last line" => [
                 new Callout("\n  "),
                 "\n\n"
             ],
-            "expect single newline to be preserved" => [
+            "expect single newline" => [
                 new Callout("\n"),
                 "\n\n"
             ],
-            "expect more than 2 newlines to become 2 newlines" => [
+            "expect more than 2 newlines" => [
                 new Callout("\n\n\n\n"),
                 "\n\n"
             ]

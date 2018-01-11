@@ -30,7 +30,7 @@ class Embed implements CopilotTag
     {
         if($this->uri == "") return "";
         $caption = $this->caption != "" ? "|||$this->caption|||" : "";
-        return "\n\n[#$this->subtype:$this->uri]$caption\n";
+        return "\n\n[#$this->subtype:$this->uri]$caption\n\n";
     }
 
     private static function convertHttpToHttps($url)

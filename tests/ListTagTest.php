@@ -10,27 +10,27 @@ class ListTagTest extends CopilotTagTest
         return [
             "expect unordered list with single item" => [
                 new ListTag(["Hello world!"], FALSE),
-                "* Hello world!\n\n"
+                "\n\n* Hello world!\n\n"
             ],
             "expect ordered list with single item" => [
                 new ListTag(["Hello world!"], TRUE),
-                "1. Hello world!\n\n"
+                "\n\n1. Hello world!\n\n"
             ],
             "expect default unordered list with single item" => [
                 new ListTag(["Hello world!"]),
-                "* Hello world!\n\n"
+                "\n\n* Hello world!\n\n"
             ],
             "expect unordered list with multiple items" => [
                 new ListTag(["Hello", "world!"], FALSE),
-                "* Hello\n* world!\n\n"
+                "\n\n* Hello\n* world!\n\n"
             ],
             "expect ordered list with multiple items" => [
                 new ListTag(["Hello", "world!"], TRUE),
-                "1. Hello\n2. world!\n\n"
+                "\n\n1. Hello\n2. world!\n\n"
             ],
             "expect default unordered list with multiple items" => [
                 new ListTag(["Hello", "world!"]),
-                "* Hello\n* world!\n\n"
+                "\n\n* Hello\n* world!\n\n"
             ],
             "expect only whitespace" => [
                 new ListTag(["   "]),
@@ -42,27 +42,27 @@ class ListTagTest extends CopilotTagTest
             ],
             "expect unordered list with single multiline item" => [
                 new ListTag(["Hello\nworld!"], FALSE),
-                "* Hello\n  world!\n\n"
+                "\n\n* Hello\n  world!\n\n"
             ],
             "expect ordered list with single multiline item" => [
                 new ListTag(["Hello\nworld!"], TRUE),
-                "1. Hello\n   world!\n\n"
+                "\n\n1. Hello\n   world!\n\n"
             ],
             "expect unordered list with multiple multiline items" => [
                 new ListTag(["Hello\nworld!", "Hello\nworld!"], FALSE),
-                "* Hello\n  world!\n* Hello\n  world!\n\n"
+                "\n\n* Hello\n  world!\n* Hello\n  world!\n\n"
             ],
             "expect ordered list with multiple multiline items" => [
                 new ListTag(["Hello\nworld!", "Hello\nworld!"], TRUE),
-                "1. Hello\n   world!\n2. Hello\n   world!\n\n"
+                "\n\n1. Hello\n   world!\n2. Hello\n   world!\n\n"
             ],
             "expect more than 2 newlines in unordered list item to be reduced to 2" => [
                 new ListTag(["Hello\n\n\n\nworld!"], FALSE),
-                "* Hello\n  \n  world!\n\n"
+                "\n\n* Hello\n  \n  world!\n\n"
             ],
             "expect more than 2 newlines in ordered list item to be reduced to 2" => [
                 new ListTag(["Hello\n\n\n\nworld!"], TRUE),
-                "1. Hello\n   \n   world!\n\n"
+                "\n\n1. Hello\n   \n   world!\n\n"
             ]
         ];
     }

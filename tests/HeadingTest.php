@@ -9,27 +9,27 @@ class HeadingTest extends CopilotTagTest
         return [
             "expect text with heading level" => [
                 new Heading("Hello world!", 3),
-                "### Hello world!\n"
+                "\n\n### Hello world!\n"
             ],
-            "expect only whitespace to be removed" => [
+            "expect only whitespace" => [
                 new Heading("  "),
-                "\n"
+                "\n\n"
             ],
             "expect empty string" => [
                 new Heading(""),
-                ""
+                "\n\n"
             ],
             "expect empty string with heading level" => [
                 new Heading("", 4),
-                ""
+                "\n\n"
             ],
             "expect text without heading level" => [
                 new Heading("Hello world!"),
-                "## Hello world!\n"
+                "\n\n## Hello world!\n"
             ],
             "expect heading level below minimum to render at minimum" => [
                 new Heading("Hello world!", 1),
-                "## Hello world!\n"
+                "\n\n## Hello world!\n"
             ]
         ];
     }

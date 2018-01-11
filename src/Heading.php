@@ -25,12 +25,12 @@ class Heading extends Text
 
     public function write()
     {
-        $tag = $this->text;
-        if(trim($tag) !== "") {
+        $text = parent::write();
+        if(trim($text) != "") {
             $levelString = str_repeat("#", $this->level);
-            $tag = "$levelString $tag";
+            $text = "$levelString $text";
         }
-        if($tag !== "") $tag = "$tag\n";
-        return self::beautify($tag);
+        $text = "\n\n$text\n";
+        return self::beautify($text);
     }
 }
