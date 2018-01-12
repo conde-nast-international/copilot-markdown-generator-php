@@ -20,7 +20,7 @@ log_var($xml_body, "\$xml_body", "", 1, FALSE);
 
 log_message("Parsing XML...", 1);
 $xml_tag_stack = [];
-$markdown_stack = [];
+$markdown_stack = [""];
 $parser = xml_parser_create();
 xml_set_default_handler($parser, 'add_text');
 xml_set_element_handler($parser, 'on_open_tag', 'on_close_tag');
@@ -66,11 +66,13 @@ function on_open_tag($parser, $name, $attrs) {
 
     log_message("Open tag \"$tagname\". Putting tag on stack...", 2);
     log_var($xml_tag_stack, "\$xml_tag_stack", "BEFORE", 2);
+    log_var($markdown_stack, "\$markdown_stack", "BEFORE", 2);
 
     $xml_tag_stack[] = $tagname;
     $markdown_stack[] = "";
 
     log_var($xml_tag_stack, "\$xml_tag_stack", "AFTER", 2);
+    log_var($markdown_stack, "\$markdown_stack", "AFTER", 2);
 }
 
 function on_close_tag($parser, $name) {
