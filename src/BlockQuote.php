@@ -2,10 +2,10 @@
 namespace CopilotTags;
 
 /**
- * Blockquote
+ * Block quote
  * CommonMark spec: http://spec.commonmark.org/0.27/#block-quotes
  */
-class Blockquote extends Text
+class BlockQuote extends Text
 {
     public function write()
     {

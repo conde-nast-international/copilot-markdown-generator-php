@@ -1,14 +1,14 @@
 <?php
 namespace CopilotTags\Tests;
-use CopilotTags\HR;
+use CopilotTags\ThematicBreak;
 
-class HRTest extends CopilotTagTest
+class ThematicBreakTest extends CopilotTagTest
 {
     public static function expectedWrites()
     {
         return [
-            "expect HR" => [
-                new HR(),
+            "expect thematic break" => [
+                new ThematicBreak(),
                 "\n----------\n"
             ]
         ];

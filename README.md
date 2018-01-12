@@ -119,16 +119,16 @@ Generator for [links](https://github.com/conde-nast-international/copilot-markdo
   ***href:*** string (default: `""`)<br>
   ***attributes:*** array (default: `[]`)
 
-### Blockquote
+### BlockQuote
 
 Generator for [block quotes](http://spec.commonmark.org/0.27/#block-quotes).
 
 ```php
-(new Blockquote("Hello world!"))->write();
+(new BlockQuote("Hello world!"))->write();
 // "> Hello world!\n"
 ```
 
-* `new Blockquote($text)`<br>
+* `new BlockQuote($text)`<br>
   ***text:*** string (Markdown)<br>
 
 ### ListTag
@@ -190,16 +190,16 @@ Generator for [sections](https://github.com/conde-nast-international/copilot-mar
 
 * `new Section()`
 
-### HR
+### ThematicBreak
 
-Generator for [thematic breaks](http://spec.commonmark.org/0.27/#thematic-breaks).
+Generator for [thematic breaks](http://spec.commonmark.org/0.27/#thematic-breaks). Also known as HR.
 
 ```php
-(new HR())->write();
+(new ThematicBreak())->write();
 // "\n----------\n"
 ```
 
-* `new HR()`
+* `new ThematicBreak()`
 
 ## See also
 
