@@ -101,7 +101,7 @@ Generator for inline text tags: [emphasis](https://github.com/conde-nast-interna
 |`STRONG`       |`**`  |Bold                       |
 |`SUBSCRIPT`    |`~`   |Inferior, sub              |
 |`SUPERSCRIPT`  |`^`   |Superior, super            |
-|`DELETE`       |`~~`  |Strikethrough, Strike, Del |
+|`DELETE`       |`~~`  |Strikethrough, strike, del |
 
 ### Link
 
@@ -192,7 +192,7 @@ Generator for [sections](https://github.com/conde-nast-international/copilot-mar
 
 ### ThematicBreak
 
-Generator for [thematic breaks](http://spec.commonmark.org/0.27/#thematic-breaks). Also known as HR.
+Generator for [thematic breaks](http://spec.commonmark.org/0.27/#thematic-breaks). Also known as horizontal rule or HR.
 
 ```php
 (new ThematicBreak())->render();
