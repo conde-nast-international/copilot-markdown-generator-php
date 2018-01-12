@@ -4,7 +4,7 @@ use CopilotTags\Callout;
 
 class CalloutTest extends CopilotTagTest
 {
-    public static function expectedWrites()
+    public static function expectedRenders()
     {
         return [
             "expect text with subtype" => [

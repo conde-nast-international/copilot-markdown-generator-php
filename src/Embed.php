@@ -26,7 +26,7 @@ class Embed implements CopilotTag
         $this->caption = $caption;
     }
 
-    public function write()
+    public function render()
     {
         if($this->uri == "") return "";
         $caption = $this->caption != "" ? "|||$this->caption|||" : "";

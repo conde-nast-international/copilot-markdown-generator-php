@@ -13,7 +13,7 @@ class Text implements CopilotTag
         $this->text = $text;
     }
 
-    public function write()
+    public function render()
     {
         return self::beautify($this->text);
     }

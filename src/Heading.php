@@ -23,9 +23,9 @@ class Heading extends Text
         else $this->level = $level;
     }
 
-    public function write()
+    public function render()
     {
-        $text = parent::write();
+        $text = parent::render();
         if(trim($text) != "") {
             $levelString = str_repeat("#", $this->level);
             $text = "$levelString $text";

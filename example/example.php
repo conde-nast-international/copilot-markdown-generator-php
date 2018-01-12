@@ -115,7 +115,7 @@ function on_close_tag($parser, $name) {
         default:
             $tag = new Text($text);
     }
-    $tag_markdown = $tag->write();
+    $tag_markdown = $tag->render();
 
     $stack_index = count($markdown_stack) - 1;
     $markdown_stack[$stack_index] = $markdown_stack[$stack_index].$tag_markdown;

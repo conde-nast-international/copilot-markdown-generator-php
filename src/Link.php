@@ -21,7 +21,7 @@ class Link extends Text
         $this->attributes = $attributes;
     }
 
-    public function write()
+    public function render()
     {
         if($this->text == "") return self::beautify($this->text);
 
@@ -31,7 +31,7 @@ class Link extends Text
             $tags = array_map(function($tag) {
               if(preg_match(Embed::EMBED_PATTERN, $tag)) return $tag;// Don't wrap embeds
               if(!trim($tag)) return $tag;
-              return (new Link($tag, $this->href, $this->attributes))->write();
+              return (new Link($tag, $this->href, $this->attributes))->render();
             }, $tags);
             $tags = implode("\n", $tags);
             return self::beautify($tags);

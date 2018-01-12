@@ -4,7 +4,7 @@ use CopilotTags\Paragraph;
 
 class ParagraphTest extends CopilotTagTest
 {
-    public static function expectedWrites()
+    public static function expectedRenders()
     {
         return [
             "expect plain text" => [

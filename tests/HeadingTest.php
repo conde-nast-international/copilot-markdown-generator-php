@@ -4,7 +4,7 @@ use CopilotTags\Heading;
 
 class HeadingTest extends CopilotTagTest
 {
-    public static function expectedWrites()
+    public static function expectedRenders()
     {
         return [
             "expect text with heading level" => [

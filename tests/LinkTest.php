@@ -6,9 +6,9 @@ use CopilotTags\EmbedSubtype;
 
 class LinkTest extends CopilotTagTest
 {
-    public static function expectedWrites()
+    public static function expectedRenders()
     {
-        $embedMarkdown = (new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption"))->write();
+        $embedMarkdown = (new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption"))->render();
 
         return [
             "expect empty string with no arguments" => [

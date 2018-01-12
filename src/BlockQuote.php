@@ -7,12 +7,12 @@ namespace CopilotTags;
  */
 class BlockQuote extends Text
 {
-    public function write()
+    public function render()
     {
         if($this->text != "") {
-            $write_line = function($str) { return "> $str\n"; };
+            $render_line = function($str) { return "> $str\n"; };
             $lines = explode("\n", $this->text);
-            $lines = array_map($write_line, $lines);
+            $lines = array_map($render_line, $lines);
             $blockquote = implode("", $lines);
         } else {
             $blockquote = "\n";

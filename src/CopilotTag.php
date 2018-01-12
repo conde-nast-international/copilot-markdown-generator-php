@@ -3,5 +3,5 @@ namespace CopilotTags;
 
 interface CopilotTag
 {
-    public function write();
+    public function render();
 }

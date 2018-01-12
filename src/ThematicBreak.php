@@ -7,7 +7,7 @@ namespace CopilotTags;
  */
 class ThematicBreak implements CopilotTag
 {
-    public function write()
+    public function render()
     {
         return "\n----------\n";
     }

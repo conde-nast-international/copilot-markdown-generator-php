@@ -4,7 +4,7 @@ use CopilotTags\BlockQuote;
 
 class BlockQuoteTest extends CopilotTagTest
 {
-    public static function expectedWrites()
+    public static function expectedRenders()
     {
         return [
             "expect single text line" => [

@@ -20,7 +20,7 @@ class InlineText extends Text
         $this->delimiter = $delimiter;
     }
 
-    public function write()
+    public function render()
     {
         $tag = $this->text;
         if(!trim($tag)) return $tag;
@@ -33,7 +33,7 @@ class InlineText extends Text
           $tag = explode("\n", $tag);
           $tag = array_map(function($splitTag) {
             if(preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;// Don't wrap embeds
-            return (new InlineText($splitTag, $this->delimiter))->write();
+            return (new InlineText($splitTag, $this->delimiter))->render();
           }, $tag);
           $tag = implode("\n", $tag);
         } else {
