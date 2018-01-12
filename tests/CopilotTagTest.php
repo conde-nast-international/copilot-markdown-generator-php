@@ -22,6 +22,6 @@ abstract class CopilotTagTest extends TestCase
         new $class(...$args);
     }
 
-    abstract public static function expectedRenders();
+    public static function expectedRenders() {}
     public static function expectedConstructExceptions() { return [[]]; }
 }
