@@ -119,16 +119,16 @@ Generator for [links](https://github.com/conde-nast-international/copilot-markdo
   ***href:*** string (default: `""`)<br>
   ***attributes:*** array (default: `[]`)
 
-### BlockQuote
+### Blockquote
 
 Generator for [block quotes](http://spec.commonmark.org/0.27/#block-quotes).
 
 ```php
-(new BlockQuote("Hello world!"))->render();
+(new Blockquote("Hello world!"))->render();
 // "> Hello world!\n"
 ```
 
-* `new BlockQuote($text)`<br>
+* `new Blockquote($text)`<br>
   ***text:*** string (Markdown)<br>
 
 ### ListTag

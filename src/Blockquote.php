@@ -5,7 +5,7 @@ namespace CopilotTags;
  * Block quote
  * CommonMark spec: http://spec.commonmark.org/0.27/#block-quotes
  */
-class BlockQuote extends Text
+class Blockquote extends Text
 {
     public function render()
     {

@@ -5,7 +5,7 @@ use CopilotTags\Paragraph;
 use CopilotTags\Heading;
 use CopilotTags\InlineText;
 use CopilotTags\InlineTextDelimiter;
-use CopilotTags\BlockQuote;
+use CopilotTags\Blockquote;
 use CopilotTags\Embed;
 use CopilotTags\EmbedSubtype;
 
@@ -107,7 +107,7 @@ function on_close_tag($parser, $name) {
             $tag = new InlineText($text, InlineTextDelimiter::DELETE);
             break;
         case 'QUOTE':
-            $tag = new BlockQuote($text);
+            $tag = new Blockquote($text);
             break;
         case 'EMBED-VIDEO':
             $tag = new Embed($text, EmbedSubtype::VIDEO);
