@@ -16,9 +16,9 @@ class Callout extends Text
         $this->subtype = $subtype;
     }
 
-    public function write()
+    public function render()
     {
-        $text = parent::write();
+        $text = parent::render();
         if(trim($text) != "") $text = "+++$this->subtype\n$text\n+++";
         $text = "\n\n$text\n\n";
         return self::beautify($text);

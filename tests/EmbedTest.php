@@ -5,7 +5,7 @@ use CopilotTags\EmbedSubtype;
 
 class EmbedTest extends CopilotTagTest
 {
-    public static function expectedWrites()
+    public static function expectedRenders()
     {
         return [
             "expect embed with subtype" => [

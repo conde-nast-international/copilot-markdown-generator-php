@@ -4,7 +4,7 @@ use CopilotTags\Text;
 
 class TextTest extends CopilotTagTest
 {
-    public static function expectedWrites()
+    public static function expectedRenders()
     {
         return [
             "expect plain text" => [

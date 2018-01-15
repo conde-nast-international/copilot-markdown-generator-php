@@ -7,7 +7,7 @@ namespace CopilotTags;
  */
 class Section implements CopilotTag
 {
-    public function write()
+    public function render()
     {
         return "\n-=-=-=-\n";
     }

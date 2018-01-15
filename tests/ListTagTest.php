@@ -5,7 +5,7 @@ use CopilotTags\ListItem;
 
 class ListTagTest extends CopilotTagTest
 {
-    public static function expectedWrites()
+    public static function expectedRenders()
     {
         return [
             "expect unordered list with single item" => [

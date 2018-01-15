@@ -7,9 +7,9 @@ namespace CopilotTags;
  */
 class Paragraph extends Text
 {
-    public function write()
+    public function render()
     {
-        $text = parent::write();
+        $text = parent::render();
         $text = "\n\n$text\n\n";
         return self::beautify($text);
     }

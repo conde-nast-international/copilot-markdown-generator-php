@@ -25,14 +25,14 @@ class ListTag implements CopilotTag
         $this->ordered = $ordered;
     }
 
-    public function write()
+    public function render()
     {
         $item_indentation = $this->ordered ? "   " : "  ";
 
         $list = "";
         foreach($this->items as $i => $item) {
             $text = new Text($item);
-            $item = $text->write();
+            $item = $text->render();
             $item = trim($item);
             if($item == "") continue;
 

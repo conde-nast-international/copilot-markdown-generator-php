@@ -5,11 +5,11 @@ use PHPUnit\Framework\TestCase;
 abstract class CopilotTagTest extends TestCase
 {
     /**
-     * @dataProvider expectedWrites
+     * @dataProvider expectedRenders
      */
-    public function testWrite($tag, $expected)
+    public function testRender($tag, $expected)
     {
-        $this->assertEquals($expected, $tag->write());
+        $this->assertEquals($expected, $tag->render());
     }
 
     /**
@@ -22,6 +22,6 @@ abstract class CopilotTagTest extends TestCase
         new $class(...$args);
     }
 
-    abstract public static function expectedWrites();
+    public static function expectedRenders() {}
     public static function expectedConstructExceptions() { return [[]]; }
 }

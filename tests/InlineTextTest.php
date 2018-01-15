@@ -4,7 +4,7 @@ use CopilotTags\InlineText;
 
 class InlineTextTest extends CopilotTagTest
 {
-    public static function expectedWrites()
+    public static function expectedRenders()
     {
         return [
             "expect empty string" => [
