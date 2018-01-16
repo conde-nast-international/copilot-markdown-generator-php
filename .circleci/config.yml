@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:5.6.32
+      - image: circleci/php:5.3.29
     steps:
       - checkout
       # Download and cache dependencies

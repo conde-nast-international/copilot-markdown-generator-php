@@ -6,50 +6,50 @@ class ParagraphTest extends CopilotTagTest
 {
     public static function expectedRenders()
     {
-        return [
-            "expect plain text" => [
+        return array(
+            "expect plain text" => array(
                 new Paragraph("Hello world!"),
                 "\n\nHello world!\n\n"
-            ],
-            "expect only whitespace" => [
+            ),
+            "expect only whitespace" => array(
                 new Paragraph("  "),
                 "\n\n"
-            ],
-            "expect empty string" => [
+            ),
+            "expect empty string" => array(
                 new Paragraph(""),
                 "\n\n"
-            ]
-        ];
+            )
+        );
     }
 
     public static function expectedConstructExceptions()
     {
-        return [
-            "expect null \$text argument to throw InvalidArgumentException" => [
-                Paragraph::class,
-                [NULL],
-                \InvalidArgumentException::class
-            ],
-            "expect boolean false \$text argument to throw InvalidArgumentException" => [
-                Paragraph::class,
-                [FALSE],
-                \InvalidArgumentException::class
-            ],
-            "expect boolean true \$text argument to throw InvalidArgumentException" => [
-                Paragraph::class,
-                [TRUE],
-                \InvalidArgumentException::class
-            ],
-            "expect number \$text argument to throw InvalidArgumentException" => [
-                Paragraph::class,
-                [5],
-                \InvalidArgumentException::class
-            ],
-            "expect array \$text argument to throw InvalidArgumentException" => [
-                Paragraph::class,
-                [[]],
-                \InvalidArgumentException::class
-            ]
-        ];
+        return array(
+            "expect null \$text argument to throw InvalidArgumentException" => array(
+                'CopilotTags\Paragraph',
+                array(NULL),
+                '\InvalidArgumentException'
+            ),
+            "expect boolean false \$text argument to throw InvalidArgumentException" => array(
+                'CopilotTags\Paragraph',
+                array(FALSE),
+                '\InvalidArgumentException'
+            ),
+            "expect boolean true \$text argument to throw InvalidArgumentException" => array(
+                'CopilotTags\Paragraph',
+                array(TRUE),
+                '\InvalidArgumentException'
+            ),
+            "expect number \$text argument to throw InvalidArgumentException" => array(
+                'CopilotTags\Paragraph',
+                array(5),
+                '\InvalidArgumentException'
+            ),
+            "expect array \$text argument to throw InvalidArgumentException" => array(
+                'CopilotTags\Paragraph',
+                array(array()),
+                '\InvalidArgumentException'
+            )
+        );
     }
 }

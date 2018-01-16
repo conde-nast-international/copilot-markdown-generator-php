@@ -6,11 +6,11 @@ class SectionTest extends CopilotTagTest
 {
     public static function expectedRenders()
     {
-        return [
-            "expect section" => [
+        return array(
+            "expect section" => array(
                 new Section(),
                 "\n-=-=-=-\n"
-            ]
-        ];
+            )
+        );
     }
 }

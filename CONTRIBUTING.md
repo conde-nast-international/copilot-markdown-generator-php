@@ -6,7 +6,11 @@
 
 You will need to have installed on your machine:
 
-* PHP (v5.6.0 or above). If you're using macOS, you already have this installed.
+* PHP 5.3. If you're using macOS, it's easiest to install this with [Homebrew]:
+  ```shell
+  $ brew tap homebrew/homebrew-php
+  $ brew install homebrew/php/php53
+  ```
 * Composer. [Download Composer][Composer] or install it with [Homebrew]:
   ```shell
   $ brew tap homebrew/homebrew-php
@@ -123,7 +127,7 @@ $text = new Text("Hello world!");
 We use [PHPUnit] for unit testing. PHPUnit has it's own autoloader, so the
 development autoloader is not required in test cases.
 
-See [PHPUnit documentation][PHPUnit manual].
+See [PHPUnit 4.8 documentation][PHPUnit manual].
 
 ## See also
 
@@ -146,6 +150,6 @@ See [PHPUnit documentation][PHPUnit manual].
 [Composer]: https://getcomposer.org/
 [Composer documentation]: https://getcomposer.org/doc/
 [PHPUnit]: https://phpunit.de/
-[PHPUnit manual]: https://phpunit.de/manual/current/en/index.html
+[PHPUnit manual]: https://phpunit.de/manual/4.8/en/
 [PSR-4]: http://www.php-fig.org/psr/psr-4/
 [Homebrew]: https://brew.sh/

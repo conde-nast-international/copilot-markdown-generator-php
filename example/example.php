@@ -1,13 +1,5 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
-use CopilotTags\Text;
-use CopilotTags\Paragraph;
-use CopilotTags\Heading;
-use CopilotTags\InlineText;
-use CopilotTags\InlineTextDelimiter;
-use CopilotTags\Blockquote;
-use CopilotTags\Embed;
-use CopilotTags\EmbedSubtype;
 
 
 const LOG_LEVEL = 1; // 0 = print none, 1 = print normal, 2 = print debug
@@ -19,8 +11,8 @@ $xml_body = file_get_contents(FILENAME, TRUE);
 log_var($xml_body, "\$xml_body", "", 1, FALSE);
 
 log_message("Parsing XML...", 1);
-$xml_tag_stack = [];
-$markdown_stack = [""];
+$xml_tag_stack = array();
+$markdown_stack = array("");
 $parser = xml_parser_create();
 xml_set_default_handler($parser, 'add_text');
 xml_set_element_handler($parser, 'on_open_tag', 'on_close_tag');
@@ -93,29 +85,36 @@ function on_close_tag($parser, $name) {
 
     $tag = NULL;
     switch($tagname) {
-        case 'H1':
-            $tag = new Heading($text, 1);
+        case 'H2':
+            $tag = new CopilotTags\Heading($text, 2);
             break;
         case 'P':
-            $tag = new Paragraph($text);
+            $tag = new CopilotTags\Paragraph($text);
+            break;
+        case 'CUSTOM-LINK':
+            $link_parts = preg_split('/~~~~/', $text);
+            $tag = new CopilotTags\Link($link_parts[0], $link_parts[1]);
             break;
         case 'I':
-            $tag = new InlineText($text, InlineTextDelimiter::EMPHASIS);
+            $tag = new CopilotTags\InlineText($text, CopilotTags\InlineTextDelimiter::EMPHASIS);
             break;
         case 'B':
-            $tag = new InlineText($text, InlineTextDelimiter::STRONG);
+            $tag = new CopilotTags\InlineText($text, CopilotTags\InlineTextDelimiter::STRONG);
             break;
         case 'STRIKE':
-            $tag = new InlineText($text, InlineTextDelimiter::DELETE);
+            $tag = new CopilotTags\InlineText($text, CopilotTags\InlineTextDelimiter::DELETE);
             break;
         case 'QUOTE':
-            $tag = new Blockquote($text);
+            $tag = new CopilotTags\Blockquote($text);
+            break;
+        case 'CALLOUT':
+            $tag = new CopilotTags\Callout($text);
             break;
         case 'EMBED-VIDEO':
-            $tag = new Embed($text, EmbedSubtype::VIDEO);
+            $tag = new CopilotTags\Embed($text, CopilotTags\EmbedSubtype::VIDEO);
             break;
         default:
-            $tag = new Text($text);
+            $tag = new CopilotTags\Text($text);
     }
     $tag_markdown = $tag->render();
 
