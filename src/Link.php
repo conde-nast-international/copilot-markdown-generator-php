@@ -32,7 +32,7 @@ class Link extends Text
         if(preg_match("/\n/", $text)) {
             $tags = explode("\n", $text);
             $tags = array_map(function($tag) use ($href, $attributes) {
-              if(preg_match(Embed::EMBED_PATTERN, $tag)) return $tag;// Don't wrap embeds
+              if(preg_match(Embed::EMBED_PATTERN, $tag)) return $tag; // Don't wrap embeds
               if(!trim($tag)) return $tag;
               $tag = new Link($tag, $href, $attributes);
               return $tag->render();
