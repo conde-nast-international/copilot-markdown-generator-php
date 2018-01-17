@@ -24,6 +24,7 @@ class InlineText extends Text
     {
         $tag = $this->text;
         if(!trim($tag)) return $tag;
+        $delimiter = $this->delimiter;
 
         // Put embeds on their own lines
         $tag = preg_replace(Embed::EMBED_PATTERN, "\n$0\n", $tag);
@@ -31,9 +32,10 @@ class InlineText extends Text
         // Generate each line individually
         if(preg_match("/\n/", $tag)) {
           $tag = explode("\n", $tag);
-          $tag = array_map(function($splitTag) {
+          $tag = array_map(function($splitTag) use ($delimiter) {
             if(preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;// Don't wrap embeds
-            return (new InlineText($splitTag, $this->delimiter))->render();
+            $tag = new InlineText($splitTag, $delimiter);
+            return $tag->render();
           }, $tag);
           $tag = implode("\n", $tag);
         } else {
@@ -41,7 +43,7 @@ class InlineText extends Text
           $leftWhitespace = StringUtils::leadingSpace($tag);
           $rightWhitespace = StringUtils::trailingSpace($tag);
           $tag = trim($tag);
-          $tag = "{$leftWhitespace}{$this->delimiter}{$tag}{$this->delimiter}{$rightWhitespace}";
+          $tag = "{$leftWhitespace}{$delimiter}{$tag}{$delimiter}{$rightWhitespace}";
         }
 
         return self::beautify($tag);

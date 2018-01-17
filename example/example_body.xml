@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <body>
-<section><h1>My First Heading</h1><p>My first paragraph. It makes use of a number of tags including <i>italics</i>, <b>bold</b> and <strike>strikethrough</strike>.</p></section>
-<section><h1>My Video Embed</h1><embed-video>https://www.youtube.com/embed/fx2Qk-QqhXw</embed-video></section>
-<section><h1>My Block Quote</h1><p>My first block quote: <quote>The city’s central computer told you?
+<section><h2>My First Heading</h2><p>My first paragraph. It makes use of a number of tags including <i>italics</i>, <b>bold</b>, <strike>strikethrough</strike> and <custom-link>a link~~~~http://google.com</custom-link>.</p></section>
+<section><h2>My Video Embed</h2><embed-video>https://www.youtube.com/embed/fx2Qk-QqhXw</embed-video></section>
+<section><h2>My Block Quote</h2><p>My first block quote: <quote>The city’s central computer told you?
 R2D2, you know better than to trust a strange computer!</quote></p></section>
+<section><h2>A callout</h2><callout>This is a callout!</callout></section>
 </body>

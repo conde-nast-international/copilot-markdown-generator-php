@@ -8,7 +8,7 @@ namespace CopilotTags;
  */
 class Link extends Text
 {
-    public function __construct($text = "", $href = "", $attributes = [])
+    public function __construct($text = "", $href = "", $attributes = array())
     {
         parent::__construct($text);
 
@@ -24,30 +24,32 @@ class Link extends Text
     public function render()
     {
         if($this->text == "") return self::beautify($this->text);
+        $text = $this->text;
+        $href = $this->href;
+        $attributes = $this->attributes;
 
         // Generate each line individually
-        if(preg_match("/\n/", $this->text)) {
-            $tags = explode("\n", $this->text);
-            $tags = array_map(function($tag) {
-              if(preg_match(Embed::EMBED_PATTERN, $tag)) return $tag;// Don't wrap embeds
+        if(preg_match("/\n/", $text)) {
+            $tags = explode("\n", $text);
+            $tags = array_map(function($tag) use ($href, $attributes) {
+              if(preg_match(Embed::EMBED_PATTERN, $tag)) return $tag; // Don't wrap embeds
               if(!trim($tag)) return $tag;
-              return (new Link($tag, $this->href, $this->attributes))->render();
+              $tag = new Link($tag, $href, $attributes);
+              return $tag->render();
             }, $tags);
             $tags = implode("\n", $tags);
             return self::beautify($tags);
         }
 
-        $text = $this->text;
-
         $lwspace = StringUtils::leadingSpace($text);
         $rwspace = StringUtils::trailingSpace($text);
 
         $text = trim($text);
-        $href = preg_replace("/\n/", "", $this->href);
+        $href = preg_replace("/\n/", "", $href);
 
         $attrs = "";
-        if($this->attributes) {
-            foreach($this->attributes as $key => $value) {
+        if($attributes) {
+            foreach($attributes as $key => $value) {
                 $attrs = "$attrs $key=\"$value\"";
             }
             $attrs = "{:$attrs }";
