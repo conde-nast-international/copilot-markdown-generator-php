@@ -12,7 +12,7 @@ class HeadingTest extends CopilotTagTest
                 "\n\n### Hello world!\n"
             ),
             "expect only whitespace" => array(
-                new Heading("  "),
+                new Heading("   "),
                 "\n\n"
             ),
             "expect empty string" => array(
