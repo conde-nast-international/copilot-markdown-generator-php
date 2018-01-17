@@ -6,10 +6,10 @@
 
 You will need to have installed on your machine:
 
-* PHP 5.3. If you're using macOS, it's easiest to install this with [Homebrew]:
+* PHP 5.4. If you're using macOS, it's easiest to install this with [Homebrew]:
   ```shell
   $ brew tap homebrew/homebrew-php
-  $ brew install homebrew/php/php53
+  $ brew install homebrew/php/php54
   ```
 * Composer. [Download Composer][Composer] or install it with [Homebrew]:
   ```shell
