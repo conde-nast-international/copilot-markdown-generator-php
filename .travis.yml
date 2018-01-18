@@ -8,4 +8,5 @@ php:
 before_script:
   - phpenv config-rm xdebug.ini
   - composer install
-after_script: composer run-script example
+script: composer test
+after_script: composer example
