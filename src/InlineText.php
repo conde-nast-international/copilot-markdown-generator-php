@@ -22,8 +22,8 @@ class InlineText extends Text
 
     public function render()
     {
-        $tag = $this->text;
-        if(!trim($tag)) return $tag;
+        $tag = parent::render();
+        if(!trim($tag)) return self::beautify($tag);
         $delimiter = $this->delimiter;
 
         // Put embeds on their own lines
@@ -31,19 +31,19 @@ class InlineText extends Text
 
         // Generate each line individually
         if(preg_match("/\n/", $tag)) {
-          $tag = explode("\n", $tag);
-          $tag = array_map(function($splitTag) use ($delimiter) {
-            if(preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;// Don't wrap embeds
-            $tag = new InlineText($splitTag, $delimiter);
-            return $tag->render();
-          }, $tag);
-          $tag = implode("\n", $tag);
+            $tag = explode("\n", $tag);
+            $tag = array_map(function($splitTag) use ($delimiter) {
+                if(preg_match(Embed::EMBED_PATTERN, $splitTag)) return $splitTag;// Don't wrap embeds
+                $tag = new InlineText($splitTag, $delimiter);
+                return $tag->render();
+            }, $tag);
+            $tag = implode("\n", $tag);
         } else {
-          // Maintain surrounding space
-          $leftWhitespace = StringUtils::leadingSpace($tag);
-          $rightWhitespace = StringUtils::trailingSpace($tag);
-          $tag = trim($tag);
-          $tag = "{$leftWhitespace}{$delimiter}{$tag}{$delimiter}{$rightWhitespace}";
+            // Maintain surrounding space
+            $leftWhitespace = StringUtils::leadingSpace($tag);
+            $rightWhitespace = StringUtils::trailingSpace($tag);
+            $tag = trim($tag);
+            $tag = "{$leftWhitespace}{$delimiter}{$tag}{$delimiter}{$rightWhitespace}";
         }
 
         return self::beautify($tag);

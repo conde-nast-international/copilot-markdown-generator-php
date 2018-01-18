@@ -27,11 +27,11 @@ class BlockquoteTest extends CopilotTagTest
                 new Blockquote(""),
                 "\n\n"
             ),
-            "expect multiple lines of whitespace only to be preserved with spaces on the first line" => array(
+            "expect newline to be preserved with spaces before" => array(
                 new Blockquote("  \n"),
                 "\n>   \n> \n"
             ),
-            "expect multiple lines of whitespace only to be preserved with spaces on the last line" => array(
+            "expect newline to be preserved with spaces after" => array(
                 new Blockquote("\n  "),
                 "\n> \n>   \n"
             ),
