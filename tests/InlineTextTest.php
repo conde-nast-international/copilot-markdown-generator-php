@@ -1,20 +1,17 @@
 <?php
 namespace CopilotTags\Tests;
 use CopilotTags\InlineText;
+use CopilotTags\Embed;
+use CopilotTags\EmbedSubtype;
 
 class InlineTextTest extends CopilotTagTest
 {
     public static function expectedRenders()
     {
+        $embed = new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption");
+        $embedMarkdown = $embed->render();
+
         return array(
-            "expect empty string" => array(
-                new InlineText(""),
-                ""
-            ),
-            "expect empty string with subtype" => array(
-                new InlineText("", "~"),
-                ""
-            ),
             "expect text without subtype" => array(
                 new InlineText("Hello world!"),
                 "Hello world!"
@@ -27,29 +24,53 @@ class InlineTextTest extends CopilotTagTest
                 new InlineText("  Hello world!  ", "¯\_(ツ)_/¯"),
                 "  ¯\_(ツ)_/¯Hello world!¯\_(ツ)_/¯  "
             ),
-            "expect only whitespace and subtype" => array(
+            "expect text with internal newlines" => array(
+                new InlineText("First\nSecond\n\n\nThird", ":"),
+                ":First:\n:Second:\n\n:Third:"
+            ),
+            "expect only whitespace with subtype" => array(
                 new InlineText("   ", "¯\_(ツ)_/¯"),
                 "   "
             ),
-            "expect text with internal newline and trailing whitespace" => array(
-                new InlineText("First\nSecond ", ":"),
-                ":First:\n:Second: "
+            "expect empty string" => array(
+                new InlineText(""),
+                ""
+            ),
+            "expect empty string with subtype" => array(
+                new InlineText("", "~"),
+                ""
+            ),
+            "expect multiple lines of whitespace only to be preserved with spaces on the first line" => array(
+                new InlineText("  \n"),
+                "\n"
+            ),
+            "expect multiple lines of whitespace only to be preserved with spaces on the last line" => array(
+                new InlineText("\n  "),
+                "\n"
+            ),
+            "expect a single newline to be preserved" => array(
+                new InlineText("\n"),
+                "\n"
+            ),
+            "expect multiple newlines to be preserved" => array(
+                new InlineText("\n\n\n\n"),
+                "\n\n"
             ),
             "expect only embed" => array(
-                new InlineText("[#image: /photos/123ID]|||caption|||", ":"),
-                "\n[#image: /photos/123ID]|||caption|||\n"
+                new InlineText($embedMarkdown, ":"),
+                "\n\n[#image:/photos/123ID]|||some caption|||\n\n"
             ),
             "expect embed with text after" => array(
-                new InlineText("[#image: /photos/123ID]|||caption|||Hello world!", ":"),
-                "\n[#image: /photos/123ID]|||caption|||\n:Hello world!:"
+                new InlineText("$embedMarkdown Hello world!", ":"),
+                "\n\n[#image:/photos/123ID]|||some caption|||\n\n :Hello world!:"
             ),
             "expect embed with text before" => array(
-                new InlineText("Hello world! [#image: /photos/123ID]|||caption|||", ":"),
-                ":Hello world!: \n[#image: /photos/123ID]|||caption|||\n"
+                new InlineText("Hello world! $embedMarkdown", ":"),
+                ":Hello world!: \n\n[#image:/photos/123ID]|||some caption|||\n\n"
             ),
             "expect embed with text before and after" => array(
-                new InlineText("Hello world! [#image: /photos/123ID]|||caption||| It's me again", ":"),
-                ":Hello world!: \n[#image: /photos/123ID]|||caption|||\n :It's me again:"
+                new InlineText("Hello world! $embedMarkdown It's me again", ":"),
+                ":Hello world!: \n\n[#image:/photos/123ID]|||some caption|||\n\n :It's me again:"
             )
         );
     }

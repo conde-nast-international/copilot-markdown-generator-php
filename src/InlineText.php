@@ -23,7 +23,7 @@ class InlineText extends Text
     public function render()
     {
         $tag = $this->text;
-        if(!trim($tag)) return $tag;
+        if(!trim($tag)) return self::beautify($tag);
         $delimiter = $this->delimiter;
 
         // Put embeds on their own lines
