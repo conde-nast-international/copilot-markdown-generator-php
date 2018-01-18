@@ -39,9 +39,9 @@ class ListTag implements CopilotTag
             // indent multiline content
             $item = preg_replace('/\n/', "\n$item_indentation", $item);
             // prefix with list marker
-            if ($this->ordered) $marker = strval($i + 1).self::LIST_MARKER_ORDERED;
-            else $marker = self::LIST_MARKER_BULLET;
-            $list = "$list$marker $item\n";
+            if ($this->ordered) $list_marker = strval($i + 1).self::LIST_MARKER_ORDERED;
+            else $list_marker = self::LIST_MARKER_BULLET;
+            $list = "$list$list_marker $item\n";
         }
         if ($list != "") $list = "\n\n$list\n";
         return $list;
