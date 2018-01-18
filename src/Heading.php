@@ -28,9 +28,6 @@ class Heading extends Text
         $text = parent::render();
         $level = $this->level;
 
-        // put embed blocks on their own line
-        $text = preg_replace(Embed::EMBED_PATTERN, "\n$0\n", $text);
-
         // generate each line individually
         if (preg_match("/\n/", $text)) {
             $lines = explode("\n", $text);
@@ -44,6 +41,9 @@ class Heading extends Text
             );
             $text = implode("\n", $lines);
         } else {
+            // put embed blocks on their own line
+            $text = preg_replace(Embed::EMBED_PATTERN, "\n$0\n", $text);
+
             if (trim($text) != "") {
                 $levelString = str_repeat("#", $level);
                 $leadingWhitespace = StringUtils::leadingSpace($text);
