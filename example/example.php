@@ -18,13 +18,13 @@ xml_set_default_handler($parser, 'add_text');
 xml_set_element_handler($parser, 'on_open_tag', 'on_close_tag');
 try {
     $xml_parse_success = xml_parse($parser, $xml_body, TRUE);
-    if(count($markdown_stack) != 1) $xml_parse_success = 0;
-    if(!$xml_parse_success) {
+    if (count($markdown_stack) != 1) $xml_parse_success = 0;
+    if (!$xml_parse_success) {
         $error_code = xml_get_error_code($parser);
         $error_string = xml_error_string($error_code);
         $line = xml_get_current_line_number($parser);
         $column = xml_get_current_column_number($parser);
-        if(is_string($error_string) && strlen($error_string)) $error_string = ": $error_string";
+        if (is_string($error_string) && strlen($error_string)) $error_string = ": $error_string";
         throw new Exception("Error ($error_code) parsing XML at $line:$column of \"".FILENAME."\"$error_string.");
     }
     $markdown_body = array_pop($markdown_stack);
@@ -38,7 +38,8 @@ try {
 }
 xml_parser_free($parser);
 
-function add_text($parser, $text) {
+function add_text($parser, $text)
+{
     global $xml_tag_stack, $markdown_stack;
 
     log_message("Adding text to current buffer...", 2);
@@ -51,7 +52,8 @@ function add_text($parser, $text) {
     log_var($markdown_stack, "\$markdown_stack", "AFTER", 2);
 }
 
-function on_open_tag($parser, $name, $attrs) {
+function on_open_tag($parser, $name, $attrs)
+{
     global $xml_tag_stack, $markdown_stack;
 
     $tagname = strtoupper($name);
@@ -67,15 +69,20 @@ function on_open_tag($parser, $name, $attrs) {
     log_var($markdown_stack, "\$markdown_stack", "AFTER", 2);
 }
 
-function stringToArray($text, $delimiter) {
+function string_to_array($text, $delimiter)
+{
     return array_values(
         array_filter(
-            explode($delimiter, $text), function($value) { return $value !== ''; }
+            explode($delimiter, $text),
+            function($value) {
+                return $value !== '';
+            }
         )
     );
 }
 
-function on_close_tag($parser, $name) {
+function on_close_tag($parser, $name)
+{
     global $xml_tag_stack, $markdown_stack;
 
     $tagname = strtoupper($name);
@@ -89,7 +96,7 @@ function on_close_tag($parser, $name) {
 
     $line = xml_get_current_line_number($parser);
     $column = xml_get_current_column_number($parser);
-    if($tagname != $tagname_open) throw new Exception("Error parsing XML at $line:$column of \"".FILENAME."\". Open tag \"$tagname_open\" did not have matching close tag. Found close tag \"$tagname\" instead.");
+    if ($tagname != $tagname_open) throw new Exception("Error parsing XML at $line:$column of \"".FILENAME."\". Open tag \"$tagname_open\" did not have matching close tag. Found close tag \"$tagname\" instead.");
 
     $tag = NULL;
     switch($tagname) {
@@ -122,10 +129,10 @@ function on_close_tag($parser, $name) {
             $tag = new CopilotTags\Embed($text, CopilotTags\EmbedSubtype::VIDEO);
             break;
         case 'OL':
-            $tag = new CopilotTags\ListTag(stringToArray($text, "\n"), true);
+            $tag = new CopilotTags\ListTag(string_to_array($text, "\n"), true);
             break;
         case 'UL':
-            $tag = new CopilotTags\ListTag(stringToArray($text, "\n"), false);
+            $tag = new CopilotTags\ListTag(string_to_array($text, "\n"), false);
             break;
         default:
             $tag = new CopilotTags\Text($text);
@@ -139,16 +146,18 @@ function on_close_tag($parser, $name) {
     log_var($markdown_stack, "\$markdown_stack", "AFTER", 2);
 }
 
-function log_message($message, $level = 1) {
-    if(!LOG_LEVEL || LOG_LEVEL < $level) return;
+function log_message($message, $level = 1)
+{
+    if (!LOG_LEVEL || LOG_LEVEL < $level) return;
     print("\n$message\n");
 }
 
-function log_var($value, $expr, $prefix = "", $level = 1, $pad = TRUE) {
-    if(!LOG_LEVEL || LOG_LEVEL < $level) return;
+function log_var($value, $expr, $prefix = "", $level = 1, $pad = TRUE)
+{
+    if (!LOG_LEVEL || LOG_LEVEL < $level) return;
 
-    if(!isset($value)) $value_str = "UNDEFINED";
-    else if(is_array($value)) $value_str = implode("\",\"", $value);
+    if (!isset($value)) $value_str = "UNDEFINED";
+    else if (is_array($value)) $value_str = implode("\",\"", $value);
     else $value_str = strval($value);
     $value_str = addcslashes($value_str, "\n\\");
 

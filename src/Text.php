@@ -7,7 +7,7 @@ class Text implements CopilotTag
 
     public function __construct($text)
     {
-        if(!is_string($text)) throw new \InvalidArgumentException(__METHOD__." first argument \$text must be a string. Given: ".($text ? "$text " : "")."(".gettype($text).").");
+        if (!is_string($text)) throw new \InvalidArgumentException(__METHOD__." first argument \$text must be a string. Given: ".($text ? "$text " : "")."(".gettype($text).").");
         // convert newline types to LF newlines
         $text = preg_replace('/\R/', "\n", $text);
         $this->text = $text;

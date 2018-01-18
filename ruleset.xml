@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="Custom">
+  <rule ref="Zend">
+    <exclude name="Generic.Files.LineLength"/>
+    <exclude name="Zend.NamingConventions.ValidVariableName"/>
+  </rule>
+</ruleset>

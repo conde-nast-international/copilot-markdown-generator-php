@@ -29,7 +29,7 @@
     },
     "scripts": {
         "test": [
-            "phpcs --standard=PSR1 src tests",
+            "phpcs --standard=ruleset.xml --warning-severity=0 src tests example",
             "phpunit --colors=always"
         ],
         "example": "php example/example.php"

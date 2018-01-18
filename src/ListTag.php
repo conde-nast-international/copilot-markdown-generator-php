@@ -16,12 +16,12 @@ class ListTag implements CopilotTag
 
     public function __construct($items, $ordered = FALSE)
     {
-        if(!is_array($items)) throw new \InvalidArgumentException(__METHOD__." first argument \$items must be an array. Given: ".($items ? "$items " : "")."(".gettype($items).").");
-        foreach($items as $i => $item) {
-            if(!is_string($item)) throw new \InvalidArgumentException(__METHOD__." first argument \$items must be an array of strings. Given: \$items[$i] = ".($item ? "$item " : "")."(".(gettype($item)).").");
+        if (!is_array($items)) throw new \InvalidArgumentException(__METHOD__." first argument \$items must be an array. Given: ".($items ? "$items " : "")."(".gettype($items).").");
+        foreach ($items as $i => $item) {
+            if (!is_string($item)) throw new \InvalidArgumentException(__METHOD__." first argument \$items must be an array of strings. Given: \$items[$i] = ".($item ? "$item " : "")."(".(gettype($item)).").");
         }
         $this->items = $items;
-        if(!is_bool($ordered)) throw new \InvalidArgumentException(__METHOD__." second argument \$ordered must be a bool. Given: ".($ordered ? "$ordered " : "")."(".gettype($ordered).").");
+        if (!is_bool($ordered)) throw new \InvalidArgumentException(__METHOD__." second argument \$ordered must be a bool. Given: ".($ordered ? "$ordered " : "")."(".gettype($ordered).").");
         $this->ordered = $ordered;
     }
 
@@ -30,20 +30,20 @@ class ListTag implements CopilotTag
         $item_indentation = $this->ordered ? "   " : "  ";
 
         $list = "";
-        foreach($this->items as $i => $item) {
+        foreach ($this->items as $i => $item) {
             $text = new Text($item);
             $item = $text->render();
             $item = trim($item);
-            if($item == "") continue;
+            if ($item == "") continue;
 
             // indent multiline content
             $item = preg_replace('/\n/', "\n$item_indentation", $item);
             // prefix with list marker
-            if($this->ordered) $list_marker = strval($i + 1).self::LIST_MARKER_ORDERED;
-            else $list_marker = self::LIST_MARKER_BULLET;
-            $list = "$list$list_marker $item\n";
+            if ($this->ordered) $marker = strval($i + 1).self::LIST_MARKER_ORDERED;
+            else $marker = self::LIST_MARKER_BULLET;
+            $list = "$list$marker $item\n";
         }
-        if($list != "") $list = "\n\n$list\n";
+        if ($list != "") $list = "\n\n$list\n";
         return $list;
     }
 }
