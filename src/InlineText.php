@@ -22,7 +22,7 @@ class InlineText extends Text
 
     public function render()
     {
-        $tag = $this->text;
+        $tag = parent::render();
         if(!trim($tag)) return self::beautify($tag);
         $delimiter = $this->delimiter;
 

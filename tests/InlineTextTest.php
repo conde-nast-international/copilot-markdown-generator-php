@@ -40,11 +40,11 @@ class InlineTextTest extends CopilotTagTest
                 new InlineText("", "~"),
                 ""
             ),
-            "expect multiple lines of whitespace only to be preserved with spaces on the first line" => array(
+            "expect newline to be preserved with spaces before" => array(
                 new InlineText("  \n"),
                 "\n"
             ),
-            "expect multiple lines of whitespace only to be preserved with spaces on the last line" => array(
+            "expect newline to be preserved with spaces after" => array(
                 new InlineText("\n  "),
                 "\n"
             ),
