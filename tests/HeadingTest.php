@@ -40,11 +40,11 @@ class HeadingTest extends CopilotTagTest
                 new Heading("", 4),
                 "\n\n"
             ),
-            "expect multiple lines of whitespace only to be preserved with spaces on the first line" => array(
+            "expect newline to be preserved with spaces before" => array(
                 new Heading("  \n"),
                 "\n\n"
             ),
-            "expect multiple lines of whitespace only to be preserved with spaces on the last line" => array(
+            "expect newline to be preserved with spaces after" => array(
                 new Heading("\n  "),
                 "\n\n"
             ),
