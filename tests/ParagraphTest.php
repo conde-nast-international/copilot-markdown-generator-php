@@ -27,11 +27,11 @@ class ParagraphTest extends CopilotTagTest
                 new Paragraph(""),
                 "\n\n"
             ),
-            "expect multiple lines of whitespace only to be preserved with spaces on the first line" => array(
+            "expect newline to be preserved with spaces before" => array(
                 new Paragraph("  \n"),
                 "\n\n"
             ),
-            "expect multiple lines of whitespace only to be preserved with spaces on the last line" => array(
+            "expect newline to be preserved with spaces after" => array(
                 new Paragraph("\n  "),
                 "\n\n"
             ),

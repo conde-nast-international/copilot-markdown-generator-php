@@ -26,11 +26,30 @@ class Heading extends Text
     public function render()
     {
         $text = parent::render();
-        if(trim($text) != "") {
-            $levelString = str_repeat("#", $this->level);
-            $text = "$levelString $text";
+        $level = $this->level;
+
+        // put embed blocks on their own line
+        $text = preg_replace(Embed::EMBED_PATTERN, "\n$0\n", $text);
+
+        // generate each line individually
+        if(preg_match("/\n/", $text)) {
+            $lines = explode("\n", $text);
+            $lines = array_map(function($text) use ($level) {
+                if(preg_match(Embed::EMBED_PATTERN, $text)) return $text;
+                $text = new Heading($text, $level);
+                return $text->render();
+            }, $lines);
+            $text = implode("\n", $lines);
+        } else {
+            if(trim($text) != "") {
+                $levelString = str_repeat("#", $level);
+                $leadingWhitespace = StringUtils::leadingSpace($text);
+                $trailingWhitespace = StringUtils::trailingSpace($text);
+                $text = trim($text);
+                $text = "$leadingWhitespace\n$levelString $text$trailingWhitespace";
+            }
+            $text = "\n\n$text\n";
         }
-        $text = "\n\n$text\n";
         return self::beautify($text);
     }
 }
