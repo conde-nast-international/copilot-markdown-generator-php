@@ -67,6 +67,14 @@ function on_open_tag($parser, $name, $attrs) {
     log_var($markdown_stack, "\$markdown_stack", "AFTER", 2);
 }
 
+function stringToArray($text, $delimiter) {
+    return array_values(
+        array_filter(
+            explode($delimiter, $text), function($value) { return $value !== ''; }
+        )
+    );
+}
+
 function on_close_tag($parser, $name) {
     global $xml_tag_stack, $markdown_stack;
 
@@ -112,6 +120,12 @@ function on_close_tag($parser, $name) {
             break;
         case 'EMBED-VIDEO':
             $tag = new CopilotTags\Embed($text, CopilotTags\EmbedSubtype::VIDEO);
+            break;
+        case 'OL':
+            $tag = new CopilotTags\ListTag(stringToArray($text, "\n"), true);
+            break;
+        case 'UL':
+            $tag = new CopilotTags\ListTag(stringToArray($text, "\n"), false);
             break;
         default:
             $tag = new CopilotTags\Text($text);
