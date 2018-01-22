@@ -1,19 +1,25 @@
 <?php
 namespace CopilotTags\Tests;
-use CopilotTags\Embed;
-use CopilotTags\EmbedSubtype;
+use CopilotTags\Text;
 use CopilotTags\Heading;
-use CopilotTags\Link;
 use CopilotTags\InlineText;
 use CopilotTags\InlineTextDelimiter;
+use CopilotTags\Link;
+use CopilotTags\Embed;
+use CopilotTags\EmbedSubtype;
 
 class CompoundTagTest extends CopilotTagTest
 {
     public static function expectedRenders()
     {
         $embed = new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption");
-        // $strong = new InlineText("  Hello world!  ", InlineTextDelimiter::STRONG);
+        $strong_spaced = new InlineText(" the middle of a sentence ", InlineTextDelimiter::STRONG);
+
         return array(
+            "expect inline tag in the middle of the sentence to have correct spacing" => array(
+                new Text("It's weird when there is an inline tag in{$strong_spaced}like this."),
+                "It's weird when there is an inline tag in **the middle of a sentence** like this."
+            ),
             "expect heading containing only embed" => array(
                 new Heading("$embed"),
                 "\n\n[#image:/photos/123ID]|||some caption|||\n\n"
