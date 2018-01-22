@@ -3,4 +3,5 @@
 <section><h2>My Video Embed</h2><embed-video>https://www.youtube.com/embed/fx2Qk-QqhXw</embed-video></section><section><h2>My Block Quote</h2><p>My first block quote: <quote>The city’s central computer told you? R2D2, you know better than to trust a strange computer!</quote></p></section>
 <section><h2>A callout</h2><callout>This is a callout!</callout></section><section><h2>My Ordered List</h2><ol><li>Live</li><li>Long</li><li>and</li><li>Prosper</li></ol></section>
 <section><h2>My Unordered List</h2><ul><li>Archer</li><li>Lorca</li><li>Kirk</li><li>Picard</li><li>Janeway</li></ul></section>
+<section><h2>My strong<b> heading has an embed! <embed-video>https://www.youtube.com/embed/fx2Qk-QqhXw</embed-video></b></h2></section>
 </body>

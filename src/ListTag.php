@@ -6,7 +6,7 @@ use CopilotTags\Text;
  * List
  * CommonMark spec: http://spec.commonmark.org/0.27/#lists
  */
-class ListTag implements CopilotTag
+class ListTag extends CopilotTag
 {
     const LIST_MARKER_BULLET = "*";
     const LIST_MARKER_ORDERED = ".";

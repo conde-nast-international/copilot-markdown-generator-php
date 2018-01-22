@@ -1,7 +1,7 @@
 <?php
 namespace CopilotTags;
 
-class Text implements CopilotTag
+class Text extends CopilotTag
 {
     protected $text;
 

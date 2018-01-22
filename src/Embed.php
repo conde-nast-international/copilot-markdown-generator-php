@@ -5,7 +5,7 @@ namespace CopilotTags;
  * Embed
  * CFM spec: https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#311-embed
  */
-class Embed implements CopilotTag
+class Embed extends CopilotTag
 {
     const EMBED_PATTERN = '/!?\[#(\w+):\s*(\S+?)((?:\s?(?:\w+:\s?\w+))*?)\](?:\(((?:\d+(?:%|em|ex|px|pt|pc|cm|mm|in)?)(?:x?(?:\d+(?:%|em|ex|px|pt|pc|cm|mm|in)?)*))\))*(?:\|{3}([\S\s]*?)\|{3})*/';
 

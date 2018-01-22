@@ -8,9 +8,6 @@ class InlineTextTest extends CopilotTagTest
 {
     public static function expectedRenders()
     {
-        $embed = new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption");
-        $embedMarkdown = $embed->render();
-
         return array(
             "expect text without subtype" => array(
                 new InlineText("Hello world!"),
@@ -55,22 +52,6 @@ class InlineTextTest extends CopilotTagTest
             "expect multiple newlines to be preserved" => array(
                 new InlineText("\n\n\n\n"),
                 "\n\n"
-            ),
-            "expect only embed" => array(
-                new InlineText($embedMarkdown, ":"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n\n"
-            ),
-            "expect embed with text after" => array(
-                new InlineText("$embedMarkdown Hello world!", ":"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n\n :Hello world!:"
-            ),
-            "expect embed with text before" => array(
-                new InlineText("Hello world! $embedMarkdown", ":"),
-                ":Hello world!: \n\n[#image:/photos/123ID]|||some caption|||\n\n"
-            ),
-            "expect embed with text before and after" => array(
-                new InlineText("Hello world! $embedMarkdown It's me again", ":"),
-                ":Hello world!: \n\n[#image:/photos/123ID]|||some caption|||\n\n :It's me again:"
             )
         );
     }

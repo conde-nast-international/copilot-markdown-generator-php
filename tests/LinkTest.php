@@ -8,9 +8,6 @@ class LinkTest extends CopilotTagTest
 {
     public static function expectedRenders()
     {
-        $embed = new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption");
-        $embedMarkdown = $embed->render();
-
         return array(
             "expect empty string with no arguments" => array(
                 new Link(),
@@ -43,34 +40,6 @@ class LinkTest extends CopilotTagTest
             "expect leading and trailing whitespace in text to be moved outside of tag" => array(
                 new Link("  Hello world!\n\n", "http://li.nk"),
                 "  [Hello world!](http://li.nk)\n\n"
-            ),
-            "expect only embed" => array(
-                new Link($embedMarkdown, "http://li.nk"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n\n"
-            ),
-            "expect internal newline in text to be removed" => array(
-                new Link("Hello\nworld!", "http://li.nk"),
-                "[Hello world!](http://li.nk)"
-            ),
-            "expect only multiple embeds" => array(
-                new Link("{$embedMarkdown}{$embedMarkdown}", "http://li.nk"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n\n[#image:/photos/123ID]|||some caption|||\n\n"
-            ),
-            "expect text with embed at start and end" => array(
-                new Link("{$embedMarkdown}some text yo{$embedMarkdown}", "http://li.nk"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n\n[some text yo](http://li.nk)\n\n[#image:/photos/123ID]|||some caption|||\n\n"
-            ),
-            "expect text with embed at end" => array(
-                new Link("some text yo $embedMarkdown", "http://li.nk"),
-                "[some text yo](http://li.nk) \n\n[#image:/photos/123ID]|||some caption|||\n\n"
-            ),
-            "expect text with embed at start" => array(
-                new Link("$embedMarkdown some text yo", "http://li.nk"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n\n [some text yo](http://li.nk)"
-            ),
-            "expect text with embed" => array(
-                new Link("this is $embedMarkdown some text yo", "http://li.nk"),
-                "[this is](http://li.nk) \n\n[#image:/photos/123ID]|||some caption|||\n\n [some text yo](http://li.nk)"
             ),
             "expect href with trailing whitespace trimmed" => array(
                 new Link("Hello world!", "http://li.nk     "),
