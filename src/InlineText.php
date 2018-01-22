@@ -26,6 +26,9 @@ class InlineText extends Text
         if (!trim($tag)) return self::beautify($tag);
         $delimiter = $this->delimiter;
 
+        // Put embeds on their own lines
+        $tag = preg_replace(Embed::EMBED_PATTERN, "\n$0\n", $tag);
+
         // Generate each line individually
         if (preg_match("/\n/", $tag)) {
             $tag = explode("\n", $tag);
@@ -39,8 +42,6 @@ class InlineText extends Text
             );
             $tag = implode("\n", $tag);
         } else {
-            // Put embeds on their own lines
-            $tag = preg_replace(Embed::EMBED_PATTERN, "\n$0\n", $tag);
             // Maintain surrounding space
             $leftWhitespace = StringUtils::leadingSpace($tag);
             $rightWhitespace = StringUtils::trailingSpace($tag);
