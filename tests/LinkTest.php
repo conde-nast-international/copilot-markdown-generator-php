@@ -52,6 +52,10 @@ class LinkTest extends CopilotTagTest
             "expect href with leading and trailing whitespace trimmed" => array(
                 new Link("Hello world!", "\n\nhttp://li.nk     "),
                 "[Hello world!](http://li.nk)"
+            ),
+            "expect link containing internal newline in text to be removed" => array(
+                new Link("Hello\nworld!", "http://li.nk"),
+                "[Hello world!](http://li.nk)"
             )
         );
     }

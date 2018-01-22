@@ -61,10 +61,6 @@ class CompoundTagTest extends CopilotTagTest
                 new Link("$embed", "http://li.nk"),
                 "\n\n[#image:/photos/123ID]|||some caption|||\n\n"
             ),
-            "expect link containing internal newline in text to be removed" => array(
-                new Link("Hello\nworld!", "http://li.nk"),
-                "[Hello world!](http://li.nk)"
-            ),
             "expect link containing only multiple embeds" => array(
                 new Link("{$embed}{$embed}", "http://li.nk"),
                 "\n\n[#image:/photos/123ID]|||some caption|||\n\n[#image:/photos/123ID]|||some caption|||\n\n"
