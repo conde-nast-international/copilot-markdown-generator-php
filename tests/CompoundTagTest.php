@@ -13,12 +13,17 @@ class CompoundTagTest extends CopilotTagTest
     public static function expectedRenders()
     {
         $embed = new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption");
+        $strong = new InlineText("the middle of a sentence", InlineTextDelimiter::STRONG);
         $strong_spaced = new InlineText(" the middle of a sentence ", InlineTextDelimiter::STRONG);
 
         return array(
             "expect inline tag in the middle of the sentence to have correct spacing" => array(
                 new Text("It's weird when there is an inline tag in{$strong_spaced}like this."),
                 "It's weird when there is an inline tag in **the middle of a sentence** like this."
+            ),
+            "expect inline tag inside a link" => array(
+                new Link("Link with an inline tag in $strong, like this.", "http://li.nk"),
+                "[Link with an inline tag in **the middle of a sentence**, like this.](http://li.nk)"
             ),
             "expect heading containing only embed" => array(
                 new Heading("$embed"),
