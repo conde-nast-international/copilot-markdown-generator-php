@@ -134,6 +134,9 @@ function on_close_tag($parser, $name)
         case 'UL':
             $tag = new CopilotTags\ListTag(string_to_array($text, "\n"), false);
             break;
+        case 'LI':
+            $tag = new CopilotTags\Text("$text\n");
+            break;
         default:
             $tag = new CopilotTags\Text($text);
     }
