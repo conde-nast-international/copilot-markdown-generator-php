@@ -17,9 +17,9 @@ class Heading extends Text
     {
         parent::__construct($text);
 
-        if(!is_int($level)) throw new \InvalidArgumentException(__METHOD__." second argument \$level must be an int. Given: ".($level ? "$level " : "")."(".gettype($level).").");
-        if($level < self::MIN_LEVEL) $this->level = self::MIN_LEVEL;
-        else if($level > self::MAX_LEVEL) $this->level = self::MAX_LEVEL;
+        if (!is_int($level)) throw new \InvalidArgumentException(__METHOD__." second argument \$level must be an int. Given: ".($level ? "$level " : "")."(".gettype($level).").");
+        if ($level < self::MIN_LEVEL) $this->level = self::MIN_LEVEL;
+        else if ($level > self::MAX_LEVEL) $this->level = self::MAX_LEVEL;
         else $this->level = $level;
     }
 
@@ -32,16 +32,19 @@ class Heading extends Text
         $text = preg_replace(Embed::EMBED_PATTERN, "\n$0\n", $text);
 
         // generate each line individually
-        if(preg_match("/\n/", $text)) {
+        if (preg_match("/\n/", $text)) {
             $lines = explode("\n", $text);
-            $lines = array_map(function($text) use ($level) {
-                if(preg_match(Embed::EMBED_PATTERN, $text)) return $text;
-                $text = new Heading($text, $level);
-                return $text->render();
-            }, $lines);
+            $lines = array_map(
+                function($text) use ($level) {
+                    if (preg_match(Embed::EMBED_PATTERN, $text)) return $text;
+                    $text = new Heading($text, $level);
+                    return $text->render();
+                },
+                $lines
+            );
             $text = implode("\n", $lines);
         } else {
-            if(trim($text) != "") {
+            if (trim($text) != "") {
                 $levelString = str_repeat("#", $level);
                 $leadingWhitespace = StringUtils::leadingSpace($text);
                 $trailingWhitespace = StringUtils::trailingSpace($text);

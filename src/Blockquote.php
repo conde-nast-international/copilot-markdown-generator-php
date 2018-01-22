@@ -9,10 +9,14 @@ class Blockquote extends Text
 {
     public function render()
     {
-        if($this->text != "") {
-            $render_line = function($str) { return "> $str\n"; };
+        if ($this->text != "") {
             $lines = explode("\n", $this->text);
-            $lines = array_map($render_line, $lines);
+            $lines = array_map(
+                function($str) {
+                    return "> $str\n";
+                },
+                $lines
+            );
             $blockquote = implode("", $lines);
         } else {
             $blockquote = "\n";

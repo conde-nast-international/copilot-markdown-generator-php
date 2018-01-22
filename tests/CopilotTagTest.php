@@ -17,12 +17,14 @@ abstract class CopilotTagTest extends TestCase
      */
     public function testConstructException($class = NULL, $args = array(), $exception = '\Exception')
     {
-        if(!isset($class)) return;
+        if (!isset($class)) return;
         $this->setExpectedExceptionRegExp($exception, '/::__construct.+argument \$.+Given:/');
         $new = new \ReflectionClass($class);
         $instance = $new->newInstanceArgs($args);
     }
 
-    public static function expectedRenders() {}
-    public static function expectedConstructExceptions() { return array(array()); }
+    public static function expectedConstructExceptions()
+    {
+        return array(array());
+    }
 }

@@ -12,14 +12,14 @@ class Callout extends Text
     public function __construct($text, $subtype = "")
     {
         parent::__construct($text);
-        if(!is_string($subtype)) throw new \InvalidArgumentException(__METHOD__." second argument \$subtype must be a string. Given: ".($subtype ? "$subtype " : "")."(".gettype($subtype).").");
+        if (!is_string($subtype)) throw new \InvalidArgumentException(__METHOD__." second argument \$subtype must be a string. Given: ".($subtype ? "$subtype " : "")."(".gettype($subtype).").");
         $this->subtype = $subtype;
     }
 
     public function render()
     {
         $text = parent::render();
-        if(trim($text) != "") $text = "+++$this->subtype\n$text\n+++";
+        if (trim($text) != "") $text = "+++$this->subtype\n$text\n+++";
         $text = "\n\n$text\n\n";
         return self::beautify($text);
     }
