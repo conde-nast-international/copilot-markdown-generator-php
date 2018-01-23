@@ -78,7 +78,7 @@ Generator for [ATX headings](http://spec.commonmark.org/0.27/#atx-headings).
 
 * `new Heading($text[, $level])`<br>
 ***text:*** string (Markdown)<br>
-***level:*** int (default: `2`)
+***level:*** int (default: `2`) (min: `2`) (max: `4`)
 
 ### Paragraph
 
@@ -94,7 +94,7 @@ Generator for [paragraphs](http://spec.commonmark.org/0.27/#paragraphs).
 
 ### InlineText
 
-Generator for inline text tags: [emphasis](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#3111-emphasis), [strong](http://spec.commonmark.org/0.27/#emphasis-and-strong-emphasis), [subscript](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#3110-subscript), [superscript](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#319-superscript) and
+Generator for inline text tags: [emphasis](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#3111-emphasis), [strong](http://spec.commonmark.org/0.27/#emphasis-and-strong-emphasis) and
 [delete](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#314-delete).
 
 ```php
@@ -112,8 +112,6 @@ Generator for inline text tags: [emphasis](https://github.com/conde-nast-interna
 |---------------|------|---------------------------|
 |`EMPHASIS`     |`*`   |Italic, em                 |
 |`STRONG`       |`**`  |Bold                       |
-|`SUBSCRIPT`    |`~`   |Inferior, sub              |
-|`SUPERSCRIPT`  |`^`   |Superior, super            |
 |`DELETE`       |`~~`  |Strikethrough, strike, del |
 
 ### Link
@@ -178,41 +176,6 @@ Generator for [embeds](https://github.com/conde-nast-international/copilot-markd
 #### EmbedSubtype
 
 Class constants for valid embed [subtypes](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#3116-subtypes). See the [source file](https://github.com/conde-nast-international/copilot-markdown-generator-php/blob/master/src/EmbedSubtype.php) for reference.
-
-### Callout
-
-Generator for [callouts](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#312-callout).
-
-```php
-(new Callout("Hello world!", "type"))->render();
-// "+++type\nHello world!\n+++\n"
-```
-
-* `new Callout($text[, $subtype])`<br>
-  ***text:*** string (Markdown)<br>
-  ***subtype:*** string (default: `""`)
-
-### Section
-
-Generator for [sections](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#313-section).
-
-```php
-(new Section())->render();
-// "\n-=-=-=-\n"
-```
-
-* `new Section()`
-
-### ThematicBreak
-
-Generator for [thematic breaks](http://spec.commonmark.org/0.27/#thematic-breaks). Also known as horizontal rule or HR.
-
-```php
-(new ThematicBreak())->render();
-// "\n----------\n"
-```
-
-* `new ThematicBreak()`
 
 ## See also
 

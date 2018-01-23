@@ -132,9 +132,6 @@ function on_close_tag($parser, $name)
         case 'QUOTE':
             $tag = new CopilotTags\Blockquote($text);
             break;
-        case 'CALLOUT':
-            $tag = new CopilotTags\Callout($text);
-            break;
         case 'EMBED-VIDEO':
             $tag = new CopilotTags\Embed($text, CopilotTags\EmbedSubtype::VIDEO);
             break;
