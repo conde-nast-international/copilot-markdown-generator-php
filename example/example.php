@@ -1,6 +1,16 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
+/**
+ * example.php
+ *
+ * This example implementation converts some custom XML content using the
+ * library with a SAX parser and a content mapping.
+ *
+ * NOTE: this is here to show how the library works, but is definitely not
+ * intended to be used in production!
+ */
+
 
 const LOG_LEVEL = 1; // 0 = print none, 1 = print normal, 2 = print debug
 const FILENAME = 'example_body.xml';
@@ -121,9 +131,6 @@ function on_close_tag($parser, $name)
             break;
         case 'QUOTE':
             $tag = new CopilotTags\Blockquote($text);
-            break;
-        case 'CALLOUT':
-            $tag = new CopilotTags\Callout($text);
             break;
         case 'EMBED-VIDEO':
             $tag = new CopilotTags\Embed($text, CopilotTags\EmbedSubtype::VIDEO);

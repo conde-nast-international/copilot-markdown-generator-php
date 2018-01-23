@@ -24,6 +24,9 @@ echo $markdown;
 // Hello world!
 ```
 
+See the [example implementation](https://github.com/conde-nast-international/copilot-markdown-generator-php/tree/master/example),
+which shows how the library can be used to convert custom XML content.
+
 ## Contributing
 
 See the [Contributing] document for guidance on making contributions to the
@@ -31,7 +34,18 @@ project.
 
 ## API
 
-Classes in this library are namespaced in `CopilotTags` (e.g. `CopilotTags\Paragraph`).
+This library is a collection of simple Markdown generator classes namespaced in
+`CopilotTags` (e.g. `CopilotTags\Paragraph`).
+
+Several of the generators take a text parameter. The given text value can
+contain any valid Copilot-flavored Markdown, which allows for tags to be nested.
+
+**NOTE:** You need to escape any Markdown characters in the
+source content that should not be treated as Markdown:<br>
+
+```php
+addcslashes($content, "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
+```
 
 ### CopilotTag
 
@@ -43,8 +57,7 @@ Interface for tag generator classes.
 
 ### Text
 
-Generator for unformatted text. The given text value can contain any valid
-Copilot-flavored Markdown.
+Generator for unformatted text.
 
 ```php
 (new Text("Hello world!"))->render();
@@ -60,12 +73,12 @@ Generator for [ATX headings](http://spec.commonmark.org/0.27/#atx-headings).
 
 ```php
 (new Heading("Hello world!", 3))->render();
-// "### Hello world!\n"
+// "\n\n### Hello world!\n"
 ```
 
 * `new Heading($text[, $level])`<br>
 ***text:*** string (Markdown)<br>
-***level:*** int (default: `2`)
+***level:*** int (default: `2`) (min: `2`) (max: `4`)
 
 ### Paragraph
 
@@ -73,7 +86,7 @@ Generator for [paragraphs](http://spec.commonmark.org/0.27/#paragraphs).
 
 ```php
 (new Paragraph("Hello world!"))->render();
-// "Hello world!\n\n"
+// "\n\nHello world!\n\n"
 ```
 
 * `new Paragraph($text)`<br>
@@ -81,7 +94,7 @@ Generator for [paragraphs](http://spec.commonmark.org/0.27/#paragraphs).
 
 ### InlineText
 
-Generator for inline text tags: [emphasis](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#3111-emphasis), [strong](http://spec.commonmark.org/0.27/#emphasis-and-strong-emphasis), [subscript](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#3110-subscript), [superscript](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#319-superscript) and
+Generator for inline text tags: [emphasis](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#3111-emphasis), [strong](http://spec.commonmark.org/0.27/#emphasis-and-strong-emphasis) and
 [delete](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#314-delete).
 
 ```php
@@ -99,8 +112,6 @@ Generator for inline text tags: [emphasis](https://github.com/conde-nast-interna
 |---------------|------|---------------------------|
 |`EMPHASIS`     |`*`   |Italic, em                 |
 |`STRONG`       |`**`  |Bold                       |
-|`SUBSCRIPT`    |`~`   |Inferior, sub              |
-|`SUPERSCRIPT`  |`^`   |Superior, super            |
 |`DELETE`       |`~~`  |Strikethrough, strike, del |
 
 ### Link
@@ -125,7 +136,7 @@ Generator for [block quotes](http://spec.commonmark.org/0.27/#block-quotes).
 
 ```php
 (new Blockquote("Hello world!"))->render();
-// "> Hello world!\n"
+// "\n> Hello world!\n"
 ```
 
 * `new Blockquote($text)`<br>
@@ -137,9 +148,9 @@ Generator for [lists](http://spec.commonmark.org/0.27/#lists).
 
 ```php
 (new ListTag(["First", "Second"]))->render();
-// "* First\n* Second\n\n"
+// "\n\n* First\n* Second\n\n"
 (new ListTag(["First", "Second"], TRUE))->render();
-// "1. First\n2. Second\n\n"
+// "\n\n1. First\n2. Second\n\n"
 ```
 
 * `new ListTag($items[, $ordered])`<br>
@@ -152,9 +163,9 @@ Generator for [embeds](https://github.com/conde-nast-international/copilot-markd
 
 ```php
 (new Embed("https://github.com", EmbedSubtype::IFRAME))->render();
-// "\n\n[#iframe: https://github.com]\n"
+// "\n\n[#iframe: https://github.com]\n\n"
 (new Embed("https://github.com", EmbedSubtype::IFRAME, "My caption."))->render();
-// "\n\n[#iframe: https://github.com]|||My caption.|||\n"
+// "\n\n[#iframe: https://github.com]|||My caption.|||\n\n"
 ```
 
 * `new Embed($uri[, $subtype, $caption])`<br>
@@ -166,41 +177,6 @@ Generator for [embeds](https://github.com/conde-nast-international/copilot-markd
 
 Class constants for valid embed [subtypes](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#3116-subtypes). See the [source file](https://github.com/conde-nast-international/copilot-markdown-generator-php/blob/master/src/EmbedSubtype.php) for reference.
 
-### Callout
-
-Generator for [callouts](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#312-callout).
-
-```php
-(new Callout("Hello world!", "type"))->render();
-// "+++type\nHello world!\n+++\n"
-```
-
-* `new Callout($text[, $subtype])`<br>
-  ***text:*** string (Markdown)<br>
-  ***subtype:*** string (default: `""`)
-
-### Section
-
-Generator for [sections](https://github.com/conde-nast-international/copilot-markdown/blob/master/specification/0E.md#313-section).
-
-```php
-(new Section())->render();
-// "\n-=-=-=-\n"
-```
-
-* `new Section()`
-
-### ThematicBreak
-
-Generator for [thematic breaks](http://spec.commonmark.org/0.27/#thematic-breaks). Also known as horizontal rule or HR.
-
-```php
-(new ThematicBreak())->render();
-// "\n----------\n"
-```
-
-* `new ThematicBreak()`
-
 ## See also
 
 * [Copilot-flavored Markdown]
@@ -211,6 +187,7 @@ Generator for [thematic breaks](http://spec.commonmark.org/0.27/#thematic-breaks
 * [Get Composer][Composer]
 
 [Contributing]: https://github.com/conde-nast-international/copilot-markdown-generator-php/blob/master/CONTRIBUTING.md
+[example implementation]: https://github.com/conde-nast-international/copilot-markdown-generator-php/tree/master/example
 [Copilot-flavored Markdown]: https://github.com/conde-nast-international/copilot-markdown
 [Copilot-flavored Markdown spec]: https://github.com/conde-nast-international/copilot-markdown/tree/master/specification
 [CommonMark]: http://commonmark.org/

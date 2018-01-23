@@ -9,7 +9,7 @@ namespace CopilotTags;
 class Heading extends Text
 {
     const MIN_LEVEL = 2;
-    const MAX_LEVEL = 6;
+    const MAX_LEVEL = 4;
 
     private $level;
 
