@@ -41,9 +41,9 @@ Several of the generators take a text parameter. The given text value can
 contain any valid Copilot-flavored Markdown, which allows for tags to be nested.
 
 **NOTE:** You need to escape any Markdown characters in the
-source content that should not be treated as Markdown, e.g.:
+source content that should not be treated as Markdown:<br>
 
-```
+```php
 addcslashes($content, "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
 ```
 
