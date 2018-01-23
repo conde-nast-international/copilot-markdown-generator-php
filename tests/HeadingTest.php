@@ -8,9 +8,6 @@ class HeadingTest extends CopilotTagTest
 {
     public static function expectedRenders()
     {
-        $embed = new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption");
-        $embedMarkdown = $embed->render();
-
         return array(
             "expect text with heading level" => array(
                 new Heading("Hello world!", 3),
@@ -55,22 +52,6 @@ class HeadingTest extends CopilotTagTest
             "expect multiple newlines to be preserved" => array(
                 new Heading("\n\n\n\n"),
                 "\n\n"
-            ),
-            "expect only embed" => array(
-                new Heading($embedMarkdown),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n\n"
-            ),
-            "expect embed with text after" => array(
-                new Heading("$embedMarkdown Hello world!"),
-                "\n\n[#image:/photos/123ID]|||some caption|||\n\n## Hello world!\n"
-            ),
-            "expect embed with text before" => array(
-                new Heading("Hello world! $embedMarkdown"),
-                "\n\n## Hello world! \n\n[#image:/photos/123ID]|||some caption|||\n\n"
-            ),
-            "expect embed with text before and after" => array(
-                new Heading("Hello world! $embedMarkdown It's me again"),
-                "\n\n## Hello world! \n\n[#image:/photos/123ID]|||some caption|||\n\n## It's me again\n"
             )
         );
     }
