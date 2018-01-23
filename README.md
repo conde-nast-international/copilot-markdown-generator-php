@@ -73,7 +73,7 @@ Generator for [ATX headings](http://spec.commonmark.org/0.27/#atx-headings).
 
 ```php
 (new Heading("Hello world!", 3))->render();
-// "### Hello world!\n"
+// "\n\n### Hello world!\n"
 ```
 
 * `new Heading($text[, $level])`<br>
@@ -86,7 +86,7 @@ Generator for [paragraphs](http://spec.commonmark.org/0.27/#paragraphs).
 
 ```php
 (new Paragraph("Hello world!"))->render();
-// "Hello world!\n\n"
+// "\n\nHello world!\n\n"
 ```
 
 * `new Paragraph($text)`<br>
@@ -136,7 +136,7 @@ Generator for [block quotes](http://spec.commonmark.org/0.27/#block-quotes).
 
 ```php
 (new Blockquote("Hello world!"))->render();
-// "> Hello world!\n"
+// "\n> Hello world!\n"
 ```
 
 * `new Blockquote($text)`<br>
@@ -148,9 +148,9 @@ Generator for [lists](http://spec.commonmark.org/0.27/#lists).
 
 ```php
 (new ListTag(["First", "Second"]))->render();
-// "* First\n* Second\n\n"
+// "\n\n* First\n* Second\n\n"
 (new ListTag(["First", "Second"], TRUE))->render();
-// "1. First\n2. Second\n\n"
+// "\n\n1. First\n2. Second\n\n"
 ```
 
 * `new ListTag($items[, $ordered])`<br>
@@ -163,9 +163,9 @@ Generator for [embeds](https://github.com/conde-nast-international/copilot-markd
 
 ```php
 (new Embed("https://github.com", EmbedSubtype::IFRAME))->render();
-// "\n\n[#iframe: https://github.com]\n"
+// "\n\n[#iframe: https://github.com]\n\n"
 (new Embed("https://github.com", EmbedSubtype::IFRAME, "My caption."))->render();
-// "\n\n[#iframe: https://github.com]|||My caption.|||\n"
+// "\n\n[#iframe: https://github.com]|||My caption.|||\n\n"
 ```
 
 * `new Embed($uri[, $subtype, $caption])`<br>
