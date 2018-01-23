@@ -24,6 +24,9 @@ echo $markdown;
 // Hello world!
 ```
 
+See the [example implementation](https://github.com/conde-nast-international/copilot-markdown-generator-php/tree/master/example),
+which shows how the library can be used to convert custom XML content.
+
 ## Contributing
 
 See the [Contributing] document for guidance on making contributions to the
@@ -31,7 +34,18 @@ project.
 
 ## API
 
-Classes in this library are namespaced in `CopilotTags` (e.g. `CopilotTags\Paragraph`).
+This library is a collection of simple Markdown generator classes namespaced in
+`CopilotTags` (e.g. `CopilotTags\Paragraph`).
+
+Several of the generators take a text parameter. The given text value can
+contain any valid Copilot-flavored Markdown, which allows for tags to be nested.
+
+**NOTE:** You need to escape any Markdown characters in the
+source content that should not be treated as Markdown, e.g.:
+
+```
+addcslashes($content, "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
+```
 
 ### CopilotTag
 
@@ -43,8 +57,7 @@ Interface for tag generator classes.
 
 ### Text
 
-Generator for unformatted text. The given text value can contain any valid
-Copilot-flavored Markdown.
+Generator for unformatted text.
 
 ```php
 (new Text("Hello world!"))->render();
@@ -211,6 +224,7 @@ Generator for [thematic breaks](http://spec.commonmark.org/0.27/#thematic-breaks
 * [Get Composer][Composer]
 
 [Contributing]: https://github.com/conde-nast-international/copilot-markdown-generator-php/blob/master/CONTRIBUTING.md
+[example implementation]: https://github.com/conde-nast-international/copilot-markdown-generator-php/tree/master/example
 [Copilot-flavored Markdown]: https://github.com/conde-nast-international/copilot-markdown
 [Copilot-flavored Markdown spec]: https://github.com/conde-nast-international/copilot-markdown/tree/master/specification
 [CommonMark]: http://commonmark.org/
