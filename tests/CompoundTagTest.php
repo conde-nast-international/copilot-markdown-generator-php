@@ -15,6 +15,8 @@ class CompoundTagTest extends CopilotTagTest
         $embed = new Embed("/photos/123ID", EmbedSubtype::IMAGE, "some caption");
         $strong = new InlineText("the middle of a sentence", InlineTextDelimiter::STRONG);
         $strong_spaced = new InlineText(" the middle of a sentence ", InlineTextDelimiter::STRONG);
+        $link = new Link("some link text", "http://li.nk");
+        $link_spaced = new Link(" some link text ", "http://li.nk");
 
         return array(
             "expect inline tag in the middle of the sentence to have correct spacing" => array(
@@ -22,8 +24,44 @@ class CompoundTagTest extends CopilotTagTest
                 "It's weird when there is an inline tag in **the middle of a sentence** like this."
             ),
             "expect inline tag inside a link" => array(
+                new Link("$strong", "http://li.nk"),
+                "[**the middle of a sentence**](http://li.nk)"
+            ),
+            "expect inline tag inside a link with text before and after it" => array(
                 new Link("Link with an inline tag in $strong, like this.", "http://li.nk"),
                 "[Link with an inline tag in **the middle of a sentence**, like this.](http://li.nk)"
+            ),
+            "expect inline tag at the end of a link" => array(
+                new Link("Link with an inline tag in $strong", "http://li.nk"),
+                "[Link with an inline tag in **the middle of a sentence**](http://li.nk)"
+            ),
+            "expect inline tag at the start of a link" => array(
+                new Link("$strong, like this.", "http://li.nk"),
+                "[**the middle of a sentence**, like this.](http://li.nk)"
+            ),
+            "expect inline tag inside a link to have correct spacing" => array(
+                new Link("$strong_spaced", "http://li.nk"),
+                " [**the middle of a sentence**](http://li.nk) "
+            ),
+            "expect inline tag inside a link with text before and after it to have correct spacing" => array(
+                new Link("Link with an inline tag in$strong_spaced, like this.", "http://li.nk"),
+                "[Link with an inline tag in **the middle of a sentence** , like this.](http://li.nk)"
+            ),
+            "expect inline tag at the end of a link to have correct spacing" => array(
+                new Link("Link with an inline tag in$strong_spaced", "http://li.nk"),
+                "[Link with an inline tag in **the middle of a sentence**](http://li.nk) "
+            ),
+            "expect inline tag at the start of a link to have correct spacing" => array(
+                new Link("$strong_spaced, like this.", "http://li.nk"),
+                " [**the middle of a sentence** , like this.](http://li.nk)"
+            ),
+            "expect link inside an inline tag" => array(
+                new InlineText("$link", InlineTextDelimiter::STRONG),
+                "**[some link text](http://li.nk)**"
+            ),
+            "expect link inside an inline tag to have correct spacing" => array(
+                new InlineText("$link_spaced", InlineTextDelimiter::STRONG),
+                " **[some link text](http://li.nk)** "
             ),
             "expect heading containing only embed" => array(
                 new Heading("$embed"),
