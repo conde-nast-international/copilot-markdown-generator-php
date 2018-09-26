@@ -6,15 +6,13 @@
 
 You will need to have installed on your machine:
 
-* PHP 5.4. If you're using macOS, it's easiest to install this with [Homebrew]:
+* PHP 5.6. If you're using macOS, it's easiest to install this with [Homebrew]:
   ```shell
-  $ brew tap homebrew/homebrew-php
-  $ brew install homebrew/php/php54
+  $ brew install php@5.6
   ```
 * Composer. [Download Composer][Composer] or install it with [Homebrew]:
   ```shell
-  $ brew tap homebrew/homebrew-php
-  $ brew install homebrew/php/composer
+  $ brew install composer
   ```
 
 There are useful links in the [see also][CONTRIBUTING see also]
